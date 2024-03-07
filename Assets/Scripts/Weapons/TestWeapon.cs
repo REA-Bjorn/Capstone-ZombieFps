@@ -6,6 +6,7 @@ public class TestWeapon : WeaponBase
 {
     public override void Shoot()
     {
+        Debug.Log("Shoot");
         if (CanUse)
         {
             timer.enabled = true;
@@ -18,7 +19,10 @@ public class TestWeapon : WeaponBase
                 {
                     damage.TakeDamage(attack.CurrentValue);
                 }
-
+                else
+                {
+                    Debug.Log("Damage is Null");
+                }
             }
         }
     }

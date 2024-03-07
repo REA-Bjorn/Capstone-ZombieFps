@@ -26,7 +26,7 @@ public class Resource
     public void Increase(float value)
     {
         float newValue = Mathf.Max(currentValue + value, max);
-        currentValue += newValue;
+        currentValue = newValue;
         OnIncrease?.Invoke();
         OnChanged?.Invoke();
         isEmpty = false;
@@ -40,7 +40,7 @@ public class Resource
         }
 
         float newValue = Mathf.Max(currentValue - value, min);
-        currentValue -= newValue;
+        currentValue = newValue;
         OnDecrease?.Invoke();
         OnChanged?.Invoke();
 

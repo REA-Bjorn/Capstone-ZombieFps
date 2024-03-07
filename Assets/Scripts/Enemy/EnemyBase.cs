@@ -3,23 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBase : MonoBehaviour,IDamage
+public class EnemyBase : MonoBehaviour, IDamage
 {
 
     [SerializeField] HealthPool health;
 
-    [SerializeField] MeshRenderer mesh;
+    [SerializeField] SkinnedMeshRenderer mesh;
 
-    [SerializeField] Color baseColor;
+    [SerializeField] Material baseMaterial;
+
+    [SerializeField] Material hitMaterial;
 
     // Start is called before the first frame update
     void Start()
     {
+        mesh.material = baseMaterial;
+
         health.SetMax();
 
-       if (mesh == null)
+        if (mesh == null)
         {
-            mesh = GetComponent<MeshRenderer>();
+             mesh = GetComponent<SkinnedMeshRenderer>();
         }
 
         health.OnDepleted += Health_OnDepleted;
@@ -33,7 +37,7 @@ public class EnemyBase : MonoBehaviour,IDamage
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void TakeDamage(float damage)
@@ -42,13 +46,14 @@ public class EnemyBase : MonoBehaviour,IDamage
         if (health.IsValid)
         {
             StartCoroutine(FlashDamage());
+            Debug.Log("Is Hit");
         }
     }
 
     private IEnumerator FlashDamage()
     {
-        mesh.material.color = Color.red;
+        mesh.material = hitMaterial;
         yield return new WaitForSeconds(0.25f);
-        mesh.material.color = baseColor;
+        mesh.material = baseMaterial;
     }
 }

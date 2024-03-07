@@ -12,6 +12,8 @@ public class PlayerBase : MonoBehaviour
         instance = this;
     }
 
+    [SerializeField] BaseCamera cam;
+
     [SerializeField] HealthPool health;
 
     [SerializeField] SpeedPool speed;
@@ -23,6 +25,7 @@ public class PlayerBase : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        speed.SetMax();
         rb = GetComponent<Rigidbody>();
         InputManager.Instance.Action.Attack.started += Attack_started;
         health.SetMax();

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
@@ -10,18 +11,20 @@ public class InputManager : MonoBehaviour
 
     public PlayerInputs.GeneralActions Action => inputs.General;
 
-    public Vector2 MoveVect => Action.Movement.ReadValue<Vector2>();
+    public Vector2 MoveVect => inputs.General.Movement.ReadValue<Vector2>();
 
     private void Awake()
     {
-       Instance = this;
+        Instance = this;
+        inputs = new PlayerInputs();
+        inputs.Enable();
     }
+
 
     // Start is called before the first frame update
     void Start()
     {
-        inputs = new PlayerInputs();
-        inputs.Enable();
+        
     }
 
     public Vector2 CameraReadVal()

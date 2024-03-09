@@ -12,6 +12,8 @@ public class PlayerBase : MonoBehaviour
         instance = this;
     }
 
+    [SerializeField] CharacterController charController;
+
     [SerializeField] BaseCamera cam;
 
     [SerializeField] HealthPool health;
@@ -20,15 +22,24 @@ public class PlayerBase : MonoBehaviour
 
     [SerializeField] WeaponBase weapon;
 
-    Rigidbody rb;
+    Vector3 movement;
 
     // Start is called before the first frame update
     void Start()
     {
         speed.SetMax();
-        rb = GetComponent<Rigidbody>();
-        InputManager.Instance.Action.Attack.started += Attack_started;
         health.SetMax();
+        Debug.Log(InputManager.Instance.Action.Attack);
+        InputManager.Instance.Action.Attack.started += Attack_started;
+    }
+
+    private void OnEnable()
+    {
+    }
+
+    private void OnDisable()
+    {
+        InputManager.Instance.Action.Attack.started -= Attack_started;
     }
 
     private void Attack_started(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -38,8 +49,13 @@ public class PlayerBase : MonoBehaviour
 
     public void Movement()
     {
-        Vector2 move = InputManager.Instance.MoveVect * speed.CurrentValue;
-        rb.velocity = transform.TransformDirection(new Vector3(move.x, rb.velocity.y, move.y));
+        movement = (transform.right * InputManager.Instance.MoveVect.x) + (transform.forward * InputManager.Instance.MoveVect.y);
+
+        charController.Move(movement * Time.deltaTime * speed.CurrentValue);
+
+        //Old Code
+        //Vector2 move = InputManager.Instance.MoveVect * speed.CurrentValue;
+        //rb.velocity = transform.TransformDirection(new Vector3(move.x, rb.velocity.y, move.y));
     }
     
 

@@ -20,18 +20,19 @@ public class BaseCamera : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         AimCamera();
     }
 
     private void AimCamera()
     {
         Vector2 input = InputManager.Instance.CameraReadVal();
-        xRot += -input.y * camVertSpeed * Time.deltaTime;
-        xRot = Mathf.Clamp(xRot, -vertLookValue, vertLookValue);
+        xRot = -input.y * camVertSpeed * Time.deltaTime;
+        //xRot = Mathf.Clamp(xRot, -vertLookValue, vertLookValue);
 
-        transform.localRotation = Quaternion.Euler(xRot, 0, 0);
+        transform.Rotate(Vector3.right * xRot);
 
         if (Mathf.Abs(input.x) > 0)
         {
@@ -39,3 +40,4 @@ public class BaseCamera : MonoBehaviour
         }
     }
 }
+

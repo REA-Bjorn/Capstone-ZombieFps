@@ -3545,6 +3545,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8502583144438072824, guid: 6e1cce8783be33b4ab2250338778611a,
+        type: 3}
+      propertyPath: playerBody
+      value: 
+      objectReference: {fileID: 1903789757}
+    - target: {fileID: 8502583144438072824, guid: 6e1cce8783be33b4ab2250338778611a,
+        type: 3}
+      propertyPath: mouseSenitivity
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8079,6 +8089,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7029963525744781824, guid: e06c9997807349d4e981a2c605b0ad95,
     type: 3}
   m_PrefabInstance: {fileID: 1881351251}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1903789757 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1763888271620170312, guid: 6e1cce8783be33b4ab2250338778611a,
+    type: 3}
+  m_PrefabInstance: {fileID: 851585823}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1937758244
 PrefabInstance:

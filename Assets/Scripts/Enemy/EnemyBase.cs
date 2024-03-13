@@ -45,15 +45,15 @@ public class EnemyBase : MonoBehaviour, IDamage
         health.UseResource(damage);
         if (health.IsValid)
         {
-            StartCoroutine(FlashDamage());
+            //StartCoroutine(FlashDamage());
             Debug.Log("Is Hit");
         }
     }
 
-    private IEnumerator FlashDamage()
-    {
-        mesh.material = hitMaterial;
-        yield return new WaitForSeconds(0.25f);
-        mesh.material = baseMaterial;
-    }
+    //private IEnumerator FlashDamage()
+    //{
+    //    mesh.material = hitMaterial;
+    //    yield return new WaitForSeconds(0.25f);
+    //    mesh.material = baseMaterial;
+    //}
 }

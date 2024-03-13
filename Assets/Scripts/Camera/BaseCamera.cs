@@ -7,37 +7,27 @@ using UnityEngine.Windows;
 
 public class BaseCamera : MonoBehaviour
 {
-    [SerializeField] private float vertLookValue;
-    [SerializeField] private float camHoriSpeed;
-    [SerializeField] private float camVertSpeed;
+    [SerializeField] public float mouseSenitivity;
 
-    float xRot = 0f;
+    public Transform playerBody;
 
-    // Start is called before the first frame update
+    float xRotation = 0f;
+
     void Start()
     {
-        transform.localRotation = Quaternion.Euler(xRot, 0, 0);
-    }
-
-    // Update is called once per frame
-    void LateUpdate()
-    {
         Cursor.lockState = CursorLockMode.Locked;
-        AimCamera();
     }
 
-    private void AimCamera()
+    void Update()
     {
-        Vector2 input = InputManager.Instance.CameraReadVal();
-        xRot = -input.y * camVertSpeed * Time.deltaTime;
-        //xRot = Mathf.Clamp(xRot, -vertLookValue, vertLookValue);
+        float mouseX = InputManager.Instance.Action.Looking.ReadValue<Vector2>().x * mouseSenitivity * Time.deltaTime;
+        float mouseY = InputManager.Instance.Action.Looking.ReadValue<Vector2>().y * mouseSenitivity * Time.deltaTime;
 
-        transform.Rotate(Vector3.right * xRot);
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        if (Mathf.Abs(input.x) > 0)
-        {
-            transform.parent.Rotate(Vector3.up * input.x * Time.deltaTime * camHoriSpeed);
-        }
+        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        playerBody.Rotate(Vector3.up * mouseX);
     }
 }
 

@@ -14,6 +14,7 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] protected float cooldown;
 
     protected bool CanUse;
+    public float ShootDist => range;
 
     // Start is called before the first frame update
     void Start()

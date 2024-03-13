@@ -24,6 +24,8 @@ public class PlayerBase : MonoBehaviour
 
     Vector3 movement;
 
+    public float ShootDist => weapon.ShootDist;
+
     // Start is called before the first frame update
     void Start()
     {

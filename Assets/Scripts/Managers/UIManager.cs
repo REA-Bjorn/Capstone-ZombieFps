@@ -7,10 +7,22 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
     [SerializeField] GameObject death;
+    [SerializeField] GameObject win;
+    [SerializeField] GameState gameState;
 
     private void Awake()
     {
         Instance = this;
+    }
+
+    public void UpdateSum()
+    {
+        gameState.UpdateScore();
+    }
+
+    public void WinMenu()
+    {
+        win.SetActive(true);
     }
 
     public void DeathMenu()
@@ -22,6 +34,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         death.SetActive(false); 
+        win.SetActive(false);
     }
 
     // Update is called once per frame

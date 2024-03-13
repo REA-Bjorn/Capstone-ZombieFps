@@ -5,21 +5,25 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour, IDamage
 {
-
     [SerializeField] HealthPool health;
-
+    [SerializeField] AttackPool attack;
+    [SerializeField] SpeedPool speed;
+    [SerializeField] EnemyMovement move;
     [SerializeField] SkinnedMeshRenderer mesh;
-
     [SerializeField] Material baseMaterial;
-
     [SerializeField] Material hitMaterial;
+
+    public SpeedPool Spd => speed;
+    public AttackPool Atk => attack;
 
     // Start is called before the first frame update
     void Start()
     {
-        mesh.material = baseMaterial;
-
+        attack.SetMax();
         health.SetMax();
+        speed.SetMax();
+        move.StartMe();
+        mesh.material = baseMaterial;
 
         if (mesh == null)
         {
@@ -27,17 +31,19 @@ public class EnemyBase : MonoBehaviour, IDamage
         }
 
         health.OnDepleted += Health_OnDepleted;
+
+        GameManager.instance.IncEndGoal();
     }
     private void Health_OnDepleted()
     {
-        StopAllCoroutines();
+        GameManager.instance.UpdateGameStatus();
         gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        move.Movement();
     }
 
     public void TakeDamage(float damage)

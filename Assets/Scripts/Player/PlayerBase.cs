@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerBase : MonoBehaviour
+public class PlayerBase : MonoBehaviour, IDamage
 {
     public static PlayerBase instance;
 
@@ -12,9 +12,7 @@ public class PlayerBase : MonoBehaviour
         instance = this;
     }
 
-    [SerializeField] CharacterController charController;
-
-    [SerializeField] BaseCamera cam;
+    [SerializeField] GameObject playerUI;
 
     [SerializeField] HealthPool health;
 
@@ -22,7 +20,11 @@ public class PlayerBase : MonoBehaviour
 
     [SerializeField] WeaponBase weapon;
 
-    Vector3 movement;
+    [SerializeField] PlayerMovement move;
+
+    [SerializeField] BaseCamera cam;
+
+    public SpeedPool Spd => speed;
 
     public float ShootDist => weapon.ShootDist;
 
@@ -33,15 +35,32 @@ public class PlayerBase : MonoBehaviour
         health.SetMax();
         Debug.Log(InputManager.Instance.Action.Attack);
         InputManager.Instance.Action.Attack.started += Attack_started;
+        health.OnDepleted += Health_OnDepleted;
     }
 
-    private void OnEnable()
+    private void Health_OnDepleted()
     {
+        LockPlayer();
+        UIManager.Instance.DeathMenu();
+    }
+
+    public void LockPlayer()
+    {
+        playerUI.SetActive(false);
+
+        move.enabled = false;
+
+        cam.enabled = false;
+
+        InputManager.Instance.Action.Attack.started -= Attack_started;
+
+        Cursor.lockState = CursorLockMode.None;
     }
 
     private void OnDisable()
     {
         InputManager.Instance.Action.Attack.started -= Attack_started;
+        health.OnDepleted -= Health_OnDepleted;
     }
 
     private void Attack_started(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -49,21 +68,19 @@ public class PlayerBase : MonoBehaviour
         weapon.Shoot();
     }
 
-    public void Movement()
-    {
-        movement = (transform.right * InputManager.Instance.MoveVect.x) + (transform.forward * InputManager.Instance.MoveVect.y);
-
-        charController.Move(movement * Time.deltaTime * speed.CurrentValue);
-
-        //Old Code
-        //Vector2 move = InputManager.Instance.MoveVect * speed.CurrentValue;
-        //rb.velocity = transform.TransformDirection(new Vector3(move.x, rb.velocity.y, move.y));
-    }
-    
-
     // Update is called once per frame
     void Update()
     {
-        Movement();
+        move.Movement();
+        if (cam.enabled)
+        {
+            cam.Look();
+        }
+
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health.UseResource(damage);
     }
 }

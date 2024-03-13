@@ -7,6 +7,27 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public float enemyCount;
+    public float enemyKill;
+
+    public void IncEndGoal()
+    {
+        enemyCount++;
+        UIManager.Instance.UpdateSum();
+    }
+
+    public void UpdateGameStatus()
+    {
+        enemyKill++;
+
+        UIManager.Instance.UpdateSum();
+
+        if (enemyKill == enemyCount)
+        {
+            PlayerBase.instance.LockPlayer();
+            UIManager.Instance.WinMenu();
+        }
+    }
 
     public void RetryLevel()
     {

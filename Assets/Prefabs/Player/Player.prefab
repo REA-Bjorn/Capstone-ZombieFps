@@ -305,6 +305,7 @@ GameObject:
   - component: {fileID: 3609426514117038562}
   - component: {fileID: 1327062452669739627}
   - component: {fileID: 8571749272088024675}
+  - component: {fileID: 7290629467626061871}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -392,8 +393,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4104e743878c3489fdae6813b10267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charController: {fileID: 8571749272088024675}
-  cam: {fileID: 8502583144438072824}
   health:
     max: 2
     min: 0
@@ -403,6 +402,8 @@ MonoBehaviour:
     min: 0
     currentValue: 0
   weapon: {fileID: 2571294423858608916}
+  move: {fileID: 7290629467626061871}
+  cam: {fileID: 8502583144438072824}
 --- !u!143 &8571749272088024675
 CharacterController:
   m_ObjectHideFlags: 0
@@ -429,6 +430,19 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7290629467626061871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4282033910931779895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60dae3acc1685264582a5317fb23760c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charController: {fileID: 8571749272088024675}
 --- !u!1001 &7538090255613010289
 PrefabInstance:
   m_ObjectHideFlags: 0

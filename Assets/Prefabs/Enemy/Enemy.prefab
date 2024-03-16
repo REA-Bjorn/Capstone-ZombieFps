@@ -845,7 +845,7 @@ Animator:
   m_GameObject: {fileID: 3261371145617336343}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b20a3c10714a6ac439af479e3273de65, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a9d6a680f08e63d4babeeb45516ddf4e, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -876,14 +876,14 @@ MonoBehaviour:
     max: 1
     min: 0
     currentValue: 0
-  move: {fileID: 6486444482730339916}
-  mesh: {fileID: 6759557469295182252}
-  baseMaterial: {fileID: 2100000, guid: 6652f53b7c4df9a45ad94449e114ba65, type: 2}
-  hitMaterial: {fileID: 2100000, guid: 358d6765011ee87409a655327d68fb87, type: 2}
   speed:
     max: 0
     min: 0
     currentValue: 0
+  move: {fileID: 6486444482730339916}
+  mesh: {fileID: 6759557469295182252}
+  baseMaterial: {fileID: 2100000, guid: 6652f53b7c4df9a45ad94449e114ba65, type: 2}
+  hitMaterial: {fileID: 2100000, guid: 358d6765011ee87409a655327d68fb87, type: 2}
 --- !u!136 &7095413207640277574
 CapsuleCollider:
   m_ObjectHideFlags: 0

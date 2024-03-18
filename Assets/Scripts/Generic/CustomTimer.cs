@@ -19,6 +19,7 @@ public class CustomTimer : MonoBehaviour
     //Properties
     public float CurrentTime => currTime;
     public float Percentage => Mathf.Clamp01(currTime/duration);
+    public float ReversePercentage => Mathf.Clamp01((duration - currTime)/duration);
 
 
     public void SetToMax()
@@ -30,14 +31,14 @@ public class CustomTimer : MonoBehaviour
     public void RestartTimer()
     {
         SetToMax();
-        OnRestart.Invoke();
+        OnRestart?.Invoke();
     }
 
     public void StartTimer(float _duration = 0f)
     {
         duration = _duration;
         SetToMax();
-        OnStart.Invoke();
+        OnStart?.Invoke();
     }
 
     // Start is called before the first frame update
@@ -59,7 +60,7 @@ public class CustomTimer : MonoBehaviour
             else
             {
                 currTime = 0;
-                OnEnd.Invoke();
+                OnEnd?.Invoke();
                 RunTimer = false;
             }
         }

@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [SerializeField] private Transform playerTransfrom;
+    public Transform Player => playerTransfrom;
+
     public float enemyCount;
     public float enemyKill;
 

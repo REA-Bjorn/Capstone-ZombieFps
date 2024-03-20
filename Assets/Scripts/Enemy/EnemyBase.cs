@@ -22,7 +22,6 @@ public class EnemyBase : MonoBehaviour, IDamage
         attack.SetMax();
         health.SetMax();
         speed.SetMax();
-        move.StartMe();
         mesh.material = baseMaterial;
 
         if (mesh == null)

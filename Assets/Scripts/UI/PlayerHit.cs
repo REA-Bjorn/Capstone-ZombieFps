@@ -53,7 +53,10 @@ public class PlayerHit : MonoBehaviour
     private void VignetteFlash()
     {
         vignette.gameObject.SetActive(true);
-        StartCoroutine(DisplayVignette());
+        if (vignette.gameObject.activeInHierarchy)
+        {
+            StartCoroutine(DisplayVignette());
+        }
     }
 
     public void Active()

@@ -7,25 +7,67 @@ public class PlayerHit : MonoBehaviour
 {
     [SerializeField] Image vignette;
 
-    private IEnumerator FadeIn()
+    private float tmpDamageFlash;
+
+    private bool currentlyDamaged;
+
+    [SerializeField] private AnimationCurve flashSpeedCurve;
+
+    [SerializeField] float showDuration;
+
+    void Start()
     {
-        vignette.color = Color.Lerp(Color.clear, Color.red, Time.deltaTime);
-        yield return new WaitForSeconds(0.25f);
+        tmpDamageFlash = showDuration;
+
+        Disabler();
+    }
+
+    private IEnumerator DisplayVignette()
+    {
+        if(!currentlyDamaged)
+        {
+            currentlyDamaged = true;
+
+            vignette.gameObject.SetActive(true);
+
+            while(tmpDamageFlash > 0f)
+            {
+                tmpDamageFlash -= Time.deltaTime;
+
+                float alphaFadeIn = flashSpeedCurve.Evaluate(tmpDamageFlash);
+
+                vignette.color = new Color(255.0f, 0f, 0f, alphaFadeIn);
+
+                yield return 0;
+            }
+            tmpDamageFlash = showDuration;
+            vignette.gameObject.SetActive(false);
+            currentlyDamaged = false;
+        }
+        else if (currentlyDamaged)
+        {
+            tmpDamageFlash += Time.deltaTime;
+        }
+    }
+
+    private void VignetteFlash()
+    {
+        vignette.gameObject.SetActive(true);
+        StartCoroutine(DisplayVignette());
     }
 
     public void Active()
     {
-       
+       Invoke("VignetteFlash", 0.1f);
     }
 
     public void inActive()
     {
-
+        CancelInvoke("DisplayVignette");
     }
 
-    void Start()
+    public void Disabler()
     {
-
+        vignette.gameObject.SetActive(false);
     }
-
 }

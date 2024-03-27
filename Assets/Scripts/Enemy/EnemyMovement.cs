@@ -45,7 +45,7 @@ public class EnemyMovement : MonoBehaviour
                 if (agent.remainingDistance<=agent.stoppingDistance)
                 {
                     FacePlayer();
-                    Debug.Log("agent.remainingDistance" + agent.remainingDistance + "agent.stoppingDistance" + agent.stoppingDistance);
+                    //Debug.Log("agent.remainingDistance" + agent.remainingDistance + "agent.stoppingDistance" + agent.stoppingDistance);
                 }
                 return true;
             }

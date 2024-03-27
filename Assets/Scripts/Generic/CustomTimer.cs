@@ -18,6 +18,7 @@ public class CustomTimer : MonoBehaviour
 
     //Properties
     public float CurrentTime => currTime;
+    public float DurationTime => duration;
     public float Percentage => Mathf.Clamp01(currTime/duration);
     public float ReversePercentage => Mathf.Clamp01((duration - currTime)/duration);
 

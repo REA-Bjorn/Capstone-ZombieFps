@@ -12,6 +12,8 @@ public class EnemyAttack : MonoBehaviour
 
     [SerializeField] CustomTimer timer;
 
+    private float storedTime;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,7 +23,7 @@ public class EnemyAttack : MonoBehaviour
             if (dmg != null)
             {
                 dmg.TakeDamage(enemy.Atk.CurrentValue);
-                timer.StartTimer();
+                timer.StartTimer(storedTime);
             }
         }
     }
@@ -30,6 +32,7 @@ public class EnemyAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        storedTime = timer.DurationTime;
         timer.OnStart += Timer_OnStart;
         timer.OnEnd += Timer_OnEnd;
     }

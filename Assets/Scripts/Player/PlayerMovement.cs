@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
         movement = (transform.right * InputManager.Instance.MoveVect.x) + (transform.forward * InputManager.Instance.MoveVect.y);
 
         charController.Move(movement * Time.deltaTime * PlayerBase.instance.Spd.CurrentValue);
+
+        charController.Move(new Vector3(0, -9.81f * Time.deltaTime, 0));
     }
 
 }

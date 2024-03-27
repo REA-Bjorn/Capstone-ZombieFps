@@ -83,6 +83,8 @@ public class PlayerBase : MonoBehaviour, IDamage
 
     public void TakeDamage(float damage)
     {
+        Debug.Log("Player is Damaged");
+
         health.UseResource(damage);
         hitUI.Active();
     }

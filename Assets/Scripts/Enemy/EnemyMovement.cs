@@ -56,38 +56,20 @@ public class EnemyMovement : MonoBehaviour
 
     void FacePlayer()
     {
+        playerDir = GameManager.instance.Player.position - Headpos.position;
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceSpeed);
     }
 
-    public IEnumerator Roam()
-    {
-        if (!choseDis && agent.remainingDistance<1.75f)
-        {
-            choseDis = true;
-            agent.stoppingDistance = 0f;
-            yield return new WaitForSeconds(roamTimer);
-            Vector3 ranPos = Random.insideUnitSphere * roamDis;
-            ranPos += startingPos;
-            NavMeshHit hit;
-            NavMesh.SamplePosition(ranPos, out hit, roamDis, 1);
-            agent.SetDestination(hit.position);
-            choseDis =false;
-        }
-    }
 
     public void Movement()
     {
         if (agent.isActiveAndEnabled)
         {
-            if (!playerIsVis())
+            if (true)
             {
-                StartCoroutine(Roam());
-
-            }
-            else if (agent.destination != player.position)
-            {
-                StartCoroutine(Roam());
+                FacePlayer();
+                agent.SetDestination(GameManager.instance.Player.position);
             }
         }
     }

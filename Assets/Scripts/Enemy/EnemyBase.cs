@@ -12,6 +12,7 @@ public class EnemyBase : MonoBehaviour, IDamage
     [SerializeField] SkinnedMeshRenderer mesh;
     [SerializeField] Material baseMaterial;
     [SerializeField] Material hitMaterial;
+    [SerializeField] int PointVal;
 
     public SpeedPool Spd => speed;
     public AttackPool Atk => attack;
@@ -19,23 +20,20 @@ public class EnemyBase : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-        attack.SetMax();
-        health.SetMax();
-        speed.SetMax();
+        MaxStats();
         mesh.material = baseMaterial;
 
         if (mesh == null)
         {
-             mesh = GetComponent<SkinnedMeshRenderer>();
+            mesh = GetComponent<SkinnedMeshRenderer>();
         }
 
         health.OnDepleted += Health_OnDepleted;
-
-        GameManager.instance.IncEndGoal();
     }
     private void Health_OnDepleted()
     {
-        GameManager.instance.UpdateGameStatus();
+        PointsManager.instance.AddPoints(PointVal);
+        UIManager.Instance.UpdateScore();
         gameObject.SetActive(false);
     }
 
@@ -53,6 +51,13 @@ public class EnemyBase : MonoBehaviour, IDamage
             //StartCoroutine(FlashDamage());
             Debug.Log("Is Hit");
         }
+    }
+
+    public void MaxStats()
+    {
+        attack.SetMax();
+        health.SetMax();
+        speed.SetMax();
     }
 
     //private IEnumerator FlashDamage()

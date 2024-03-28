@@ -6,33 +6,41 @@ public class WaveSpawner : MonoBehaviour
 {
     public enum SpawnState { SPAWNING, WAITING, COUNTING };
 
-    [System.Serializable] 
+    [SerializeField] private List<GameObject> enemyPool;
+
+    [SerializeField] int StartingLimit = 10;
+
+    [SerializeField] GameObject enemyPre;
+
+    [System.Serializable]
     public class Wave
     {
         public string name;
-        public Transform enemy;
         public int count;
         public float rate;
     }
 
-    public Wave[] waves;
-
+    private SpawnState state = SpawnState.COUNTING;
     private int nextWave = 0;
 
-    public Transform[] spawnPoints;
+    public Wave[] waves;
+    public GameObject[] spawnPoints;
 
     public float timeBetweenWaves = 5f;
+
     private float waveCountdown;
-
     private float searchCountdown = 1f;
-
-    private SpawnState state = SpawnState.COUNTING;
 
     private void Start()
     {
         if (spawnPoints.Length == 0)
         {
             Debug.LogError("No Spawn Points");
+        }
+
+        for (int i = 0; i < StartingLimit; i++)
+        {
+            SpawnEnemy(enemyPre);
         }
 
         waveCountdown = timeBetweenWaves;
@@ -52,12 +60,11 @@ public class WaveSpawner : MonoBehaviour
             }
         }
 
-
         if (waveCountdown <= 0)
         {
             if (state != SpawnState.SPAWNING)
             {
-                StartCoroutine(SpawnWave(waves[nextWave]));
+                StartCoroutine(StartWave(waves[nextWave]));
             }
         }
         else
@@ -91,23 +98,35 @@ public class WaveSpawner : MonoBehaviour
         if (searchCountdown <= 0f)
         {
             searchCountdown = 1f;
-            if (GameObject.FindGameObjectsWithTag("Enemy") == null)
+            if (GameObject.FindWithTag("Enemy") == null)
             {
                 return false;
             }
         }
-        return true; 
+        return true;
     }
 
-   IEnumerator SpawnWave(Wave _wave)
+    IEnumerator StartWave(Wave _wave)
     {
         Debug.Log("Spawing Wave: " + _wave.name);
+
         state = SpawnState.SPAWNING;
+
+        if (enemyPool.Count < _wave.count)
+        {
+            int loopsize = _wave.count;
+
+            for (int i = 0; i < loopsize; i++)
+            {
+                SpawnEnemy(enemyPre);
+            }
+
+        }
 
         for (int i = 0; i < _wave.count; i++)
         {
-            SpawnEnemy(_wave.enemy);
-            yield return new WaitForSeconds( 1f / _wave.rate);
+            EnableEnemy(enemyPool[i]);
+            yield return new WaitForSeconds(1f / _wave.rate);
         }
 
         state = SpawnState.WAITING;
@@ -115,13 +134,22 @@ public class WaveSpawner : MonoBehaviour
         yield break;
     }
 
+    void EnableEnemy(GameObject _enemy)
+    {
+        _enemy.SetActive(true);
+        _enemy.GetComponent<EnemyBase>().MaxStats();
+    }
 
-    void SpawnEnemy(Transform _enemy)
+
+    void SpawnEnemy(GameObject _enemy)
     {
         Debug.Log("Spawing Enemy: " + _enemy.name);
 
-        Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length) ];
-        Instantiate(_enemy, _sp.position, _sp.rotation);
+        GameObject _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        GameObject _go = Instantiate(_enemy, _sp.transform);
+        _go.SetActive(false);
+
+        enemyPool.Add(_go);
     }
 
 }

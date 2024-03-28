@@ -40,6 +40,7 @@ public class EnemyBase : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log("I am moving!!");
         move.Movement();
     }
 

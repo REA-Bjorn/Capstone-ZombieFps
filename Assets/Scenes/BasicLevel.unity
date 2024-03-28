@@ -3953,6 +3953,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 629152605445466528, guid: 6e1cce8783be33b4ab2250338778611a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 635039276402432035, guid: 6e1cce8783be33b4ab2250338778611a,
         type: 3}
       propertyPath: m_Color.a
@@ -3987,6 +3992,11 @@ PrefabInstance:
         type: 3}
       propertyPath: health.max
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1713503662783748367, guid: 6e1cce8783be33b4ab2250338778611a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1763888271620170312, guid: 6e1cce8783be33b4ab2250338778611a,
         type: 3}
@@ -4038,15 +4048,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4054285060004523428, guid: 6e1cce8783be33b4ab2250338778611a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4282033910931779895, guid: 6e1cce8783be33b4ab2250338778611a,
         type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4282033910931779895, guid: 6e1cce8783be33b4ab2250338778611a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4919818111373366065, guid: 6e1cce8783be33b4ab2250338778611a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258626561047716068, guid: 6e1cce8783be33b4ab2250338778611a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5934685396974155547, guid: 6e1cce8783be33b4ab2250338778611a,
         type: 3}
       propertyPath: RunTimer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6640487622677997620, guid: 6e1cce8783be33b4ab2250338778611a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8571749272088024675, guid: 6e1cce8783be33b4ab2250338778611a,
         type: 3}
@@ -4930,7 +4965,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0

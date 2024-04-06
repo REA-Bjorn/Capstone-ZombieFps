@@ -13,6 +13,8 @@ public class InputManager : MonoBehaviour
 
     public Vector2 MoveVect => inputs.General.Movement.ReadValue<Vector2>();
 
+    public Vector2 ScrollVect => inputs.General.ScrollWeapon.ReadValue<Vector2>();
+
     private void Awake()
     {
         Instance = this;

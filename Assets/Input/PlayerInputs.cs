@@ -53,6 +53,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ScrollWeapon"",
+                    ""type"": ""Value"",
+                    ""id"": ""dc7422fc-354c-4779-883e-3cc766cf2177"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -132,6 +141,17 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eb17efe6-cc06-4cc8-8bb9-3a2cf8530668"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ScrollWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -143,6 +163,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_General_Movement = m_General.FindAction("Movement", throwIfNotFound: true);
         m_General_Looking = m_General.FindAction("Looking", throwIfNotFound: true);
         m_General_Attack = m_General.FindAction("Attack", throwIfNotFound: true);
+        m_General_ScrollWeapon = m_General.FindAction("ScrollWeapon", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -207,6 +228,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_General_Movement;
     private readonly InputAction m_General_Looking;
     private readonly InputAction m_General_Attack;
+    private readonly InputAction m_General_ScrollWeapon;
     public struct GeneralActions
     {
         private @PlayerInputs m_Wrapper;
@@ -214,6 +236,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_General_Movement;
         public InputAction @Looking => m_Wrapper.m_General_Looking;
         public InputAction @Attack => m_Wrapper.m_General_Attack;
+        public InputAction @ScrollWeapon => m_Wrapper.m_General_ScrollWeapon;
         public InputActionMap Get() { return m_Wrapper.m_General; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -232,6 +255,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
+            @ScrollWeapon.started += instance.OnScrollWeapon;
+            @ScrollWeapon.performed += instance.OnScrollWeapon;
+            @ScrollWeapon.canceled += instance.OnScrollWeapon;
         }
 
         private void UnregisterCallbacks(IGeneralActions instance)
@@ -245,6 +271,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
+            @ScrollWeapon.started -= instance.OnScrollWeapon;
+            @ScrollWeapon.performed -= instance.OnScrollWeapon;
+            @ScrollWeapon.canceled -= instance.OnScrollWeapon;
         }
 
         public void RemoveCallbacks(IGeneralActions instance)
@@ -267,5 +296,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnLooking(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnScrollWeapon(InputAction.CallbackContext context);
     }
 }

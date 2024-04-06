@@ -20,30 +20,31 @@ public class PlayerBase : MonoBehaviour, IDamage
 
     [SerializeField] SpeedPool speed;
 
-    [SerializeField] WeaponBase weapon;
-
     [SerializeField] PlayerMovement move;
 
     [SerializeField] BaseCamera cam;
 
     public SpeedPool Spd => speed;
 
-    public float ShootDist => weapon.ShootDist;
+    public HealthPool Health => health;
+
+    public float ShootDist => WeaponManager.Instance.CurrentWeapon.ShootDist;
 
     // Start is called before the first frame update
     void Start()
     {
         speed.SetMax();
         health.SetMax();
-        Debug.Log(InputManager.Instance.Action.Attack);
-        InputManager.Instance.Action.Attack.started += Attack_started;
-        health.OnDepleted += Health_OnDepleted;
+        //Debug.Log(InputManager.Instance.Action.Attack);
+        InputManager.Instance.Action.Attack.started += AttackStart;
+        health.OnDepleted += HealthDepleted;
     }
 
-    private void Health_OnDepleted()
+    private void HealthDepleted()
     {
         LockPlayer();
         UIManager.Instance.DeathMenu();
+        hitUI.PlayerDiedVignette();
     }
 
     public void LockPlayer()
@@ -54,20 +55,20 @@ public class PlayerBase : MonoBehaviour, IDamage
 
         cam.enabled = false;
 
-        InputManager.Instance.Action.Attack.started -= Attack_started;
+        InputManager.Instance.Action.Attack.started -= AttackStart;
 
         Cursor.lockState = CursorLockMode.None;
     }
 
     private void OnDisable()
     {
-        InputManager.Instance.Action.Attack.started -= Attack_started;
-        health.OnDepleted -= Health_OnDepleted;
+        InputManager.Instance.Action.Attack.started -= AttackStart;
+        health.OnDepleted -= HealthDepleted;
     }
 
-    private void Attack_started(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void AttackStart(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        weapon.Shoot();
+        WeaponManager.Instance.CurrentWeapon.Shoot();
     }
 
     // Update is called once per frame
@@ -78,13 +79,10 @@ public class PlayerBase : MonoBehaviour, IDamage
         {
             cam.Look();
         }
-
     }
 
     public void TakeDamage(float damage)
     {
-        Debug.Log("Player is Damaged");
-
         health.UseResource(damage);
         hitUI.Active();
     }

@@ -6,9 +6,9 @@ public class TestWeapon : WeaponBase
 {
     public override void Shoot()
     {
-        Debug.Log("Shoot");
         if (CanUse)
         {
+            muzzleFlash.Play();
             timer.enabled = true;
             timer.StartTimer(cooldown);
             RaycastHit hit;
@@ -18,10 +18,6 @@ public class TestWeapon : WeaponBase
                 if (damage != null)
                 {
                     damage.TakeDamage(attack.CurrentValue);
-                }
-                else
-                {
-                    Debug.Log("Damage is Null");
                 }
             }
         }

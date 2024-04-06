@@ -143,7 +143,7 @@ public class WaveSpawner : MonoBehaviour
 
     void SpawnEnemy(GameObject _enemy)
     {
-        Debug.Log("Spawing Enemy: " + _enemy.name);
+        //Debug.Log("Spawing Enemy: " + _enemy.name);
 
         GameObject _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
         GameObject _go = Instantiate(_enemy, _sp.transform);

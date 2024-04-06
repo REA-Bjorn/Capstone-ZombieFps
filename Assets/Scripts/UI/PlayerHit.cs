@@ -1,11 +1,14 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerHit : MonoBehaviour
 {
-    [SerializeField] Image vignette;
+    // Added these for post effects (post-processing) 
+    [SerializeField] Volume postFXVolume;
+
+    private Vignette pfxVignette;
 
     private float tmpDamageFlash;
 
@@ -17,43 +20,39 @@ public class PlayerHit : MonoBehaviour
 
     void Start()
     {
-        tmpDamageFlash = showDuration;
+        if (postFXVolume == null)
+        {
+            postFXVolume = GetComponentInChildren<Volume>();
+        }
 
+        tmpDamageFlash = showDuration;
+        postFXVolume?.profile.TryGet<Vignette>(out pfxVignette);
         Disabler();
     }
 
     private IEnumerator DisplayVignette()
     {
-        if(!currentlyDamaged)
+        currentlyDamaged = true;
+        pfxVignette.intensity.value = 0f;
+
+        while (tmpDamageFlash > 0f)
         {
-            currentlyDamaged = true;
+            tmpDamageFlash -= Time.deltaTime;
 
-            vignette.gameObject.SetActive(true);
+            float alphaFadeIn = flashSpeedCurve.Evaluate(tmpDamageFlash);
 
-            while(tmpDamageFlash > 0f)
-            {
-                tmpDamageFlash -= Time.deltaTime;
+            pfxVignette.intensity.value = alphaFadeIn;
 
-                float alphaFadeIn = flashSpeedCurve.Evaluate(tmpDamageFlash);
-
-                vignette.color = new Color(255.0f, 0f, 0f, alphaFadeIn);
-
-                yield return 0;
-            }
-            tmpDamageFlash = showDuration;
-            vignette.gameObject.SetActive(false);
-            currentlyDamaged = false;
+            yield return 0;
         }
-        else if (currentlyDamaged)
-        {
-            tmpDamageFlash += Time.deltaTime;
-        }
+        tmpDamageFlash = showDuration;
+        pfxVignette.intensity.value = 0f;
+        currentlyDamaged = false;
     }
 
     private void VignetteFlash()
     {
-        vignette.gameObject.SetActive(true);
-        if (vignette.gameObject.activeInHierarchy)
+        if (!currentlyDamaged && isActiveAndEnabled)
         {
             StartCoroutine(DisplayVignette());
         }
@@ -61,16 +60,16 @@ public class PlayerHit : MonoBehaviour
 
     public void Active()
     {
-       Invoke("VignetteFlash", 0.1f);
-    }
-
-    public void inActive()
-    {
-        CancelInvoke("DisplayVignette");
+        VignetteFlash();
     }
 
     public void Disabler()
     {
-        vignette.gameObject.SetActive(false);
+        pfxVignette.intensity.value = 0f;
+    }
+
+    public void PlayerDiedVignette()
+    {
+        pfxVignette.intensity.value = 1.0f;
     }
 }

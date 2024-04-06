@@ -7,11 +7,13 @@ public class WeaponBase : MonoBehaviour
 {
     [SerializeField] protected AttackPool attack;
 
-    [SerializeField] protected float range;
-
     [SerializeField] protected CustomTimer timer;
 
+    [SerializeField] protected float range;
+
     [SerializeField] protected float cooldown;
+
+    [SerializeField] protected ParticleSystem muzzleFlash;
 
     protected bool CanUse;
     public float ShootDist => range;
@@ -51,6 +53,6 @@ public class WeaponBase : MonoBehaviour
     public virtual void Shoot()
     {
         //nothing should be here
-        Debug.Log("Base Funtion Called Find Out Why");
+        Debug.Log("Base Funtion Called Find Out Why -> Usually due to base.Shoot() being used!");
     }
 }

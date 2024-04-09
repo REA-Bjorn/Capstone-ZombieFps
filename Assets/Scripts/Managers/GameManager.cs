@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [SerializeField] private Transform playerTransfrom;
+    private Transform playerTransfrom;
     public Transform Player => playerTransfrom;
 
     public float enemyCount;
@@ -21,5 +21,10 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Start()
+    {
+        playerTransfrom = PlayerBase.instance.transform;
     }
 }

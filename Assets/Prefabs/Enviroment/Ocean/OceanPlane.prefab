@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4778862500145076938}
   - component: {fileID: 324493431237643090}
-  - component: {fileID: 4928084615491925934}
-  - component: {fileID: 1214684475270146893}
   m_Layer: 0
   m_Name: OceanPlane
   m_TagString: Untagged
@@ -89,38 +87,3 @@ SkinnedMeshRenderer:
     m_Center: {x: -20, y: -0.079767756, z: 20}
     m_Extent: {x: 20, y: 0.24459139, z: 20}
   m_DirtyAABB: 0
---- !u!208 &4928084615491925934
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5267591653977571440}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 20, y: 0.245, z: 20}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -20, y: -0.080000006, z: 20}
-  m_TimeToStationary: 0.5
---- !u!114 &1214684475270146893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5267591653977571440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 1
-  m_Area: 1
-  m_OverrideGenerateLinks: 0
-  m_GenerateLinks: 0
-  m_IgnoreFromBuild: 0
-  m_ApplyToChildren: 1
-  m_AffectedAgents: ffffffff

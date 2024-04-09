@@ -5,6 +5,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: dcaa65244caa3234bbedc7547ff274ed,
@@ -70,7 +71,15 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: dcaa65244caa3234bbedc7547ff274ed,
         type: 3}
       propertyPath: m_Name
-      value: SM_Env_Lillies_03
+      value: Lillies3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dcaa65244caa3234bbedc7547ff274ed,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcaa65244caa3234bbedc7547ff274ed, type: 3}

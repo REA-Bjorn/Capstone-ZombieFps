@@ -1,24 +1,11 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!64 &1006030182596064053
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5924670789581464559}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 5250421482840698539, guid: 8c7747d811bd6944da411eb7ded73d98, type: 2}
 --- !u!1001 &6843713729044930238
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 7af5219f6fa6b6d43a3d3b9d030dbe4c,
@@ -84,9 +71,21 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7af5219f6fa6b6d43a3d3b9d030dbe4c,
         type: 3}
       propertyPath: m_Name
-      value: SM_Env_Cobblestone_03
+      value: Cobblestone3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7af5219f6fa6b6d43a3d3b9d030dbe4c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7af5219f6fa6b6d43a3d3b9d030dbe4c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1006030182596064053}
   m_SourcePrefab: {fileID: 100100000, guid: 7af5219f6fa6b6d43a3d3b9d030dbe4c, type: 3}
 --- !u!1 &5924670789581464559 stripped
 GameObject:
@@ -94,3 +93,25 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6843713729044930238}
   m_PrefabAsset: {fileID: 0}
+--- !u!64 &1006030182596064053
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5924670789581464559}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5250421482840698539, guid: 8c7747d811bd6944da411eb7ded73d98, type: 2}

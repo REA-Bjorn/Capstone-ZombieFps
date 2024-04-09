@@ -120,14 +120,13 @@ public class WaveManager : MonoBehaviour
         currentEnemyGoal = currentEnemyGoalStored;
 
         int loopFor = currentEnemyGoal < SpawnLimit ? currentEnemyGoal : SpawnLimit;
-        Debug.Log("GOING TO SPAWN:::::::: " + loopFor + " NEED TO SPAWN " + currentEnemyGoal);
 
         for (int i = 0; i < loopFor; ++i)
         {
             // Spawn the starting amount of enemies
             // - When enemies die, the wave manager decides if it should enable another enemy.
             SpawnEnemyEnded();
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.25f);
         }
     }
 
@@ -141,9 +140,9 @@ public class WaveManager : MonoBehaviour
     public void EnemyKilled()
     {
         --currentEnemyGoal; // subtract enemies
+
         if (currentEnemyGoal - TotalCurrentlyUndead() + 1 > 0)
         {
-            Debug.Log("STILL NEED TO SPAWN SOME: " + (currentEnemyGoal - TotalCurrentlyUndead()));
             // we still have enemies to kill
             SpawnEnemyEnded();
         }
@@ -173,4 +172,16 @@ public class WaveManager : MonoBehaviour
         }
         return currentlyUndead;
     }
+
+    public void KillAllAliveEnemies()
+    {
+        foreach (GameObject enemy in enemyPool)
+        {
+            if (enemy.activeInHierarchy)
+            {
+                enemy.GetComponent<EnemyBase>().ForceKill();
+            }
+        }
+    }
+
 }

@@ -73,6 +73,11 @@ public class EnemyBase : MonoBehaviour, IDamage
         PlaySpawnAnimation();
     }
 
+    public void ForceKill()
+    {
+        TakeDamage(health.CurrentValue);
+    }
+
     private void PlaySpawnAnimation()
     {
         //animator.SetTrigger("Spawn");

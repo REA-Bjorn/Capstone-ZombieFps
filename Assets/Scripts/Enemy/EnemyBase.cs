@@ -14,6 +14,8 @@ public class EnemyBase : MonoBehaviour, IDamage
     [SerializeField] Material hitMaterial;
     [SerializeField] int PointVal;
 
+    [SerializeField] private Animator animator;
+
     public SpeedPool Spd => speed;
     public AttackPool Atk => attack;
 
@@ -34,6 +36,7 @@ public class EnemyBase : MonoBehaviour, IDamage
     {
         PointsManager.instance.AddPoints(PointVal);
         UIManager.Instance.UpdateScore();
+        WaveManager.Instance.EnemyKilled();
         gameObject.SetActive(false);
     }
 
@@ -59,6 +62,20 @@ public class EnemyBase : MonoBehaviour, IDamage
         attack.SetMax();
         health.SetMax();
         speed.SetMax();
+    }
+
+    /// <summary>
+    /// Calls Max Stats and Spawn Animation player.
+    /// </summary>
+    public void SpawnMe()
+    {
+        MaxStats();
+        PlaySpawnAnimation();
+    }
+
+    private void PlaySpawnAnimation()
+    {
+        //animator.SetTrigger("Spawn");
     }
 
     //private IEnumerator FlashDamage()

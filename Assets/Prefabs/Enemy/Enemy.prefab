@@ -885,6 +885,7 @@ MonoBehaviour:
   baseMaterial: {fileID: 2100000, guid: 6652f53b7c4df9a45ad94449e114ba65, type: 2}
   hitMaterial: {fileID: 2100000, guid: 358d6765011ee87409a655327d68fb87, type: 2}
   PointVal: 50
+  animator: {fileID: 0}
 --- !u!136 &7095413207640277574
 CapsuleCollider:
   m_ObjectHideFlags: 0

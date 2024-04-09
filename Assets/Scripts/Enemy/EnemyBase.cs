@@ -36,7 +36,7 @@ public class EnemyBase : MonoBehaviour, IDamage
     {
         PointsManager.instance.AddPoints(PointVal);
         UIManager.Instance.UpdateScore();
-        WaveManager.Instance.EnemyKilled();
+        WaveManager.Instance.EnemyKilled(gameObject);
         gameObject.SetActive(false);
     }
 
@@ -50,6 +50,7 @@ public class EnemyBase : MonoBehaviour, IDamage
     public void TakeDamage(float damage)
     {
         health.UseResource(damage);
+        
         if (health.IsValid)
         {
             //StartCoroutine(FlashDamage());

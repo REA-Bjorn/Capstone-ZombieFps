@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 881508460649266890}
   - component: {fileID: 8111649332631024773}
   - component: {fileID: 1580593079843486163}
-  - component: {fileID: 2216995726914895165}
   m_Layer: 0
   m_Name: WaveManager
   m_TagString: Untagged
@@ -50,7 +49,6 @@ MonoBehaviour:
   enemyPrefab: {fileID: 3261371145617336343, guid: 2249d4b645ce5694dbf5cca82d9ba6c6,
     type: 3}
   waveCountdownTimer: {fileID: 1580593079843486163}
-  spawnEnemyTimer: {fileID: 2216995726914895165}
 --- !u!114 &1580593079843486163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,18 +62,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 1
-  RunTimer: 0
---- !u!114 &2216995726914895165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7067679065389121933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  duration: 0.4
   RunTimer: 0

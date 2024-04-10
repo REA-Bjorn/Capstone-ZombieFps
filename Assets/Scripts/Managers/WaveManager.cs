@@ -121,6 +121,8 @@ public class WaveManager : MonoBehaviour
 
         int loopFor = currentEnemyGoal < SpawnLimit ? currentEnemyGoal : SpawnLimit;
 
+        Debug.Log(currentEnemyGoal);
+
         for (int i = 0; i < loopFor; ++i)
         {
             // Spawn the starting amount of enemies
@@ -137,10 +139,12 @@ public class WaveManager : MonoBehaviour
         _enemy.transform.position = GetRandomSpawnPoint().position;
     }
 
-    public void EnemyKilled()
+    public void EnemyKilled(GameObject _enemy)
     {
         --currentEnemyGoal; // subtract enemies
 
+        // The +1 is because we disable the enemy after this function and not before hand
+        // Anything above 10 would result in not spawning the last enemy therefore not spawning the next wave.
         if (currentEnemyGoal - TotalCurrentlyUndead() + 1 > 0)
         {
             // we still have enemies to kill
@@ -170,6 +174,8 @@ public class WaveManager : MonoBehaviour
                 ++currentlyUndead;
             }
         }
+
+        Debug.Log(currentlyUndead);
         return currentlyUndead;
     }
 

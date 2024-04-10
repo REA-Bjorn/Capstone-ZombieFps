@@ -62,7 +62,6 @@ public class WaveManager : MonoBehaviour
         foreach (GameObject point in points)
         {
             spawnPoints.Add(point);
-            Debug.Log(point.transform.name);
         }
     }
 
@@ -84,7 +83,7 @@ public class WaveManager : MonoBehaviour
 
     }
 
-    private void SpawnEnemyEnded()
+    private void SpawnEnemy()
     {
         for (int i = 0; i < enemyPool.Count; ++i)
         {
@@ -109,7 +108,6 @@ public class WaveManager : MonoBehaviour
 
     private void WaveCountdownEnded()
     {
-        Debug.Log("Starting wave!");
         StartCoroutine(StartWave());
     }
 
@@ -121,13 +119,11 @@ public class WaveManager : MonoBehaviour
 
         int loopFor = currentEnemyGoal < SpawnLimit ? currentEnemyGoal : SpawnLimit;
 
-        Debug.Log(currentEnemyGoal);
-
         for (int i = 0; i < loopFor; ++i)
         {
             // Spawn the starting amount of enemies
             // - When enemies die, the wave manager decides if it should enable another enemy.
-            SpawnEnemyEnded();
+            SpawnEnemy();
             yield return new WaitForSeconds(0.25f);
         }
     }
@@ -136,6 +132,8 @@ public class WaveManager : MonoBehaviour
     {
         _enemy.SetActive(true);
         _enemy.GetComponent<EnemyBase>().SpawnMe(); // handles maxing the stats for us
+
+        _enemy.transform.parent = GetRandomSpawnPoint().transform;
         _enemy.transform.position = GetRandomSpawnPoint().position;
     }
 
@@ -148,14 +146,13 @@ public class WaveManager : MonoBehaviour
         if (currentEnemyGoal - TotalCurrentlyUndead() + 1 > 0)
         {
             // we still have enemies to kill
-            SpawnEnemyEnded();
+            SpawnEnemy();
         }
         else if (currentEnemyGoal == 0)
         {
             waveCountdownTimer.StartTimer();
         }
     }
-
 
     private Transform GetRandomSpawnPoint()
     {
@@ -175,7 +172,6 @@ public class WaveManager : MonoBehaviour
             }
         }
 
-        Debug.Log(currentlyUndead);
         return currentlyUndead;
     }
 

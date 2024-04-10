@@ -1,66 +1,106 @@
 using System;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Search;
 
 public class WeaponManager : MonoBehaviour
 {
     public static WeaponManager Instance;
 
-    private WeaponBase currWeapon;
+    private GameObject currWeapon;
 
-    public WeaponBase CurrentWeapon => currWeapon;
+    [SerializeField] private GameObject Primary;
+    [SerializeField] private GameObject Secondary;
+
+    public float ShootDist
+    {
+        get
+        {
+            float val = 0;
+
+            if (currWeapon != null && currWeapon.GetComponent<WeaponBase>() != null)
+            {
+                val = currWeapon.GetComponent<WeaponBase>().ShootDist;
+            }
+
+            return val;
+        }
+    }
+
+    public GameObject CurrentWeapon => currWeapon;
 
     private void Awake()
     {
         Instance = this;
     }
 
-    public int selectedWeapon = 0;
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        SelectWeapon();
+        currWeapon = Primary;
+    }
+
+    public void Shoot()
+    {
+        if (currWeapon != null)
+        {
+            currWeapon.GetComponent<WeaponBase>().Shoot();
+        }
     }
 
     // Update is called once per frame
-    void Update()
+    public void ToggleWeapon(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        int previousSelectedWeapon = selectedWeapon;
-
-        if (InputManager.Instance.ScrollVect.y > 0f)
+        if (Mathf.Abs(InputManager.Instance.ScrollVect.y) > 0f)
         {
-            if (selectedWeapon >= transform.childCount - 1)
-                selectedWeapon = 0;
-            else
-                selectedWeapon++;
-        }
-        else if (InputManager.Instance.ScrollVect.y < 0f)
-        {
-            if (selectedWeapon <= 0)
-                selectedWeapon = transform.childCount - 1;
-            else
-                selectedWeapon--;
-        }
-
-        if (previousSelectedWeapon != selectedWeapon)
-        {
-            SelectWeapon();
-        }
-
-    }
-    void SelectWeapon()
-    {
-        int i = 0;
-        foreach(Transform weapon in transform)
-        {
-            if(i == selectedWeapon)
+            if (Primary != null && currWeapon == Secondary)
             {
-                currWeapon = weapon.GetComponent<WeaponBase>();
-                weapon.gameObject.SetActive(true);
+                EnablePrimary();
             }
-            else
-                weapon.gameObject.SetActive(false);
-            i++;
+            else if (Secondary != null)
+            {
+                EnableSecondary();
+            }
         }
     }
+
+    public void AddWeapon(GameObject _weapon)
+    {
+        _weapon.transform.SetLocalPositionAndRotation(currWeapon.transform.position, currWeapon.transform.rotation);
+        
+        if (Secondary == null)
+        {
+            Secondary = _weapon;
+            EnableSecondary();
+        }
+        else if (currWeapon == Primary)
+        {
+            Destroy(currWeapon);
+            Primary = _weapon;
+            EnablePrimary();
+        }
+        else if (currWeapon == Secondary)
+        {
+            Destroy(currWeapon);
+            Secondary = _weapon;
+            EnableSecondary();
+        }
+
+        currWeapon.transform.SetParent(gameObject.transform);
+    }
+
+    void EnablePrimary()
+    {
+        currWeapon = Primary;
+        Primary.SetActive(true);
+        Secondary.SetActive(false);
+    }
+
+    void EnableSecondary()
+    {
+        currWeapon = Secondary;
+        Secondary.SetActive(true);
+        Primary.SetActive(false);
+    }
+
 }

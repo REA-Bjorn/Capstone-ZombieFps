@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8660858652837307456}
   - component: {fileID: 2076701541571885191}
   - component: {fileID: 1896300883653341843}
+  - component: {fileID: 7324834648502035902}
   m_Layer: 0
   m_Name: SimplePistol
   m_TagString: Untagged
@@ -69,6 +70,27 @@ MonoBehaviour:
   range: 100
   cooldown: 0.1
   muzzleFlash: {fileID: 8515139768580762183}
+--- !u!65 &7324834648502035902
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8395054478332866087}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1, y: 0.6, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0.16}
 --- !u!1001 &951832963033238353
 PrefabInstance:
   m_ObjectHideFlags: 0

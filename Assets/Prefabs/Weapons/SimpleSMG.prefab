@@ -426,6 +426,7 @@ GameObject:
   - component: {fileID: 7324015337563424213}
   - component: {fileID: 7638106417685526589}
   - component: {fileID: 6453378860076046590}
+  - component: {fileID: 2590636470183057678}
   m_Layer: 0
   m_Name: SimpleSMG
   m_TagString: Untagged
@@ -488,6 +489,27 @@ MonoBehaviour:
   range: 100
   cooldown: 0.1
   muzzleFlash: {fileID: 3388188976415046386}
+--- !u!65 &2590636470183057678
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8809648702204308384}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1, y: 0.4, z: 0.75}
+  m_Center: {x: 0, y: 0, z: 0.125}
 --- !u!1001 &6060453547341290468
 PrefabInstance:
   m_ObjectHideFlags: 0

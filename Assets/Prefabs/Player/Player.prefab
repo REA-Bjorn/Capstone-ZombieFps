@@ -382,7 +382,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4245004985446416168}
-  - {fileID: 9130520391314861856}
   m_Father: {fileID: 5243380924760229637}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3853731415963663341
@@ -397,86 +396,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622ac2ac919b2924b9b24cbd073dfa0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Primary: {fileID: 3916439613792777551}
+  Secondary: {fileID: 0}
   selectedWeapon: 0
---- !u!1001 &1950690646145854197
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 8261058911950092341}
-    m_Modifications:
-    - target: {fileID: 7324015337563424213, guid: 0381236d94c1a7f418c396d23c712a74,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7324015337563424213, guid: 0381236d94c1a7f418c396d23c712a74,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7324015337563424213, guid: 0381236d94c1a7f418c396d23c712a74,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7324015337563424213, guid: 0381236d94c1a7f418c396d23c712a74,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7324015337563424213, guid: 0381236d94c1a7f418c396d23c712a74,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7324015337563424213, guid: 0381236d94c1a7f418c396d23c712a74,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7324015337563424213, guid: 0381236d94c1a7f418c396d23c712a74,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7324015337563424213, guid: 0381236d94c1a7f418c396d23c712a74,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7324015337563424213, guid: 0381236d94c1a7f418c396d23c712a74,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7324015337563424213, guid: 0381236d94c1a7f418c396d23c712a74,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8809648702204308384, guid: 0381236d94c1a7f418c396d23c712a74,
-        type: 3}
-      propertyPath: m_Name
-      value: SimpleSMG
-      objectReference: {fileID: 0}
-    - target: {fileID: 8809648702204308384, guid: 0381236d94c1a7f418c396d23c712a74,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0381236d94c1a7f418c396d23c712a74, type: 3}
---- !u!4 &9130520391314861856 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7324015337563424213, guid: 0381236d94c1a7f418c396d23c712a74,
-    type: 3}
-  m_PrefabInstance: {fileID: 1950690646145854197}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4816815879926307688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -560,6 +482,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83a688caebe4c144eb9f08de179466ee, type: 3}
+--- !u!1 &3916439613792777551 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8395054478332866087, guid: 83a688caebe4c144eb9f08de179466ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 4816815879926307688}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4245004985446416168 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8660858652837307456, guid: 83a688caebe4c144eb9f08de179466ee,

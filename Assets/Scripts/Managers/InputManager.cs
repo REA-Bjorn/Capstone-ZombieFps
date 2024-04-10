@@ -26,7 +26,14 @@ public class InputManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        // subscribe methods
+        inputs.General.ScrollWeapon.performed += WeaponManager.Instance.ToggleWeapon;
+    }
+
+    private void OnDestroy()
+    {
+        // unsubscribe methods
+        inputs.General.ScrollWeapon.performed -= WeaponManager.Instance.ToggleWeapon;
     }
 
     public Vector2 CameraReadVal()

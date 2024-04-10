@@ -28,7 +28,7 @@ public class PlayerBase : MonoBehaviour, IDamage
 
     public HealthPool Health => health;
 
-    public float ShootDist => WeaponManager.Instance.CurrentWeapon.ShootDist;
+    public float ShootDist => WeaponManager.Instance.ShootDist;
 
     // Start is called before the first frame update
     void Start()
@@ -68,7 +68,7 @@ public class PlayerBase : MonoBehaviour, IDamage
 
     private void AttackStart(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        WeaponManager.Instance.CurrentWeapon.Shoot();
+        WeaponManager.Instance.Shoot();
     }
 
     // Update is called once per frame

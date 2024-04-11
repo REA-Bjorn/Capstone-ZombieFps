@@ -10,8 +10,7 @@ public class GameManager : MonoBehaviour
     private Transform playerTransfrom;
     public Transform Player => playerTransfrom;
 
-    public float enemyCount;
-    public float enemyKill;
+    [SerializeField] private Transform playerSpawnPoint;
 
     public void RetryLevel()
     {
@@ -26,5 +25,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         playerTransfrom = PlayerBase.instance.transform;
+        playerTransfrom = playerSpawnPoint;
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,9 @@ public class PointsManager : MonoBehaviour
     public static PointsManager instance;
 
     public PointsPool points;
+    [SerializeField] private CustomTimer doublePointsTimer;
+
+    private int mult = 1;
 
     private void Awake()
     {
@@ -15,7 +19,7 @@ public class PointsManager : MonoBehaviour
 
     public void AddPoints(float val)
     {
-        points.Increase(val);
+        points.Increase(mult * val);
     }
 
     public void RemovePoints(float val)
@@ -28,15 +32,35 @@ public class PointsManager : MonoBehaviour
         return points.CurrentValue;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        doublePointsTimer.OnStart += DoublePointsTimer_OnStart;
+        doublePointsTimer.OnEnd += DoublePointsTimer_OnEnd;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-        
+        doublePointsTimer.OnStart -= DoublePointsTimer_OnStart;
+        doublePointsTimer.OnEnd -= DoublePointsTimer_OnEnd;
+    }
+
+    private void DoublePointsTimer_OnEnd()
+    {
+        TurnOffDoublePoints();
+    }
+
+    private void DoublePointsTimer_OnStart()
+    {
+        mult = 2;
+    }
+
+    public void TurnOffDoublePoints()
+    {
+        mult = 1;
+    }
+
+    public void EnableDoublePoints()
+    {
+        doublePointsTimer.StartTimer();
     }
 }

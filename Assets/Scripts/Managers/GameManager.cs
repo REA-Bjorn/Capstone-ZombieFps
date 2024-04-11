@@ -7,11 +7,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [SerializeField] private Transform playerTransfrom;
-    public Transform Player => playerTransfrom;
+    private Transform playerTransfrom;
+    public Transform Player => PlayerBase.instance.transform;
 
-    public float enemyCount;
-    public float enemyKill;
+    [SerializeField] private Transform playerSpawnPoint;
 
     public void RetryLevel()
     {
@@ -21,5 +20,12 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Start()
+    {
+        PlayerBase.instance.transform.SetPositionAndRotation(playerSpawnPoint.position, playerSpawnPoint.rotation);
+        playerTransfrom = PlayerBase.instance.transform;
+        //playerTransfrom = playerSpawnPoint;
     }
 }

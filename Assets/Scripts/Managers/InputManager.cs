@@ -13,6 +13,10 @@ public class InputManager : MonoBehaviour
 
     public Vector2 MoveVect => inputs.General.Movement.ReadValue<Vector2>();
 
+    public Vector2 ScrollVect => inputs.General.ScrollWeapon.ReadValue<Vector2>();
+
+    public bool Shooting => Input.GetMouseButton(0);
+
     private void Awake()
     {
         Instance = this;
@@ -24,7 +28,16 @@ public class InputManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        // subscribe methods
+        inputs.General.ScrollWeapon.performed += WeaponManager.Instance.ToggleWeapon;
+        inputs.General.Attack.performed += WeaponManager.Instance.Shoot;
+    }
+
+    private void OnDestroy()
+    {
+        // unsubscribe methods
+        inputs.General.ScrollWeapon.performed -= WeaponManager.Instance.ToggleWeapon;
+        inputs.General.Attack.performed -= WeaponManager.Instance.Shoot;
     }
 
     public Vector2 CameraReadVal()

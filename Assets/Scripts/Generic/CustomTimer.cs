@@ -19,8 +19,8 @@ public class CustomTimer : MonoBehaviour
     //Properties
     public float CurrentTime => currTime;
     public float DurationTime => duration;
-    public float Percentage => Mathf.Clamp01(currTime/duration);
-    public float ReversePercentage => Mathf.Clamp01((duration - currTime)/duration);
+    public float Percentage => Mathf.Clamp01(currTime / duration);
+    public float ReversePercentage => Mathf.Clamp01((duration - currTime) / duration);
 
 
     public void SetToMax()
@@ -37,23 +37,32 @@ public class CustomTimer : MonoBehaviour
 
     public void StartTimer(float _duration = 0f)
     {
-        duration = _duration;
-        SetToMax();
-        OnStart?.Invoke();
+        if (_duration != 0)
+            SetDuration(_duration);
+
+        if (!RunTimer)
+        {
+            SetToMax();
+            OnStart?.Invoke();
+        }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void SetDuration(float _duration)
     {
-        
+        duration = _duration;
     }
 
-    // Update is called once per frame
+    public void StopTimer()
+    {
+        RunTimer = false;
+        currTime = 0;
+    }
+
     void Update()
     {
         if (RunTimer)
         {
-            if (currTime>0)
+            if (currTime > 0)
             {
                 currTime -= Time.deltaTime;
                 OnTick?.Invoke();

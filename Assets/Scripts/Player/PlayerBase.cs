@@ -20,30 +20,29 @@ public class PlayerBase : MonoBehaviour, IDamage
 
     [SerializeField] SpeedPool speed;
 
-    [SerializeField] WeaponBase weapon;
-
     [SerializeField] PlayerMovement move;
 
     [SerializeField] BaseCamera cam;
 
     public SpeedPool Spd => speed;
 
-    public float ShootDist => weapon.ShootDist;
+    public HealthPool Health => health;
+
+    public float ShootDist => WeaponManager.Instance.ShootDist;
 
     // Start is called before the first frame update
     void Start()
     {
         speed.SetMax();
         health.SetMax();
-        Debug.Log(InputManager.Instance.Action.Attack);
-        InputManager.Instance.Action.Attack.started += Attack_started;
-        health.OnDepleted += Health_OnDepleted;
+        health.OnDepleted += HealthDepleted;
     }
 
-    private void Health_OnDepleted()
+    private void HealthDepleted()
     {
         LockPlayer();
         UIManager.Instance.DeathMenu();
+        hitUI.PlayerDiedVignette();
     }
 
     public void LockPlayer()
@@ -54,20 +53,14 @@ public class PlayerBase : MonoBehaviour, IDamage
 
         cam.enabled = false;
 
-        InputManager.Instance.Action.Attack.started -= Attack_started;
+        WeaponManager.Instance.DisableWeapon();
 
         Cursor.lockState = CursorLockMode.None;
     }
 
     private void OnDisable()
     {
-        InputManager.Instance.Action.Attack.started -= Attack_started;
-        health.OnDepleted -= Health_OnDepleted;
-    }
-
-    private void Attack_started(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-    {
-        weapon.Shoot();
+        health.OnDepleted -= HealthDepleted;
     }
 
     // Update is called once per frame
@@ -78,14 +71,16 @@ public class PlayerBase : MonoBehaviour, IDamage
         {
             cam.Look();
         }
-
     }
 
     public void TakeDamage(float damage)
     {
-        Debug.Log("Player is Damaged");
-
         health.UseResource(damage);
         hitUI.Active();
+    }
+
+    public void TakeMaxDamage()
+    {
+        // nothing here, player should never take max damage
     }
 }

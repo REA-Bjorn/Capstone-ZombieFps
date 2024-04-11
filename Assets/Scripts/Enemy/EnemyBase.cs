@@ -14,6 +14,8 @@ public class EnemyBase : MonoBehaviour, IDamage
     [SerializeField] Material hitMaterial;
     [SerializeField] int PointVal;
 
+    [SerializeField] private Animator animator;
+
     public SpeedPool Spd => speed;
     public AttackPool Atk => attack;
 
@@ -32,8 +34,10 @@ public class EnemyBase : MonoBehaviour, IDamage
     }
     private void Health_OnDepleted()
     {
+        PickupManager.Instance.DropPickup(transform);
         PointsManager.instance.AddPoints(PointVal);
         UIManager.Instance.UpdateScore();
+        WaveManager.Instance.EnemyKilled(gameObject);
         gameObject.SetActive(false);
     }
 
@@ -47,11 +51,6 @@ public class EnemyBase : MonoBehaviour, IDamage
     public void TakeDamage(float damage)
     {
         health.UseResource(damage);
-        if (health.IsValid)
-        {
-            //StartCoroutine(FlashDamage());
-            Debug.Log("Is Hit");
-        }
     }
 
     public void MaxStats()
@@ -59,6 +58,30 @@ public class EnemyBase : MonoBehaviour, IDamage
         attack.SetMax();
         health.SetMax();
         speed.SetMax();
+    }
+
+    /// <summary>
+    /// Calls Max Stats and Spawn Animation player.
+    /// </summary>
+    public void SpawnMe()
+    {
+        MaxStats();
+        PlaySpawnAnimation();
+    }
+
+    public void ForceKill()
+    {
+        TakeDamage(health.CurrentValue);
+    }
+
+    private void PlaySpawnAnimation()
+    {
+        //animator.SetTrigger("Spawn");
+    }
+
+    public void TakeMaxDamage()
+    {
+        ForceKill();
     }
 
     //private IEnumerator FlashDamage()

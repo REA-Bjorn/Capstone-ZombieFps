@@ -18,11 +18,12 @@ public class Resource
     bool isEmpty;
     //Properties
     public float CurrentValue => currentValue;
-    public float Percent => currentValue/max;
+    public float Percent => currentValue / max;
     public float Max => max;
     public float Min => min;
-    public bool IsValid => currentValue>0;
-    
+    public bool IsValid => currentValue > 0;
+    public bool IsMaxed => currentValue >= max;
+
     public void Increase(float value)
     {
         float newValue = Mathf.Max(currentValue + value, max);
@@ -54,7 +55,7 @@ public class Resource
     public bool UseResource(float value)
     {
         bool able = currentValue >= value;
-        if (able) 
+        if (able)
         {
             Decrease(value);
         }

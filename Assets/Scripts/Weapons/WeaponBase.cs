@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CustomTimer))]
 public class WeaponBase : MonoBehaviour
@@ -14,6 +15,16 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] protected float cooldown;
 
     [SerializeField] protected ParticleSystem muzzleFlash;
+
+    [SerializeField] protected AmmoPool ammo;
+
+    [SerializeField] protected Image weaponImg;
+
+    [SerializeField] protected string gunName = "";
+
+    public string Name => gunName;
+    
+    public AmmoPool Ammo => ammo;
 
     protected bool CanUse;
     public float ShootDist => range;

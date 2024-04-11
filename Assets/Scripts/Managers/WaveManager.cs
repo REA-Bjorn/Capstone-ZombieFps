@@ -32,6 +32,10 @@ public class WaveManager : MonoBehaviour
     private void Start()
     {
         FindAllSpawnPoints();
+
+        if (spawnPoints.Count == 0)
+            return;
+
         InstantiateEnemies();
 
         // Now setup rest of data

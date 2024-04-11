@@ -35,8 +35,6 @@ public class PlayerBase : MonoBehaviour, IDamage
     {
         speed.SetMax();
         health.SetMax();
-        //Debug.Log(InputManager.Instance.Action.Attack);
-        InputManager.Instance.Action.Attack.started += AttackStart;
         health.OnDepleted += HealthDepleted;
     }
 
@@ -55,20 +53,14 @@ public class PlayerBase : MonoBehaviour, IDamage
 
         cam.enabled = false;
 
-        InputManager.Instance.Action.Attack.started -= AttackStart;
+        WeaponManager.Instance.DisableWeapon();
 
         Cursor.lockState = CursorLockMode.None;
     }
 
     private void OnDisable()
     {
-        InputManager.Instance.Action.Attack.started -= AttackStart;
         health.OnDepleted -= HealthDepleted;
-    }
-
-    private void AttackStart(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-    {
-        WeaponManager.Instance.Shoot();
     }
 
     // Update is called once per frame
@@ -85,5 +77,10 @@ public class PlayerBase : MonoBehaviour, IDamage
     {
         health.UseResource(damage);
         hitUI.Active();
+    }
+
+    public void TakeMaxDamage()
+    {
+        // nothing here, player should never take max damage
     }
 }

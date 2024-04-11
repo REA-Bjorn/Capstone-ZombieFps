@@ -6,7 +6,7 @@ public class DoublePointsPickup : BasePickup
 {
     public override void Pickup()
     {
-        Debug.Log("Double Points Pickup Up");
-        // PointsManager.Instance.EnableDoublePoints();
+        //Debug.Log("Double Points Pickup Up");
+        PointsManager.instance.EnableDoublePoints();
     }
 }

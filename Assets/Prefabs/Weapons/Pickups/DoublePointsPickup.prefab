@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6214662548541231729}
   - component: {fileID: 2163762853903628596}
   - component: {fileID: 6689727384585917613}
+  - component: {fileID: -3588156084305693044}
   m_Layer: 0
   m_Name: DoublePointsPickup
   m_TagString: Untagged
@@ -48,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d2878e3ff536c047b26942a98bef299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  despawnTimer: {fileID: -3588156084305693044}
 --- !u!114 &2163762853903628596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,12 +79,26 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-3588156084305693044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430689418222561080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 20
+  RunTimer: 0
 --- !u!1 &2325392748976390702
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,9 +7,18 @@ public class BasePickup : MonoBehaviour, IPickupable
 {
     public event Action OnPickup;
 
+    [SerializeField] private CustomTimer despawnTimer;
+
+    private void Start()
+    {
+        despawnTimer.OnEnd += () => { Destroy(gameObject); };
+
+        despawnTimer.StartTimer();
+    }
+
     public virtual void Pickup()
     {
-        Debug.Log("Base Pickup Function Called");
+        //Debug.Log("Base Pickup Function Called");
     }
 
     private void OnTriggerEnter(Collider other)

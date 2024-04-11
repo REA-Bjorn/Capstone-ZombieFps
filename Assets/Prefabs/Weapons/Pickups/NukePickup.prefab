@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2901431522399340129}
   - component: {fileID: 7131918822190887881}
   - component: {fileID: 7147279071740379065}
+  - component: {fileID: 3272594067302824049}
   m_Layer: 0
   m_Name: NukePickup
   m_TagString: Untagged
@@ -48,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07b21ae31f0b4544c93719fd3b03d5e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  despawnTimer: {fileID: 3272594067302824049}
 --- !u!114 &7131918822190887881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,6 +85,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3272594067302824049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198870700520976143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 20
+  RunTimer: 0
 --- !u!1 &746895079090475591
 GameObject:
   m_ObjectHideFlags: 0

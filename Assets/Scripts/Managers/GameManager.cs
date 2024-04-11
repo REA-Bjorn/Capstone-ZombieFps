@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     private Transform playerTransfrom;
-    public Transform Player => playerTransfrom;
+    public Transform Player => PlayerBase.instance.transform;
 
     [SerializeField] private Transform playerSpawnPoint;
 
@@ -24,7 +24,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        PlayerBase.instance.transform.SetPositionAndRotation(playerSpawnPoint.position, playerSpawnPoint.rotation);
         playerTransfrom = PlayerBase.instance.transform;
-        playerTransfrom = playerSpawnPoint;
+        //playerTransfrom = playerSpawnPoint;
     }
 }

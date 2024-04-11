@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] GameObject death;
     [SerializeField] GameState gameState;
+    [SerializeField] WeaponUI weaponUIScript;
 
     private void Awake()
     {
@@ -34,5 +36,17 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void UpdateWeaponsUI()
+    {
+        weaponUIScript.UpdateUI();
+    }
+
+    public IEnumerator FlashWeaponsUI()
+    {
+        weaponUIScript.ColorAmmo(Color.red);
+        yield return new WaitForSeconds(0.25f);
+        weaponUIScript.ColorAmmo(Color.white);
     }
 }

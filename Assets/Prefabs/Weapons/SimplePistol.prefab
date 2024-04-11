@@ -10,8 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8660858652837307456}
   - component: {fileID: 2076701541571885191}
-  - component: {fileID: 1896300883653341843}
+  - component: {fileID: 1352043793263798333}
+  - component: {fileID: 103504988865196731}
   - component: {fileID: 7324834648502035902}
+  - component: {fileID: 1685424534629834749}
   m_Layer: 0
   m_Name: SimplePistol
   m_TagString: Untagged
@@ -50,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   duration: 0
   RunTimer: 0
---- !u!114 &1896300883653341843
+--- !u!114 &1352043793263798333
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,17 +61,50 @@ MonoBehaviour:
   m_GameObject: {fileID: 8395054478332866087}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef0f760c3994c6443a9444eb68a27e7f, type: 3}
+  m_Script: {fileID: 11500000, guid: fb5c2360ab3426f41a347db673195cfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attack:
     max: 1
     min: 0
     currentValue: 0
-  timer: {fileID: 2076701541571885191}
+  ammo:
+    max: 6
+    min: 0
+    currentValue: 0
+  reserves:
+    max: 6
+    min: 0
+    currentValue: 0
   range: 100
-  cooldown: 0.1
+  autoFire: 0
+  reloadTimer: {fileID: 2076701541571885191}
+  fireRateTimer: {fileID: 1685424534629834749}
   muzzleFlash: {fileID: 8515139768580762183}
+  gunAnimations: {fileID: 103504988865196731}
+  weaponImg: {fileID: 21300000, guid: a7d0859d22b329a4c9d83cf6a0a9b3b1, type: 3}
+  gunName: Pistol
+--- !u!95 &103504988865196731
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8395054478332866087}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!65 &7324834648502035902
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -91,6 +126,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1, y: 0.6, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0.16}
+--- !u!114 &1685424534629834749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8395054478332866087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.5
+  RunTimer: 0
 --- !u!1001 &951832963033238353
 PrefabInstance:
   m_ObjectHideFlags: 0

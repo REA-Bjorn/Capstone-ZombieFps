@@ -22,6 +22,7 @@ public class Resource
     public float Max => max;
     public float Min => min;
     public bool IsValid => currentValue > 0;
+    public bool IsMaxed => currentValue >= max;
 
     public void Increase(float value)
     {

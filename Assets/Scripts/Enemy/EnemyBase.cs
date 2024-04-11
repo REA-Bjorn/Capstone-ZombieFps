@@ -34,6 +34,7 @@ public class EnemyBase : MonoBehaviour, IDamage
     }
     private void Health_OnDepleted()
     {
+        PickupManager.Instance.DropPickup(transform);
         PointsManager.instance.AddPoints(PointVal);
         UIManager.Instance.UpdateScore();
         WaveManager.Instance.EnemyKilled(gameObject);
@@ -50,12 +51,6 @@ public class EnemyBase : MonoBehaviour, IDamage
     public void TakeDamage(float damage)
     {
         health.UseResource(damage);
-        
-        if (health.IsValid)
-        {
-            //StartCoroutine(FlashDamage());
-            Debug.Log("Is Hit");
-        }
     }
 
     public void MaxStats()
@@ -82,6 +77,11 @@ public class EnemyBase : MonoBehaviour, IDamage
     private void PlaySpawnAnimation()
     {
         //animator.SetTrigger("Spawn");
+    }
+
+    public void TakeMaxDamage()
+    {
+        ForceKill();
     }
 
     //private IEnumerator FlashDamage()

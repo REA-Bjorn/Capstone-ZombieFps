@@ -17,10 +17,4 @@ public class DeathMenu : MonoBehaviour
     {
         retry.onClick.RemoveListener(GameManager.instance.RetryLevel);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

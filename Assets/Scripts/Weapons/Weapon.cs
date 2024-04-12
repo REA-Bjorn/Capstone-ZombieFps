@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,7 +41,7 @@ public class Weapon : MonoBehaviour
         reserves.SetMax();
 
         UIManager.Instance.UpdateWeaponsUI();
-        CanUse = true;
+        CanUse = false;
     }
 
     private void Subscribers()
@@ -58,6 +59,8 @@ public class Weapon : MonoBehaviour
     public void WeaponOn()
     {
         InputManager.Instance.Action.Reload.started += Reload;
+
+        CanUse = true;
 
         if (!autoFire)
         {
@@ -79,9 +82,12 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    private void Update()
     {
-        InputManager.Instance.Action.Reload.started -= Reload;
+        if (Input.GetMouseButton(0) && autoFire)
+        {
+            Shoot();
+        }
     }
 
     private void TimerStart()
@@ -150,6 +156,7 @@ public class Weapon : MonoBehaviour
 
     public void Reload(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
+        // Don't reload if we already reloading or the timer is running
         if (reloadTimer.RunTimer)
             return;
 
@@ -179,16 +186,6 @@ public class Weapon : MonoBehaviour
         else
         {
             StartCoroutine(UIManager.Instance.FlashWeaponsUI());
-        }
-    }
-
-    private void Update()
-    {
-        // I dont want to do it this way, but it's the only solution
-        // until I can talk with Tom about another fix/implementation for rapid-fire
-        if (Input.GetMouseButton(0) && autoFire)
-        {
-            Shoot();
         }
     }
 }

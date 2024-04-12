@@ -52,10 +52,4 @@ public class EnemyAttack : MonoBehaviour
     {
         box.enabled = false;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

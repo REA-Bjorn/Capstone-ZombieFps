@@ -8,9 +8,9 @@ public class WeaponManager : MonoBehaviour
 {
     public static WeaponManager Instance;
 
-    [SerializeField] private GameObject currWeapon;
-    [SerializeField] private GameObject Primary;
-    [SerializeField] private GameObject Secondary;
+    [SerializeField] private Weapon currWeapon;
+    [SerializeField] private Weapon Primary;
+    [SerializeField] private Weapon Secondary;
 
     [SerializeField] private CustomTimer instaKillTimer;
 
@@ -22,19 +22,19 @@ public class WeaponManager : MonoBehaviour
         {
             float val = 0;
 
-            if (currWeapon != null && currWeapon.GetComponent<Weapon>() != null)
+            if (currWeapon != null && currWeapon != null)
             {
-                val = currWeapon.GetComponent<Weapon>().ShootDist;
+                val = currWeapon.ShootDist;
             }
 
             return val;
         }
     }
 
-    public GameObject CurrentWeapon => currWeapon;
-    public string GunName => currWeapon.GetComponent<Weapon>().Name;
-    public string CurrAmmoTxt => currWeapon.GetComponent<Weapon>().Ammo.CurrentValue.ToString();
-    public string CurrReserveTxt => currWeapon.GetComponent<Weapon>().Reserves.CurrentValue.ToString();
+    public Weapon CurrentWeapon => currWeapon;
+    public string GunName => currWeapon?.Name;
+    public string CurrAmmoTxt => currWeapon?.Ammo.CurrentValue.ToString();
+    public string CurrReserveTxt => currWeapon?.Reserves.CurrentValue.ToString();
 
     private void Awake()
     {
@@ -47,7 +47,7 @@ public class WeaponManager : MonoBehaviour
         instaKillTimer.OnEnd += InstaKillTimer_OnEnd;
 
         currWeapon = Primary;
-        currWeapon.GetComponent<Weapon>().WeaponOn();
+        currWeapon.WeaponOn();
         UIManager.Instance.UpdateWeaponsUI();
     }
 
@@ -59,14 +59,6 @@ public class WeaponManager : MonoBehaviour
     private void InstaKillTimer_OnEnd()
     {
         instaKillStatus = false;
-    }
-
-    public void Shoot(UnityEngine.InputSystem.InputAction.CallbackContext context)
-    {
-        if (currWeapon != null)
-        {
-            currWeapon.GetComponent<Weapon>().Shoot();
-        }
     }
 
     // Update is called once per frame
@@ -84,48 +76,51 @@ public class WeaponManager : MonoBehaviour
             }
         }
 
+        currWeapon.WeaponOn();
         UIManager.Instance.UpdateWeaponsUI();
     }
 
     public void AddWeapon(GameObject _weapon)
     {
-        _weapon.transform.SetLocalPositionAndRotation(currWeapon.transform.position, currWeapon.transform.rotation);
+        //_weapon.transform.SetLocalPositionAndRotation(currWeapon.transform.position, currWeapon.transform.rotation);
 
         if (Secondary == null)
         {
-            Secondary = _weapon;
+            Secondary = _weapon.GetComponent<Weapon>();
             EnableSecondary();
         }
         else if (currWeapon == Primary)
         {
             Destroy(currWeapon);
-            Primary = _weapon;
+            Primary = _weapon.GetComponent<Weapon>();
             EnablePrimary();
         }
         else if (currWeapon == Secondary)
         {
             Destroy(currWeapon);
-            Secondary = _weapon;
+            Secondary = _weapon.GetComponent<Weapon>();
             EnableSecondary();
         }
 
         currWeapon.transform.SetParent(gameObject.transform);
+        _weapon.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        UIManager.Instance.UpdateWeaponsUI();
     }
 
     void EnablePrimary()
     {
         currWeapon = Primary;
-        Primary.SetActive(true);
-        Secondary.SetActive(false);
-        currWeapon.GetComponent<Weapon>().WeaponOn();
+        Primary.gameObject.SetActive(true);
+        Secondary.gameObject.SetActive(false);
+        currWeapon.WeaponOn();
     }
 
     void EnableSecondary()
     {
         currWeapon = Secondary;
-        Secondary.SetActive(true);
-        Primary.SetActive(false);
-        currWeapon.GetComponent<Weapon>().WeaponOn();
+        Secondary.gameObject.SetActive(true);
+        Primary.gameObject.SetActive(false);
+        currWeapon.WeaponOn();
     }
 
     public void DisableWeapon()
@@ -153,12 +148,17 @@ public class WeaponManager : MonoBehaviour
 
     public void RefillAllWeapon()
     {
-        Primary.GetComponent<Weapon>().SetMaxAmmo();
-        Secondary.GetComponent<Weapon>().SetMaxAmmo();
+        Primary?.SetMaxAmmo();
+        Secondary?.SetMaxAmmo();
     }
 
     public void EnableInstaKill()
     {
         instaKillTimer.StartTimer();
+    }
+
+    public void Shoot(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        currWeapon?.Shoot();
     }
 }

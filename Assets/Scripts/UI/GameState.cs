@@ -9,6 +9,6 @@ public class GameState : MonoBehaviour
 
     public void UpdateScore()
     {
-        total.text = PointsManager.instance.GetPoints().ToString();
+        total.text = PointsManager.Instance.GetPoints().ToString();
     }
 }

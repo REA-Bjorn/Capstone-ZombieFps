@@ -23,11 +23,14 @@ public class WaveManager : MonoBehaviour
     // Spawn point collection
     private List<GameObject> spawnPoints = new List<GameObject>();
     // All enemies spawned
-    private List<GameObject> enemyPool = new List<GameObject>();
+    private List<EnemyBase> enemyPool = new List<EnemyBase>();
 
     // Goal Trackers
     private int currentEnemyGoal = 0;
     private int currentEnemyGoalStored = 0;
+
+    private int waveCount = 0;
+    public string CurrentWave => waveCount.ToString();
 
     private void Start()
     {
@@ -55,7 +58,10 @@ public class WaveManager : MonoBehaviour
             spawnedEnemy.SetActive(false);
 
             // Add enemy to the list
-            enemyPool.Add(spawnedEnemy);
+            // Get Component -- While not good to have a bunch of them,
+            // this is only called once at the start of the level
+            // so I am determining it to be fine here
+            enemyPool.Add(spawnedEnemy.GetComponent<EnemyBase>());
         }
     }
 
@@ -75,7 +81,6 @@ public class WaveManager : MonoBehaviour
         waveCountdownTimer.OnStart += WaveCountdownStarted;
         waveCountdownTimer.OnTick += WaveCountdownTicked;
         waveCountdownTimer.OnEnd += WaveCountdownEnded;
-
     }
 
     private void OnDestroy()
@@ -84,7 +89,6 @@ public class WaveManager : MonoBehaviour
         waveCountdownTimer.OnStart -= WaveCountdownStarted;
         waveCountdownTimer.OnTick -= WaveCountdownTicked;
         waveCountdownTimer.OnEnd -= WaveCountdownEnded;
-
     }
 
     private void SpawnEnemy()
@@ -92,7 +96,7 @@ public class WaveManager : MonoBehaviour
         for (int i = 0; i < enemyPool.Count; ++i)
         {
             // enable the first deactivated enemy
-            if (!enemyPool[i].activeInHierarchy)
+            if (!enemyPool[i].gameObject.activeInHierarchy)
             {
                 EnableEnemy(enemyPool[i]);
                 return;
@@ -121,6 +125,10 @@ public class WaveManager : MonoBehaviour
         currentEnemyGoalStored += Random.Range(1, 5);
         currentEnemyGoal = currentEnemyGoalStored;
 
+        // Update Wave
+        waveCount++;
+        UIManager.Instance.UpdateWaveCounter();
+
         int loopFor = currentEnemyGoal < SpawnLimit ? currentEnemyGoal : SpawnLimit;
 
         for (int i = 0; i < loopFor; ++i)
@@ -132,10 +140,10 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    void EnableEnemy(GameObject _enemy)
+    void EnableEnemy(EnemyBase _enemy)
     {
-        _enemy.SetActive(true);
-        _enemy.GetComponent<EnemyBase>().SpawnMe(); // handles maxing the stats for us
+        _enemy.gameObject.SetActive(true);
+        _enemy.SpawnMe(); // handles maxing the stats for us
 
         _enemy.transform.parent = GetRandomSpawnPoint().transform;
         _enemy.transform.position = GetRandomSpawnPoint().position;
@@ -161,16 +169,25 @@ public class WaveManager : MonoBehaviour
     private Transform GetRandomSpawnPoint()
     {
         int idx = Random.Range(0, spawnPoints.Count);
-        return spawnPoints[idx].transform;
+        Transform tra = spawnPoints[idx].transform;
+
+        // Find active transform if the current one was disabled
+        while (!tra.gameObject.activeInHierarchy)
+        {
+            idx = Random.Range(0, spawnPoints.Count);
+            tra = spawnPoints[idx].transform;
+        }
+
+        return tra;
     }
 
     private int TotalCurrentlyUndead()
     {
         int currentlyUndead = 0;
 
-        foreach (GameObject enemy in enemyPool)
+        foreach (EnemyBase enemy in enemyPool)
         {
-            if (enemy.activeInHierarchy)
+            if (enemy.gameObject.activeInHierarchy)
             {
                 ++currentlyUndead;
             }
@@ -181,11 +198,11 @@ public class WaveManager : MonoBehaviour
 
     public void KillAllAliveEnemies()
     {
-        foreach (GameObject enemy in enemyPool)
+        foreach (EnemyBase enemy in enemyPool)
         {
-            if (enemy.activeInHierarchy)
+            if (enemy.gameObject.activeInHierarchy)
             {
-                enemy.GetComponent<EnemyBase>().ForceKill();
+                enemy.ForceKill();
             }
         }
     }

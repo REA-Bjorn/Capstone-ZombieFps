@@ -12,11 +12,6 @@ public class BaseCamera : MonoBehaviour
 
     float xRotation = 0f;
 
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
     public void Look()
     {
         float mouseX = InputManager.Instance.Action.Looking.ReadValue<Vector2>().x * mouseSenitivity * Time.deltaTime;

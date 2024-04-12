@@ -12,10 +12,6 @@ public class PlayerBase : MonoBehaviour, IDamage
         instance = this;
     }
 
-    [SerializeField] PlayerHit hitUI;
-
-    [SerializeField] GameObject playerUI;
-
     [SerializeField] HealthPool health;
 
     [SerializeField] SpeedPool speed;
@@ -23,6 +19,10 @@ public class PlayerBase : MonoBehaviour, IDamage
     [SerializeField] PlayerMovement move;
 
     [SerializeField] BaseCamera cam;
+
+    [SerializeField] CrosshairHover crossHairScript;
+
+    public CrosshairHover CrossHair => crossHairScript;
 
     public SpeedPool Spd => speed;
 
@@ -42,13 +42,10 @@ public class PlayerBase : MonoBehaviour, IDamage
     {
         LockPlayer();
         UIManager.Instance.DeathMenu();
-        hitUI.PlayerDiedVignette();
     }
 
     public void LockPlayer()
     {
-        playerUI.SetActive(false);
-
         move.enabled = false;
 
         cam.enabled = false;
@@ -76,7 +73,7 @@ public class PlayerBase : MonoBehaviour, IDamage
     public void TakeDamage(float damage)
     {
         health.UseResource(damage);
-        hitUI.Active();
+        UIManager.Instance.HitFlash();
     }
 
     public void TakeMaxDamage()

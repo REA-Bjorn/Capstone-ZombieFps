@@ -8,10 +8,9 @@ public class EnemyBase : MonoBehaviour, IDamage
     [SerializeField] HealthPool health;
     [SerializeField] AttackPool attack;
     [SerializeField] SpeedPool speed;
+    [Seperator]
+    [SerializeField] private EnemyVisual visualScript;
     [SerializeField] EnemyMovement move;
-    [SerializeField] SkinnedMeshRenderer mesh;
-    [SerializeField] Material baseMaterial;
-    [SerializeField] Material hitMaterial;
     [SerializeField] int PointVal;
 
     [SerializeField] private Animator animator;
@@ -23,20 +22,13 @@ public class EnemyBase : MonoBehaviour, IDamage
     void Start()
     {
         MaxStats();
-        mesh.material = baseMaterial;
-
-        if (mesh == null)
-        {
-            mesh = GetComponent<SkinnedMeshRenderer>();
-        }
-
+        visualScript.SetRandomMaterial();
         health.OnDepleted += Health_OnDepleted;
     }
     private void Health_OnDepleted()
     {
         PickupManager.Instance.DropPickup(transform);
-        PointsManager.instance.AddPoints(PointVal);
-        UIManager.Instance.UpdateScore();
+        PointsManager.Instance.AddPoints(PointVal);
         WaveManager.Instance.EnemyKilled(gameObject);
         gameObject.SetActive(false);
     }
@@ -83,11 +75,4 @@ public class EnemyBase : MonoBehaviour, IDamage
     {
         ForceKill();
     }
-
-    //private IEnumerator FlashDamage()
-    //{
-    //    mesh.material = hitMaterial;
-    //    yield return new WaitForSeconds(0.25f);
-    //    mesh.material = baseMaterial;
-    //}
 }

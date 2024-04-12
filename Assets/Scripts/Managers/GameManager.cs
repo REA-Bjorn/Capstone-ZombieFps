@@ -24,8 +24,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        
         PlayerBase.instance.transform.SetPositionAndRotation(playerSpawnPoint.position, playerSpawnPoint.rotation);
         playerTransfrom = PlayerBase.instance.transform;
-        //playerTransfrom = playerSpawnPoint;
     }
 }

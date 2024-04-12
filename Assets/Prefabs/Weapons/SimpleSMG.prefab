@@ -469,7 +469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 0.25
+  duration: 0.1
   RunTimer: 0
 --- !u!114 &6991375038680184147
 MonoBehaviour:
@@ -501,7 +501,6 @@ MonoBehaviour:
   reloadTimer: {fileID: 7999376472838939106}
   muzzleFlash: {fileID: 3388188976415046386}
   gunAnimations: {fileID: 4241794248131900701}
-  weaponImg: {fileID: 21300000, guid: 86f95010e19c62048a744b6f7e115ad3, type: 3}
   gunName: SMG
 --- !u!95 &4241794248131900701
 Animator:

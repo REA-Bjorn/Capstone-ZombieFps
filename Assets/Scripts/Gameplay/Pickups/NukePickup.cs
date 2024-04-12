@@ -6,7 +6,6 @@ public class NukePickup : BasePickup
 {
     public override void Pickup()
     {
-        Debug.Log("Nuke Picked Up");
         WaveManager.Instance.KillAllAliveEnemies();
     }
 }

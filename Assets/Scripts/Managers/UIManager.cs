@@ -7,9 +7,13 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
-    [SerializeField] GameObject death;
-    [SerializeField] GameState gameState;
-    [SerializeField] WeaponUI weaponUIScript;
+    [SerializeField] private GameObject death;
+    [SerializeField] private GameState gameState;
+    [SerializeField] private WeaponUI weaponUIScript;
+    [Seperator]
+    [SerializeField] private PlayerHit hitUI;
+    [SerializeField] private CrosshairHover crosshairScript;
+    [SerializeField] private GameObject playerUI;
 
     private void Awake()
     {
@@ -21,21 +25,22 @@ public class UIManager : MonoBehaviour
         gameState.UpdateScore();
     }
 
+    public void UpdateWaveCounter()
+    {
+        // update the text here for that
+        // use WaveManager.Instance.CurrentWave;
+    }
+
     public void DeathMenu()
     {
         death.SetActive(true);
+        hitUI.PlayerDiedVignette();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         death.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void UpdateWeaponsUI()
@@ -48,5 +53,20 @@ public class UIManager : MonoBehaviour
         weaponUIScript.ColorAmmo(Color.red);
         yield return new WaitForSeconds(0.25f);
         weaponUIScript.ColorAmmo(Color.white);
+    }
+
+    public void UpdateCrosshair(Color color)
+    {
+        crosshairScript.ChangeCrosshairColor(color);
+    }
+
+    public void HitFlash()
+    {
+        hitUI.Active();
+    }
+
+    public void LockUI()
+    {
+        playerUI.SetActive(false);
     }
 }

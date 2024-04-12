@@ -5,26 +5,35 @@ using UnityEngine;
 
 public class PointsManager : MonoBehaviour
 {
-    public static PointsManager instance;
+    public static PointsManager Instance;
 
-    public PointsPool points;
+    public event Action OnPointsChanged;
+
+    [SerializeField] private PointsPool points;
+
+    public float CurrPts => points.CurrentValue;
+
     [SerializeField] private CustomTimer doublePointsTimer;
 
     private int mult = 1;
 
     private void Awake()
     {
-        instance = this;
+        Instance = this;
     }
 
     public void AddPoints(float val)
     {
         points.Increase(mult * val);
+        OnPointsChanged?.Invoke();
+        UIManager.Instance.UpdateScore();
     }
 
     public void RemovePoints(float val)
     {
         points.Decrease(val);
+        OnPointsChanged?.Invoke();
+        UIManager.Instance.UpdateScore();
     }
 
     public float GetPoints()

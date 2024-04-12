@@ -18,11 +18,6 @@ public class PlayerMovement : MonoBehaviour
         charController.enabled = true;  
     }
 
-    void Start()
-    {
-
-    }
-
     public void Movement()
     {
         if (PlayerBase.instance.Health.IsValid)

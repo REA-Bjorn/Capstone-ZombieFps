@@ -20,11 +20,6 @@ public class PlayerHit : MonoBehaviour
 
     void Start()
     {
-        if (postFXVolume == null)
-        {
-            postFXVolume = GetComponentInChildren<Volume>();
-        }
-
         tmpDamageFlash = showDuration;
         postFXVolume?.profile.TryGet<Vignette>(out pfxVignette);
         Disabler();

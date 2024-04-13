@@ -23,6 +23,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] private Animator gunAnimations;
     [SerializeField] private string gunName = "";
+    [SerializeField] private WeaponAudio audioScript;
 
     // Properties
     public string Name => gunName;
@@ -118,6 +119,10 @@ public class Weapon : MonoBehaviour
 
             // Runs the timer for fire rate
             fireRateTimer.StartTimer();
+
+            // Plays gun shot audio
+            audioScript.PlayShoot();
+
 
             // Use an ammo because we can shoot it
             ammo.Decrease(1f);

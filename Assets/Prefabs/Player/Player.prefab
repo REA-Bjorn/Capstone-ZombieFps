@@ -249,8 +249,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4104e743878c3489fdae6813b10267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitUI: {fileID: 0}
-  playerUI: {fileID: 0}
   health:
     max: 10
     min: 0
@@ -385,21 +383,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8261058911950092341}
     m_Modifications:
-    - target: {fileID: 1765584515290491448, guid: 83a688caebe4c144eb9f08de179466ee,
+    - target: {fileID: 8233552250953843253, guid: 83a688caebe4c144eb9f08de179466ee,
         type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 1765584515290491448, guid: 83a688caebe4c144eb9f08de179466ee,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.415
-      objectReference: {fileID: 0}
-    - target: {fileID: 1896300883653341843, guid: 83a688caebe4c144eb9f08de179466ee,
-        type: 3}
-      propertyPath: timer
+      propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 5519700306206079534}
+      objectReference: {fileID: 8300000, guid: 766f4a301e3415c4889c5d2f5ce7e5dd, type: 3}
     - target: {fileID: 8395054478332866087, guid: 83a688caebe4c144eb9f08de179466ee,
         type: 3}
       propertyPath: m_Name

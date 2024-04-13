@@ -15,7 +15,8 @@ MonoBehaviour:
   masterVol: 0
   musicVol: 0
   playerVol: 0
-  enemyVol: 0
+  sfxVol: 0
+  enemyVol: 1
   fieldOfView: 0
   mouseSensitivity: 0
   invertY: 0

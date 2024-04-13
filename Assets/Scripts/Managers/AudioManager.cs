@@ -14,9 +14,9 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private AudioMixerGroup masterGroup;
     [SerializeField] private AudioMixerGroup musicGroup;
-    // SFX
-    // Player
-    // Enemy
+    [SerializeField] private AudioMixerGroup sfxGroup;
+    [SerializeField] private AudioMixerGroup playerGroup;
+    [SerializeField] private AudioMixerGroup enemyGroup;
 
     private void Update()
     {
@@ -36,4 +36,25 @@ public class AudioManager : MonoBehaviour
     {
         masterGroup.audioMixer.SetFloat("MasterVol", Mathf.Log10(SettingsManager.Instance.GetSettings().masterVol) * 20f);
     }
+
+    public void UpdateMusicVol()
+    {
+        musicGroup.audioMixer.SetFloat("MusicVol", Mathf.Log10(SettingsManager.Instance.GetSettings().musicVol) * 20f);
+    }
+
+    public void UpdateSFXVol()
+    {
+        sfxGroup.audioMixer.SetFloat("SFXVol", Mathf.Log10(SettingsManager.Instance.GetSettings().sfxVol) * 20f);
+    }
+
+    public void UpdatePlayerVol()
+    {
+        playerGroup.audioMixer.SetFloat("PlayerVol", Mathf.Log10(SettingsManager.Instance.GetSettings().playerVol) * 20f);
+    }
+
+    public void UpdateEnemyVol()
+    {
+        enemyGroup.audioMixer.SetFloat("EnemyVol", Mathf.Log10(SettingsManager.Instance.GetSettings().enemyVol) * 20f);
+    }
+
 }

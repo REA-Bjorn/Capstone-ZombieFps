@@ -121,7 +121,7 @@ public class Weapon : MonoBehaviour
             fireRateTimer.StartTimer();
 
             // Plays gun shot audio
-            audioScript.PlayShoot();
+            audioScript?.PlayShoot();
 
 
             // Use an ammo because we can shoot it

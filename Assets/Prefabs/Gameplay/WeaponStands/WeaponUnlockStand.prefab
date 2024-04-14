@@ -362,9 +362,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 220688874c91e9a43bdbc01cef6253d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unlockCost: 500
+  costDisplay: {fileID: 6351592409332571150}
   weaponType: 0
   weaponPoint: {fileID: 6472137714771290059}
-  textDisplay: {fileID: 6351592409332571150}
   coll: {fileID: 1966038100534009977}
 --- !u!114 &4281556491401416665
 MonoBehaviour:

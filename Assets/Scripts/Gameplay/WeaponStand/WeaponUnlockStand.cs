@@ -4,30 +4,36 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class WeaponUnlockStand : MonoBehaviour, IInteractable
+public class WeaponUnlockStand : BaseInteractable
 {
     [SerializeField] private WeaponType weaponType;
     [Seperator]
     [SerializeField] private Transform weaponPoint;
-    [SerializeField] private TextMeshProUGUI textDisplay;
     [SerializeField] private Collider coll;
 
     private WeaponHolder weaponHold;
 
     private GameObject weaponObj;
 
-    public void Interact()
+    public override bool Interact()
     {
-        if (PointsManager.Instance.CurrPts >= weaponHold.Cost)
+        if (base.Interact())
         {
-            PointsManager.Instance.RemovePoints(weaponHold.Cost);
             WeaponManager.Instance.AddWeapon(weaponObj);
             coll.enabled = false;
-        }
-    }
 
-    void Start()
+            return true;
+        }
+
+        return false;
+    } 
+
+    public override void Start()
     {
+        base.Start();
+
+        unlockCost = weaponHold.Cost;
+
         if (weaponType == WeaponType.NULLED)
         {
             coll.enabled = false;
@@ -36,27 +42,25 @@ public class WeaponUnlockStand : MonoBehaviour, IInteractable
 
         weaponHold = WeaponPoolManager.Instance.GetGunGO(weaponType);
         weaponObj = Instantiate(weaponHold.WeaponPrefab, weaponPoint);
+        costDisplay.text = weaponType.ToString() + "\n$" + weaponHold.Cost.ToString();
 
-        textDisplay.text = weaponType.ToString() + "\n$" + weaponHold.Cost.ToString();
         UpdateTextColor();
-
-        PointsManager.Instance.OnPointsChanged += UpdateTextColor;
     }
 
-    private void OnDestroy()
+    public override void OnDestroy()
     {
-        PointsManager.Instance.OnPointsChanged -= UpdateTextColor;
+        base.OnDestroy();
     }
 
-    private void UpdateTextColor()
+    public override void UpdateTextColor()
     {
         if (PointsManager.Instance.CurrPts >= weaponHold.Cost)
         {
-            textDisplay.color = Color.green;
+            costDisplay.color = Color.green;
         }
         else
         {
-            textDisplay.color = Color.red;
+            costDisplay.color = Color.red;
         }
     }
 }

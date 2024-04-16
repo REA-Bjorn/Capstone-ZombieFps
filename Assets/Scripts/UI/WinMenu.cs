@@ -10,11 +10,11 @@ public class WinMenu : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
-        replay.onClick.AddListener(GameManager.instance.RetryLevel);
+        replay.onClick.AddListener(GameManager.Instance.RetryLevel);
     }
 
     private void OnDisable()
     {
-        replay.onClick.RemoveListener(GameManager.instance.RetryLevel);
+        replay.onClick.RemoveListener(GameManager.Instance.RetryLevel);
     }
 }

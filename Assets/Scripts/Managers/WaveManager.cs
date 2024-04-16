@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class WaveManager : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class WaveManager : MonoBehaviour
     private List<GameObject> spawnPoints = new List<GameObject>();
     // All enemies spawned
     private List<EnemyBase> enemyPool = new List<EnemyBase>();
+    [SerializeField] private Transform enemyParent;
 
     // Goal Trackers
     private int currentEnemyGoal = 0;
@@ -54,7 +56,7 @@ public class WaveManager : MonoBehaviour
         for (int i = 0; i < SpawnLimit; i++)
         {
             // Instantiate enemy
-            GameObject spawnedEnemy = Instantiate(enemyPrefab, GetRandomSpawnPoint());
+            GameObject spawnedEnemy = Instantiate(enemyPrefab, enemyParent);
             spawnedEnemy.SetActive(false);
 
             // Add enemy to the list
@@ -129,6 +131,8 @@ public class WaveManager : MonoBehaviour
         waveCount++;
         UIManager.Instance.UpdateWaveCounter();
 
+        // find if current goal is less than the limit, if so use goal
+        // otherwise far too many enemies needed so we use our limit
         int loopFor = currentEnemyGoal < SpawnLimit ? currentEnemyGoal : SpawnLimit;
 
         for (int i = 0; i < loopFor; ++i)
@@ -143,10 +147,18 @@ public class WaveManager : MonoBehaviour
     void EnableEnemy(EnemyBase _enemy)
     {
         _enemy.gameObject.SetActive(true);
-        _enemy.SpawnMe(); // handles maxing the stats for us
+        // handles maxing the stats for us
+        _enemy.SpawnMe();
 
-        _enemy.transform.parent = GetRandomSpawnPoint().transform;
-        _enemy.transform.position = GetRandomSpawnPoint().position;
+        // Gets and stores a random transform
+        Transform tr = GetRandomSpawnPoint();
+        _enemy.transform.position = tr.position;
+
+        NavMeshHit myNavHit;
+        if (NavMesh.SamplePosition(_enemy.transform.position, out myNavHit, 0.5f, -1))
+        {
+            _enemy.transform.position = myNavHit.position;
+        }
     }
 
     public void EnemyKilled(GameObject _enemy)
@@ -169,16 +181,16 @@ public class WaveManager : MonoBehaviour
     private Transform GetRandomSpawnPoint()
     {
         int idx = Random.Range(0, spawnPoints.Count);
-        Transform tra = spawnPoints[idx].transform;
+        GameObject tra = spawnPoints[idx];
 
         // Find active transform if the current one was disabled
-        while (!tra.gameObject.activeInHierarchy)
+        while (!tra.activeInHierarchy)
         {
             idx = Random.Range(0, spawnPoints.Count);
-            tra = spawnPoints[idx].transform;
+            tra = spawnPoints[idx];
         }
 
-        return tra;
+        return tra.transform;
     }
 
     private int TotalCurrentlyUndead()

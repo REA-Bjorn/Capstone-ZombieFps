@@ -23,22 +23,30 @@ public class EnemyMovement : MonoBehaviour
     {
         startingPos = transform.position;
         ogStopingDis = agent.stoppingDistance;
-        player = GameManager.instance.Player;
+        player = GameManager.Instance.Player;
     }
 
     void FacePlayer()
     {
-        playerDir = GameManager.instance.Player.position - Headpos.position;
+        playerDir = GameManager.Instance.Player.position - Headpos.position;
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceSpeed);
     }
 
     public void Movement()
     {
-        if (agent.isActiveAndEnabled)
+        if (agent.isActiveAndEnabled && agent.isOnNavMesh)
         {
-            agent.SetDestination(GameManager.instance.Player.position);
+            if (!agent.isStopped)
+            {
+                agent.SetDestination(GameManager.Instance.Player.position);
+            }
+
             FacePlayer();
+        }
+        else
+        {
+            Debug.Log("Agent Active&Enabled : " + agent.isActiveAndEnabled + " Agent On Mesh: " + agent.isOnNavMesh);
         }
     }
 }

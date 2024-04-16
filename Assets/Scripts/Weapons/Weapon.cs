@@ -170,7 +170,7 @@ public class Weapon : MonoBehaviour
         // If we have reserves
         if (reserves.IsValid && !ammo.IsMaxed)
         {
-            gunAnimations.SetTrigger("Reload");
+            gunAnimations?.SetTrigger("Reload");
 
             float used = ammo.Max - ammo.CurrentValue;
 

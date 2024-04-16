@@ -22,7 +22,7 @@ public class BaseInteractable : MonoBehaviour, IInteractable
     public virtual void Start()
     {
         PointsManager.Instance.OnPointsChanged += UpdateTextColor;
-        costDisplay.text = '$' + unlockCost.ToString();
+        costDisplay.text = "Unlock: $" + unlockCost.ToString();
         UpdateTextColor();
     }
 

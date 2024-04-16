@@ -25,6 +25,7 @@ public class EnemyBase : MonoBehaviour, IDamage
         visualScript.SetRandomMaterial();
         health.OnDepleted += Health_OnDepleted;
     }
+
     private void Health_OnDepleted()
     {
         PickupManager.Instance.DropPickup(transform);
@@ -36,7 +37,6 @@ public class EnemyBase : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("I am moving!!");
         move.Movement();
     }
 
@@ -58,7 +58,7 @@ public class EnemyBase : MonoBehaviour, IDamage
     public void SpawnMe()
     {
         MaxStats();
-        PlaySpawnAnimation();
+        //PlaySpawnAnimation();
     }
 
     public void ForceKill()

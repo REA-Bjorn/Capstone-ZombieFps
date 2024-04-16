@@ -6,17 +6,23 @@ using UnityEngine;
 
 public class Blockade : BaseInteractable
 {
+    public event Action OnSuccessfulInteract;
+
+    private bool boughtStatus = false;
+    public bool Bought => boughtStatus;
+
     public override bool Interact()
     {
         if (base.Interact())
         {
+            boughtStatus = true;
+            OnSuccessfulInteract?.Invoke();
             gameObject.SetActive(false);
             return true;
         }
 
         return false;
     }
-
     public override void Start()
     {
         base.Start();

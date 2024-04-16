@@ -10,11 +10,11 @@ public class DeathMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        retry.onClick.AddListener(GameManager.instance.RetryLevel);
+        retry.onClick.AddListener(GameManager.Instance.RetryLevel);
     }
 
     private void OnDisable()
     {
-        retry.onClick.RemoveListener(GameManager.instance.RetryLevel);
+        retry.onClick.RemoveListener(GameManager.Instance.RetryLevel);
     }
 }

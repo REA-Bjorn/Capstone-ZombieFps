@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -64,5 +65,17 @@ public class GameManager : MonoBehaviour
 
         PlayerBase.instance.transform.SetPositionAndRotation(playerSpawnPoint.position, playerSpawnPoint.rotation);
         playerTransfrom = PlayerBase.instance.transform;
+    }
+
+    public void PauseGame()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+    }
+
+    public void UnPauseGame()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }

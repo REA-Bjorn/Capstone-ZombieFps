@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -14,10 +15,54 @@ public class UIManager : MonoBehaviour
     [SerializeField] private PlayerHit hitUI;
     [SerializeField] private CrosshairHover crosshairScript;
     [SerializeField] private GameObject playerUI;
+    [Seperator]
+    [SerializeField] private GameObject deathUI;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject optionsMenu;
+    [SerializeField] private GameObject controlsMenu;
 
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("wa");
+            TogglePauseMenu();
+        }
+    }
+
+    private void TurnOffAllUI()
+    {
+        playerUI.SetActive(false);
+        deathUI.SetActive(false);
+        pauseMenu.SetActive(false);
+        optionsMenu.SetActive(false);
+        controlsMenu.SetActive(false);
+    }
+
+    private void TogglePauseMenu()
+    {
+        if (pauseMenu.activeSelf)
+        {
+            TurnOnPlayerMenu();
+            GameManager.Instance.UnPauseGame();
+        }
+        else
+        {
+            GameManager.Instance.PauseGame();
+            TurnOffAllUI();
+            pauseMenu.SetActive(true); 
+        }
+    }
+
+    private void TurnOnPlayerMenu()
+    {
+        TurnOffAllUI();
+        playerUI.SetActive(true);
     }
 
     public void UpdateScore()
@@ -40,7 +85,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        death.SetActive(false);
+        TurnOnPlayerMenu();
     }
 
     public void UpdateWeaponsUI()

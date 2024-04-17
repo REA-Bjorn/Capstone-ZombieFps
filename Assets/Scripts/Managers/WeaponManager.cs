@@ -8,9 +8,9 @@ public class WeaponManager : MonoBehaviour
 {
     public static WeaponManager Instance;
 
-    [SerializeField] private Weapon currWeapon;
-    [SerializeField] private Weapon Primary;
-    [SerializeField] private Weapon Secondary;
+    [SerializeField] private BaseWeapon currWeapon;
+    [SerializeField] private BaseWeapon Primary;
+    [SerializeField] private BaseWeapon Secondary;
 
     [SerializeField] private CustomTimer instaKillTimer;
 
@@ -31,7 +31,7 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-    public Weapon CurrentWeapon => currWeapon;
+    public BaseWeapon CurrentWeapon => currWeapon;
     public string GunName => currWeapon?.Name;
     public string CurrAmmoTxt => currWeapon?.Ammo.CurrentValue.ToString();
     public string CurrReserveTxt => currWeapon?.Reserves.CurrentValue.ToString();
@@ -48,6 +48,11 @@ public class WeaponManager : MonoBehaviour
 
         currWeapon = Primary;
         currWeapon.WeaponOn();
+
+        // Double check that we don't start with both weapons on!
+        if (Secondary != null)
+            EnablePrimary();
+
         UIManager.Instance.UpdateWeaponsUI();
     }
 
@@ -86,19 +91,19 @@ public class WeaponManager : MonoBehaviour
 
         if (Secondary == null)
         {
-            Secondary = _weapon.GetComponent<Weapon>();
+            Secondary = _weapon.GetComponent<BaseWeapon>();
             EnableSecondary();
         }
         else if (currWeapon == Primary)
         {
             Destroy(currWeapon);
-            Primary = _weapon.GetComponent<Weapon>();
+            Primary = _weapon.GetComponent<BaseWeapon>();
             EnablePrimary();
         }
         else if (currWeapon == Secondary)
         {
             Destroy(currWeapon);
-            Secondary = _weapon.GetComponent<Weapon>();
+            Secondary = _weapon.GetComponent<BaseWeapon>();
             EnableSecondary();
         }
 
@@ -160,5 +165,50 @@ public class WeaponManager : MonoBehaviour
     public void Shoot(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         currWeapon?.Shoot();
+    }
+
+    public void BoughtAmmo(WeaponType _type)
+    {
+        if (Primary.Type == _type)
+        {
+            // Bought primary ammo
+            Primary.SetMaxAmmo();
+        }
+        else if (Secondary.Type == _type)
+        {
+            Debug.Log("gained");
+            // Bought Secondary ammo
+            Secondary.SetMaxAmmo();
+        }
+    }
+
+    public bool HasWeapon(WeaponType _type)
+    {
+        // Do we have the current type
+        if (Primary.Type == _type)
+        {
+            if (!Primary.Ammo.IsMaxed)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else if (Secondary.Type == _type)
+        {
+            if (!Secondary.Ammo.IsMaxed)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        // We didn't have a matching gun or need ammo
+        return false;
     }
 }

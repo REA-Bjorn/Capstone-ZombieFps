@@ -20,10 +20,6 @@ public class PlayerBase : MonoBehaviour, IDamage
 
     [SerializeField] BaseCamera cam;
 
-    [SerializeField] CrosshairHover crossHairScript;
-
-    public CrosshairHover CrossHair => crossHairScript;
-
     public SpeedPool Spd => speed;
 
     public HealthPool Health => health;

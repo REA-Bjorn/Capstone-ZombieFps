@@ -21,7 +21,14 @@ public class PlayerRaycastInteractor : MonoBehaviour
             IInteractable interactable = hit.collider.GetComponent<IInteractable>();
             if (interactable != null)
             {
-                interactable.Interact();
+                if (interactable.Interact())
+                {
+                    // show points being deducted on UI
+                }
+                else
+                {
+                    // turn points red on UI
+                }
             }
         }
     }

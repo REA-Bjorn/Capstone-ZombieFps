@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BaseInteractable : MonoBehaviour, IInteractable
 {
-    [SerializeField] protected float unlockCost = 500.0f;
+    [SerializeField] protected float unlockCost = 0.0f;
     [SerializeField] protected TextMeshProUGUI costDisplay;
 
     public virtual bool Interact()

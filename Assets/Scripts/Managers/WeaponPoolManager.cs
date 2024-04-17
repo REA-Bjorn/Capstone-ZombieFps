@@ -7,12 +7,11 @@ using UnityEngine;
 public enum WeaponType
 {
     NULLED,
-    Pistol,
     AssaultRifle,
-    MachineGun,
-    LightMachineGun,
-    SubMachineGun,
-    Sniper,
+    Pistol,
+    ConcealCarry,
+    SMG,
+    SniperRifle,
     LightningStaff,
     RocketLauncher,
     Shotgun
@@ -41,7 +40,7 @@ public class WeaponPoolManager : MonoBehaviour
     {
         WeaponHolder retGun;
         retGun.Weapon = WeaponType.NULLED;
-        retGun.WeaponPrefab = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        retGun.WeaponPrefab = null;
         retGun.Cost = 0;
 
         foreach (WeaponHolder gun in allWeapons)

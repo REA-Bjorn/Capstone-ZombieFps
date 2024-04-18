@@ -49,4 +49,9 @@ public class EnemyMovement : MonoBehaviour
             Debug.Log("Agent Active&Enabled : " + agent.isActiveAndEnabled + " Agent On Mesh: " + agent.isOnNavMesh);
         }
     }
+
+    public void UpdateMoveSpeed(float speed)
+    {
+        agent.speed = speed;
+    }
 }

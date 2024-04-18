@@ -42,7 +42,14 @@ public class EnemyBase : MonoBehaviour, IDamage
 
     public void TakeDamage(float damage)
     {
-        health.UseResource(damage);
+        health.Decrease(damage);
+
+        if (health.IsValid)
+        {
+            // Update enemy speed based off of their health's percent and their min/max speed
+            float newSpeed = Mathf.Clamp(health.Percent * speed.Max, speed.Min, speed.Max);
+            move.UpdateMoveSpeed(newSpeed);
+        }
     }
 
     public void MaxStats()

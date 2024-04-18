@@ -68,7 +68,7 @@ public class PlayerBase : MonoBehaviour, IDamage
 
     public void TakeDamage(float damage)
     {
-        health.UseResource(damage);
+        health.Decrease(damage);
         UIManager.Instance.HitFlash();
     }
 

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ProjectileWeapon : BaseWeapon
 {
+    [SerializeField] protected GameObject ammoPrefabToSpawn;
+    [SerializeField] protected Transform spawnPoint;
+
     public override void Start()
     {
         base.Start();
@@ -17,5 +20,17 @@ public class ProjectileWeapon : BaseWeapon
     public override void OnDisable()
     {
         base.OnDisable();
+    }
+
+    public override bool Shoot()
+    {
+        if (base.Shoot() && ammo.IsValid)
+        {
+            WeaponFX();
+            GameObject spawnedProjectile = Instantiate(ammoPrefabToSpawn, spawnPoint.position, spawnPoint.rotation);
+            spawnedProjectile.GetComponent<Projectile>().Startup(WeaponManager.Instance.CurrentAttack);
+        }
+
+        return true;
     }
 }

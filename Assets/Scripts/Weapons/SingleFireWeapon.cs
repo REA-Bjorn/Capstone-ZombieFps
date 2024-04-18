@@ -23,18 +23,7 @@ public class SingleFireWeapon : BaseWeapon
     {
         if (base.Shoot() && ammo.IsValid)
         {
-            // Plays the muzzle flash animation
-            muzzleFlash.Play();
-
-            // Runs the timer for fire rate
-            fireRateTimer.StartTimer();
-
-            // Plays gun shot audio
-            audioScript?.PlayShoot();
-
-            // Use an ammo because we can shoot it
-            ammo.Decrease(1f);
-            UIManager.Instance.UpdateWeaponsUI();
+            WeaponFX();
 
             // Create Raycast Hit data
             RaycastHit hit;

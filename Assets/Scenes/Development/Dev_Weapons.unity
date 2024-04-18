@@ -1058,7 +1058,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_CollectObjects: 0
+  m_CollectObjects: 2
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
@@ -1170,7 +1170,7 @@ PrefabInstance:
     - target: {fileID: 6805240994216954505, guid: 5bd2247003eaa6640a17707a944c2fa7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.17433804
+      value: 0.02253586
       objectReference: {fileID: 0}
     - target: {fileID: 6805240994216954505, guid: 5bd2247003eaa6640a17707a944c2fa7,
         type: 3}
@@ -1180,12 +1180,12 @@ PrefabInstance:
     - target: {fileID: 6805240994216954505, guid: 5bd2247003eaa6640a17707a944c2fa7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.558786
+      value: 5.925267
       objectReference: {fileID: 0}
     - target: {fileID: 6805240994216954505, guid: 5bd2247003eaa6640a17707a944c2fa7,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.2588185
+      value: -0.13052541
       objectReference: {fileID: 0}
     - target: {fileID: 6805240994216954505, guid: 5bd2247003eaa6640a17707a944c2fa7,
         type: 3}
@@ -1195,7 +1195,7 @@ PrefabInstance:
     - target: {fileID: 6805240994216954505, guid: 5bd2247003eaa6640a17707a944c2fa7,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.96592605
+      value: 0.991445
       objectReference: {fileID: 0}
     - target: {fileID: 6805240994216954505, guid: 5bd2247003eaa6640a17707a944c2fa7,
         type: 3}
@@ -1210,7 +1210,7 @@ PrefabInstance:
     - target: {fileID: 6805240994216954505, guid: 5bd2247003eaa6640a17707a944c2fa7,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 210
+      value: 195
       objectReference: {fileID: 0}
     - target: {fileID: 6805240994216954505, guid: 5bd2247003eaa6640a17707a944c2fa7,
         type: 3}

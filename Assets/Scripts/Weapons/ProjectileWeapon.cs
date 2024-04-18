@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ProjectileWeapon : BaseWeapon
 {
+    [Seperator]
     [SerializeField] protected GameObject ammoPrefabToSpawn;
     [SerializeField] protected Transform spawnPoint;
 

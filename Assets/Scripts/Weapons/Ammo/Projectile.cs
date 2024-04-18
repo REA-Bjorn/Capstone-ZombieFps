@@ -49,7 +49,13 @@ public class Projectile : MonoBehaviour
         {
             // If we cannot damage the player and we hit the player, continue the loop
             if (!canHurtPlayer && hit.CompareTag("Player"))
+            {
                 continue;
+            }
+            else if (canHurtPlayer && hit.CompareTag("Player"))
+            {
+                PlayerBase.instance.ShakeCam(1.5f, 0.5f);
+            }
 
             IDamage dmg = hit.GetComponent<IDamage>();
 

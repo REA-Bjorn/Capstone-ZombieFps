@@ -1,30 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerMovement))]
 public class PlayerBase : MonoBehaviour, IDamage
 {
     public static PlayerBase instance;
+
+    [SerializeField] HealthPool health;
+    [SerializeField] SpeedPool speed;
+    [Seperator]
+    [SerializeField] PlayerMovement move;
+    [SerializeField] PlayerCamera cam;
+
+    // Properties
+    public SpeedPool Spd => speed;
+    public HealthPool Health => health;
+    public float ShootDist => WeaponManager.Instance.ShootDist;
 
     private void Awake()
     {
         instance = this;
     }
-
-    [SerializeField] HealthPool health;
-
-    [SerializeField] SpeedPool speed;
-
-    [SerializeField] PlayerMovement move;
-
-    [SerializeField] BaseCamera cam;
-
-    public SpeedPool Spd => speed;
-
-    public HealthPool Health => health;
-
-    public float ShootDist => WeaponManager.Instance.ShootDist;
 
     // Start is called before the first frame update
     void Start()
@@ -43,11 +42,9 @@ public class PlayerBase : MonoBehaviour, IDamage
     public void LockPlayer()
     {
         move.enabled = false;
-
         cam.enabled = false;
 
         WeaponManager.Instance.DisableWeapon();
-
         Cursor.lockState = CursorLockMode.None;
     }
 
@@ -56,10 +53,10 @@ public class PlayerBase : MonoBehaviour, IDamage
         health.OnDepleted -= HealthDepleted;
     }
 
-    // Update is called once per frame
     void Update()
     {
         move.Movement();
+
         if (cam.enabled)
         {
             cam.Look();
@@ -75,5 +72,10 @@ public class PlayerBase : MonoBehaviour, IDamage
     public void TakeMaxDamage()
     {
         // nothing here, player should never take max damage
+    }
+
+    public void ShakeCam(float camShakeAmount, float camShakeDuration)
+    {
+        cam.TurnOnCamShake(camShakeAmount, camShakeDuration);
     }
 }

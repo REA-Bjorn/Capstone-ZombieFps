@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathTimer: {fileID: -4198966396457636006}
+  _light: {fileID: 4117335885991507205}
 --- !u!198 &8926294276232527899
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -3987,7 +3988,7 @@ ParticleSystem:
     light: {fileID: 4117335885991507205}
     randomDistribution: 0
     color: 0
-    range: 0
+    range: 1
     intensity: 1
     rangeCurve:
       serializedVersion: 2
@@ -4931,7 +4932,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.7298756, b: 0, a: 1}
-  m_Intensity: 10
+  m_Intensity: 5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208

@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 1271044972032980023}
   - component: {fileID: 4757490968703565555}
   - component: {fileID: 7448511604021108423}
-  - component: {fileID: 8502583144438072824}
+  - component: {fileID: 5237468259295031846}
   m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -218,7 +218,7 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!114 &8502583144438072824
+--- !u!114 &5237468259295031846
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -227,10 +227,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4054285060004523428}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 611f3c871139bc647a6bf659c4e9d61f, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d0ce969cfec1654780d8b02b429a079, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSenitivity: 100
+  mouseSenitivity: 50
   playerBody: {fileID: 1763888271620170312}
 --- !u!1 &4282033910931779895
 GameObject:
@@ -291,7 +291,7 @@ MonoBehaviour:
     min: 0
     currentValue: 0
   move: {fileID: 7290629467626061871}
-  cam: {fileID: 8502583144438072824}
+  cam: {fileID: 5237468259295031846}
 --- !u!114 &7290629467626061871
 MonoBehaviour:
   m_ObjectHideFlags: 0

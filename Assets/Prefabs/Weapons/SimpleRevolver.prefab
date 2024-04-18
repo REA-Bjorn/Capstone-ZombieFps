@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 0
+  duration: 0.25
   RunTimer: 0
 --- !u!114 &7804853621793259924
 MonoBehaviour:
@@ -86,6 +86,8 @@ MonoBehaviour:
   gunName: Revolver
   audioScript: {fileID: 7485725871518676988}
   type: 0
+  camShakeAmount: 0.75
+  camShakeDuration: 0.25
 --- !u!114 &1685424534629834749
 MonoBehaviour:
   m_ObjectHideFlags: 0

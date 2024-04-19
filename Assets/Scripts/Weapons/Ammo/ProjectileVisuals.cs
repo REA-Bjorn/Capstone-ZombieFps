@@ -28,7 +28,7 @@ public class ProjectileVisuals : MonoBehaviour
     }
 
     private void Died()
-    {
+    { 
         Destroy(gameObject);
     }
 }

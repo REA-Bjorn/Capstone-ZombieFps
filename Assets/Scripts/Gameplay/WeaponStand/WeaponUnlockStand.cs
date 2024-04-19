@@ -18,8 +18,10 @@ public class WeaponUnlockStand : BaseInteractable
 
     public override bool Interact()
     {
+        // Specifically for the Weapon Stand
         if (!boughtWeapon)
         {
+            // Regular Interact() Functionality here, 
             if (base.Interact())
             {
                 // Need weapon and has paid
@@ -107,14 +109,6 @@ public class WeaponUnlockStand : BaseInteractable
         else
         {
             costDisplay.color = Color.red;
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            PointsManager.Instance.AddPoints(50f);
         }
     }
 }

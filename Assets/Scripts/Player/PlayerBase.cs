@@ -14,6 +14,8 @@ public class PlayerBase : MonoBehaviour, IDamage
     [Seperator]
     [SerializeField] PlayerMovement move;
     [SerializeField] PlayerCamera cam;
+    [SerializeField] CustomTimer respawnTimer;
+    [SerializeField] CustomTimer staminaTimer;
 
     // Properties
     public SpeedPool Spd => speed;
@@ -31,12 +33,34 @@ public class PlayerBase : MonoBehaviour, IDamage
         speed.SetMax();
         health.SetMax();
         health.OnDepleted += HealthDepleted;
+
+        respawnTimer.OnStart += RespawnTimer_OnStart;
+        respawnTimer.OnEnd += RespawnTimer_OnEnd;
+        
+    }
+
+    private void RespawnTimer_OnEnd()
+    {
+        speed.SetMax();
+        health.SetMax();
+    }
+
+    private void RespawnTimer_OnStart()
+    {
+        GameManager.Instance.PlayerReviving();
     }
 
     private void HealthDepleted()
     {
-        LockPlayer();
-        UIManager.Instance.DeathMenu();
+        if (PerkManager.Instance.SecondaryLife)
+        {
+            respawnTimer.StartTimer();
+        }
+        else
+        {
+            LockPlayer();
+            UIManager.Instance.DeathMenu();
+        }
     }
 
     public void LockPlayer()

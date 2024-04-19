@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -25,6 +26,10 @@ public class GameManager : MonoBehaviour
     public const string KEY_LEVEL1 = "Level1";
     public const string KEY_LEVEL2 = "Level2";
     public const string KEY_LEVEL3 = "Level3";
+
+    private int reviveBoughtCount = 0;
+
+    public bool CanBuyRevive => reviveBoughtCount <= 2;
 
     [SerializeField] private Transform playerSpawnPoint;
 
@@ -64,5 +69,16 @@ public class GameManager : MonoBehaviour
 
         PlayerBase.instance.transform.SetPositionAndRotation(playerSpawnPoint.position, playerSpawnPoint.rotation);
         playerTransfrom = PlayerBase.instance.transform;
+    }
+
+    public void BoughtARevive()
+    {
+        reviveBoughtCount++;
+    }
+
+    public void PlayerReviving()
+    {
+        WaveManager.Instance.DistractEnemies();
+        Debug.Log("Player Reviving");
     }
 }

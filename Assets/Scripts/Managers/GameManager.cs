@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Transform playerSpawnPoint;
 
+    private float storedTimeScale;
+
     public void RetryLevel()
     {
         SceneManager.LoadScene(0);
@@ -66,6 +68,7 @@ public class GameManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        storedTimeScale = Time.timeScale;
 
         PlayerBase.instance.transform.SetPositionAndRotation(playerSpawnPoint.position, playerSpawnPoint.rotation);
         playerTransfrom = PlayerBase.instance.transform;
@@ -80,5 +83,25 @@ public class GameManager : MonoBehaviour
     {
         WaveManager.Instance.DistractEnemies();
         Debug.Log("Player Reviving");
+    }
+
+    public void UnPauseGame()
+    {
+        Time.timeScale = storedTimeScale;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void QuitGame()
+    {
+        //UnPauseGame();
+        Application.Quit();
     }
 }

@@ -18,8 +18,8 @@ public class UIManager : MonoBehaviour
     [Seperator]
     [SerializeField] private GameObject deathUI;
     [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private GameObject optionsMenu;
-    [SerializeField] private GameObject controlsMenu;
+
+    [SerializeField] private PauseMenu pauseMenuScript;
 
     private void Awake()
     {
@@ -40,23 +40,32 @@ public class UIManager : MonoBehaviour
         playerUI.SetActive(false);
         deathUI.SetActive(false);
         pauseMenu.SetActive(false);
-        optionsMenu.SetActive(false);
-        controlsMenu.SetActive(false);
+        pauseMenuScript.TurnOff();
     }
 
-    private void TogglePauseMenu()
+    public void TogglePauseMenu()
     {
         if (pauseMenu.activeSelf)
         {
-            TurnOnPlayerMenu();
-            GameManager.Instance.UnPauseGame();
+            TurnOffPauseMenu();
         }
         else
         {
-            GameManager.Instance.PauseGame();
-            TurnOffAllUI();
-            pauseMenu.SetActive(true); 
+            TurnOnPauseMenu();
         }
+    }
+
+    public void TurnOffPauseMenu()
+    {
+        TurnOnPlayerMenu();
+        GameManager.Instance.UnPauseGame();
+    }
+
+    public void TurnOnPauseMenu()
+    {
+        GameManager.Instance.PauseGame();
+        TurnOffAllUI();
+        pauseMenu.SetActive(true);
     }
 
     private void TurnOnPlayerMenu()

@@ -10,6 +10,6 @@ public class FacePlayer : MonoBehaviour
         dir.y = 0;
         dir.Normalize();
 
-        transform.localRotation = Quaternion.LookRotation(-dir);
+        transform.rotation = Quaternion.LookRotation(dir);
     }
 }

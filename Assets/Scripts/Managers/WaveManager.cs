@@ -20,6 +20,7 @@ public class WaveManager : MonoBehaviour
 
     [Seperator]
     [SerializeField] private CustomTimer waveCountdownTimer;
+    [SerializeField] private CustomTimer distractEnemiesTimer;
 
     // Spawn point collection
     private List<GameObject> spawnPoints = new List<GameObject>();
@@ -83,6 +84,8 @@ public class WaveManager : MonoBehaviour
         waveCountdownTimer.OnStart += WaveCountdownStarted;
         waveCountdownTimer.OnTick += WaveCountdownTicked;
         waveCountdownTimer.OnEnd += WaveCountdownEnded;
+
+        distractEnemiesTimer.OnEnd += EnemiesGoBackToNormal;
     }
 
     private void OnDestroy()
@@ -91,6 +94,8 @@ public class WaveManager : MonoBehaviour
         waveCountdownTimer.OnStart -= WaveCountdownStarted;
         waveCountdownTimer.OnTick -= WaveCountdownTicked;
         waveCountdownTimer.OnEnd -= WaveCountdownEnded;
+
+        distractEnemiesTimer.OnEnd -= EnemiesGoBackToNormal;
     }
 
     private void SpawnEnemy()
@@ -219,4 +224,20 @@ public class WaveManager : MonoBehaviour
         }
     }
 
+    public void DistractEnemies()
+    {
+        distractEnemiesTimer.StartTimer();
+        foreach (EnemyBase enemy in enemyPool)
+        {
+            enemy.ToggleDistracted();
+        }
+    }
+
+    private void EnemiesGoBackToNormal()
+    {
+        foreach (EnemyBase enemy in enemyPool)
+        {
+            enemy.ToggleDistracted();
+        }
+    }
 }

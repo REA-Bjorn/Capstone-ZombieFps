@@ -26,6 +26,7 @@ public class BaseWeapon : MonoBehaviour
     // Properties
     public string Name => gunName;
     public AmmoPool Ammo => ammo;
+    public AttackPool Attack => attack;
     public ReserveAmmoPool Reserves => reserves;
     public float ShootDist => range;
     public WeaponType Type => type;
@@ -116,5 +117,21 @@ public class BaseWeapon : MonoBehaviour
         {
             StartCoroutine(UIManager.Instance.FlashWeaponsUI());
         }
+    }
+
+    protected void WeaponFX()
+    {
+        // Plays the muzzle flash animation
+        muzzleFlash.Play();
+
+        // Runs the timer for fire rate
+        fireRateTimer.StartTimer();
+
+        // Plays gun shot audio
+        audioScript?.PlayShoot();
+
+        // Use an ammo because we can shoot it
+        ammo.Decrease(1f);
+        UIManager.Instance.UpdateWeaponsUI();
     }
 }

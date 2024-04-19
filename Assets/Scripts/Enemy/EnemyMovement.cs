@@ -16,7 +16,7 @@ public class EnemyMovement : MonoBehaviour
 
     float playerAngle;
     float ogStopingDis;
-
+    private Vector3 distractedPos = new Vector3(10000, 10000, 1000);
     bool choseDis;
 
     private void Start()
@@ -48,5 +48,23 @@ public class EnemyMovement : MonoBehaviour
         {
             Debug.Log("Agent Active&Enabled : " + agent.isActiveAndEnabled + " Agent On Mesh: " + agent.isOnNavMesh);
         }
+    }
+
+    public void DistractedMovement()
+    {
+        if (agent.isActiveAndEnabled && agent.isOnNavMesh)
+        {
+            if (!agent.isStopped)
+            {
+                agent.SetDestination(distractedPos);
+            }
+
+            //FacePlayer();
+        }
+    }
+
+    public void UpdateMoveSpeed(float speed)
+    {
+        agent.speed = speed;
     }
 }

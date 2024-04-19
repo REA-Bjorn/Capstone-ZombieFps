@@ -14,6 +14,7 @@ public class EnemyBase : MonoBehaviour, IDamage
     [SerializeField] int PointVal;
 
     [SerializeField] private Animator animator;
+    private bool distracted;
 
     public SpeedPool Spd => speed;
     public AttackPool Atk => attack;
@@ -37,12 +38,26 @@ public class EnemyBase : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        move.Movement();
+        if (distracted)
+        {
+            move.DistractedMovement();
+        }
+        else
+        {
+            move.Movement();
+        }
     }
 
     public void TakeDamage(float damage)
     {
-        health.UseResource(damage);
+        health.Decrease(damage);
+
+        if (health.IsValid)
+        {
+            // Update enemy speed based off of their health's percent and their min/max speed
+            float newSpeed = Mathf.Clamp(health.Percent * speed.Max, speed.Min, speed.Max);
+            move.UpdateMoveSpeed(newSpeed);
+        }
     }
 
     public void MaxStats()
@@ -74,5 +89,10 @@ public class EnemyBase : MonoBehaviour, IDamage
     public void TakeMaxDamage()
     {
         ForceKill();
+    }
+
+    public void ToggleDistracted()
+    {
+        distracted = !distracted;
     }
 }

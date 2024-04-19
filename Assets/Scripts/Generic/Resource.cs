@@ -52,16 +52,6 @@ public class Resource
         }
     }
 
-    public bool UseResource(float value)
-    {
-        bool able = currentValue >= value;
-        if (able)
-        {
-            Decrease(value);
-        }
-        return able;
-    }
-
     public void SetMax()
     {
         currentValue = max;

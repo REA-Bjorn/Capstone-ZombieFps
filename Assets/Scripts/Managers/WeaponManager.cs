@@ -21,12 +21,19 @@ public class WeaponManager : MonoBehaviour
         get
         {
             float val = 0;
-
-            if (currWeapon != null && currWeapon != null)
-            {
+            if (currWeapon != null)
                 val = currWeapon.ShootDist;
-            }
+            return val;
+        }
+    }
 
+    public float CurrentAttack
+    {
+        get
+        {
+            float val = 0;
+            if (currWeapon != null)
+                val = CurrentWeapon.Attack.CurrentValue;
             return val;
         }
     }
@@ -176,7 +183,6 @@ public class WeaponManager : MonoBehaviour
         }
         else if (Secondary.Type == _type)
         {
-            Debug.Log("gained");
             // Bought Secondary ammo
             Secondary.SetMaxAmmo();
         }

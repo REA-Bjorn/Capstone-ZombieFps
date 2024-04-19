@@ -27,6 +27,10 @@ public class GameManager : MonoBehaviour
     public const string KEY_LEVEL2 = "Level2";
     public const string KEY_LEVEL3 = "Level3";
 
+    private int reviveBoughtCount = 0;
+
+    public bool CanBuyRevive => reviveBoughtCount <= 2;
+
     [SerializeField] private Transform playerSpawnPoint;
 
     public void RetryLevel()
@@ -67,15 +71,14 @@ public class GameManager : MonoBehaviour
         playerTransfrom = PlayerBase.instance.transform;
     }
 
-    public void PauseGame()
+    public void BoughtARevive()
     {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
+        reviveBoughtCount++;
     }
 
-    public void UnPauseGame()
+    public void PlayerReviving()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        WaveManager.Instance.DistractEnemies();
+        Debug.Log("Player Reviving");
     }
 }

@@ -7,10 +7,5 @@ using UnityEngine.UI;
 
 public class CrosshairHover : MonoBehaviour
 {
-    [SerializeField] private Image crossHair;
-
-    public void ChangeCrosshairColor(Color _color)
-    {
-        crossHair.color = _color;
-    }
+    
 }

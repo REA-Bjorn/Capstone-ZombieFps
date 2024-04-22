@@ -115,7 +115,7 @@ public class BaseWeapon : MonoBehaviour
         }
         else
         {
-            StartCoroutine(UIManager.Instance.FlashWeaponsUI());
+            UIManager.Instance.FlashWeaponsUI();
         }
     }
 

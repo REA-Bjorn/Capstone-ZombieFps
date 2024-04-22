@@ -15,7 +15,6 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private Button optionsReturnButton;
     [SerializeField] private Button controlsReturnButton;
 
-
     [Seperator]
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private GameObject pauseMenu;
@@ -23,13 +22,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Start()
     {
-        resumeBtn.onClick.AddListener(ClickedResume);
-        optionsBtn.onClick.AddListener(ClickedOptionsBtn);
-        contolsBtn.onClick.AddListener(ClickedControlsBtn);
-        restartBtn.onClick.AddListener(ClickedRestart);
-        quitBtn.onClick.AddListener(ClickedQuit);
-        optionsReturnButton.onClick.AddListener(ReturnToPauseMenu);
-        controlsReturnButton.onClick.AddListener(ReturnToPauseMenu);
+        AddListeners();
     }
 
     public void ClickedOptionsBtn()
@@ -62,6 +55,17 @@ public class PauseMenu : MonoBehaviour
     private void ClickedRestart()
     {
         //Not Implamented yet   
+    }
+
+    private void AddListeners()
+    {
+        resumeBtn.onClick.AddListener(ClickedResume);
+        optionsBtn.onClick.AddListener(ClickedOptionsBtn);
+        contolsBtn.onClick.AddListener(ClickedControlsBtn);
+        restartBtn.onClick.AddListener(ClickedRestart);
+        quitBtn.onClick.AddListener(ClickedQuit);
+        optionsReturnButton.onClick.AddListener(ReturnToPauseMenu);
+        controlsReturnButton.onClick.AddListener(ReturnToPauseMenu);
     }
 
     public void TurnOff()

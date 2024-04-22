@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = storedTimeScale;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
+        InputManager.Instance.UnPauseActions();
     }
 
     public void PauseGame()
@@ -97,6 +98,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        InputManager.Instance.PauseActions();
     }
 
     public void QuitGame()

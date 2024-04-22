@@ -54,7 +54,7 @@ public class PauseMenu : MonoBehaviour
 
     private void ClickedRestart()
     {
-        //Not Implamented yet   
+        //Not Implamented yet
     }
 
     private void AddListeners()

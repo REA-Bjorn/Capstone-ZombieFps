@@ -18,9 +18,20 @@ public class PerkManager : MonoBehaviour
     // FasterSprint property
     public bool SecondaryLife => secondLife;
 
+    public Texture FireRateSprite;
+    public Texture HealthSprite;
+    public Texture ReloadSpeedSprite;
+    public Texture SecondLifeSprite;
+    public Texture MoveSpeedSprite;
+
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        ResetAllPerks();
     }
 
     public void ResetAllPerks()
@@ -30,5 +41,7 @@ public class PerkManager : MonoBehaviour
         // reset faster shoot
         // reset faster sprint
         secondLife = false;
+
+        UIManager.Instance.PerkUIScript.ResetPerks();
     }
 }

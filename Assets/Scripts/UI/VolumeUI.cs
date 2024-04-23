@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Timeline;
 
 public class VolumeUI : MonoBehaviour
 {
@@ -13,10 +14,13 @@ public class VolumeUI : MonoBehaviour
 
     private void Start()
     {
-        
+        master.TurnOn();
+        music.TurnOn();
+        sfx.TurnOn();
+        player.TurnOn();
+        enemy.TurnOn();
+        weapon.TurnOn();
     }
-
-
 
     private void OnDestroy()
     {

@@ -14,8 +14,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private PlayerUI playerUIScript;
     [SerializeField] private GameObject pauseMenuObject;
     [SerializeField] private PauseMenu pauseMenuScript;
+    [SerializeField] private PerkUI perkUI;
     [Seperator]
     [SerializeField] private GameObject minimapObject;
+
+    public PerkUI PerkUIScript => perkUI;
 
     private void Awake()
     {

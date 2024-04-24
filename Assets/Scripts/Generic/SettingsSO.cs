@@ -11,7 +11,9 @@ public class SettingsSO : ScriptableObject
     public float playerVol;
     public float sfxVol;
     public float enemyVol;
+    public float weaponVol;
 
+    [Seperator]
     // Other
     public float fieldOfView;
     public float mouseSensitivity;

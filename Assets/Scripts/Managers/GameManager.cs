@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     public void RetryLevel()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void LoadLevel(Levels level)
@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerReviving()
     {
-        WaveManager.Instance.DistractEnemies();
+        //WaveManager.Instance.DistractEnemies();
         Debug.Log("Player Reviving");
     }
 

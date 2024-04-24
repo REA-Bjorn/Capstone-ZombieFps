@@ -12,6 +12,9 @@ public class PointsManager : MonoBehaviour
 
     public event Action OnPointsChanged;
     public float CurrPts => points.CurrentValue;
+
+    private float totalPoints = 0;
+    public float TotalPts => totalPoints;
     
     private int mult = 1;
 
@@ -23,6 +26,7 @@ public class PointsManager : MonoBehaviour
     public void AddPoints(float val)
     {
         points.Increase(mult * val);
+        totalPoints += (mult * val);
         OnPointsChanged?.Invoke();
     }
 

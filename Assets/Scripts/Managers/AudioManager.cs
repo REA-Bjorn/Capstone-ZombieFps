@@ -17,19 +17,16 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioMixerGroup sfxGroup;
     [SerializeField] private AudioMixerGroup playerGroup;
     [SerializeField] private AudioMixerGroup enemyGroup;
+    [SerializeField] private AudioMixerGroup weaponGroup;
 
-    private void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            SettingsManager.Instance.GetSettings().masterVol -= .01f;
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            SettingsManager.Instance.GetSettings().masterVol += .01f;
-        }
-
         UpdateMasterVol();
+        UpdateMusicVol();
+        UpdateSFXVol();
+        UpdatePlayerVol();
+        UpdateEnemyVol();
+        UpdateWeaponVol();
     }
 
     public void UpdateMasterVol()
@@ -57,4 +54,8 @@ public class AudioManager : MonoBehaviour
         enemyGroup.audioMixer.SetFloat("EnemyVol", Mathf.Log10(SettingsManager.Instance.GetSettings().enemyVol) * 20f);
     }
 
+    public void UpdateWeaponVol()
+    {
+        weaponGroup.audioMixer.SetFloat("WeaponVol", Mathf.Log10(SettingsManager.Instance.GetSettings().weaponVol) * 20f);
+    }
 }

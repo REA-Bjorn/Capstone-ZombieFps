@@ -32,6 +32,8 @@ public class WaveManager : MonoBehaviour
     private int currentEnemyGoal = 0;
     private int currentEnemyGoalStored = 0;
 
+    public float Time => waveCountdownTimer.DurationTime;
+
     private int waveCount = 0;
     public string CurrentWave => waveCount.ToString();
 
@@ -82,7 +84,6 @@ public class WaveManager : MonoBehaviour
     {
         // Wave Countdown Timer events
         waveCountdownTimer.OnStart += WaveCountdownStarted;
-        waveCountdownTimer.OnTick += WaveCountdownTicked;
         waveCountdownTimer.OnEnd += WaveCountdownEnded;
 
         distractEnemiesTimer.OnEnd += EnemiesGoBackToNormal;
@@ -92,7 +93,6 @@ public class WaveManager : MonoBehaviour
     {
         // Wave Countdown Timer events
         waveCountdownTimer.OnStart -= WaveCountdownStarted;
-        waveCountdownTimer.OnTick -= WaveCountdownTicked;
         waveCountdownTimer.OnEnd -= WaveCountdownEnded;
 
         distractEnemiesTimer.OnEnd -= EnemiesGoBackToNormal;
@@ -113,12 +113,14 @@ public class WaveManager : MonoBehaviour
 
     private void WaveCountdownStarted()
     {
-        // Call User Interfaces wave started logic here if needed
+        UIManager.Instance.FlashWaveCounter();
     }
 
-    private void WaveCountdownTicked()
+    public void IncWave()
     {
-        // Logic if we to call any functions during the wave countdown
+        // Update Wave
+        waveCount++;
+        UIManager.Instance.PlayerUIScript.UpdateWavesText();
     }
 
     private void WaveCountdownEnded()
@@ -131,10 +133,6 @@ public class WaveManager : MonoBehaviour
         // Update Total Enemies to kill
         currentEnemyGoalStored += Random.Range(1, 5);
         currentEnemyGoal = currentEnemyGoalStored;
-
-        // Update Wave
-        waveCount++;
-        UIManager.Instance.UpdateWaveCounter();
 
         // find if current goal is less than the limit, if so use goal
         // otherwise far too many enemies needed so we use our limit

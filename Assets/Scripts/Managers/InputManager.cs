@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,6 +31,7 @@ public class InputManager : MonoBehaviour
         // subscribe methods
         inputs.General.ScrollWeapon.performed += WeaponManager.Instance.ToggleWeapon;
         inputs.General.Attack.performed += WeaponManager.Instance.Shoot;
+        inputs.PauseActions.Pause.started += UIManager.Instance.PauseMenu;
     }
 
     private void OnDestroy()
@@ -37,10 +39,21 @@ public class InputManager : MonoBehaviour
         // unsubscribe methods
         inputs.General.ScrollWeapon.performed -= WeaponManager.Instance.ToggleWeapon;
         inputs.General.Attack.performed -= WeaponManager.Instance.Shoot;
+        inputs.PauseActions.Pause.started -= UIManager.Instance.PauseMenu;
     }
 
     public Vector2 CameraReadVal()
     {
         return inputs.General.Looking.ReadValue<Vector2>();
+    }
+
+    public void UnPauseActions()
+    {
+        inputs.General.Enable();
+    }
+
+    public void PauseActions()
+    {
+        inputs.General.Disable();
     }
 }

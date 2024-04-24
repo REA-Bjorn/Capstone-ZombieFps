@@ -90,7 +90,6 @@ public class PlayerBase : MonoBehaviour, IDamage
     public void TakeDamage(float damage)
     {
         health.Decrease(damage);
-        UIManager.Instance.HitFlash();
     }
 
     public void TakeMaxDamage()

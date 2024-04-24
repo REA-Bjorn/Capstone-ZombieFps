@@ -6,29 +6,73 @@ public class PerkManager : MonoBehaviour
 {
     public static PerkManager Instance;
 
-    // [SerializeField] double health
-    // [SerializeField] faster reload
-    // [SerializeField] faster shoot
-    // [SerializeField] faster sprint
+    [SerializeField] private bool doubleHealth;
+    [SerializeField] private bool fasterReload;
+    [SerializeField] private bool fasterShoot;
+    [SerializeField] private bool fasterSprint;
     [SerializeField] private bool secondLife;
 
-    // DoubleHealth property
-    // FasterReload property
-    // FasterShoot property
-    // FasterSprint property
+    public bool DoubleHealth => doubleHealth;
+    public bool FasterReload => fasterReload;
+    public bool FasterSprint => fasterSprint;
+    public bool FasterShoot => fasterShoot;
     public bool SecondaryLife => secondLife;
+
+    public Texture FireRateSprite;
+    public Texture HealthSprite;
+    public Texture ReloadSpeedSprite;
+    public Texture SecondLifeSprite;
+    public Texture MoveSpeedSprite;
 
     private void Awake()
     {
         Instance = this;
     }
 
+    private void Start()
+    {
+        ResetAllPerks();
+    }
+
+    public void UnlockPerk(PerkType _type)
+    {
+        switch (_type)
+        {
+            case PerkType.FireRate:
+                fasterShoot = true;
+                break;
+            case PerkType.Health:
+                doubleHealth = true;
+                break;
+            case PerkType.ReloadSpeed:
+                fasterReload = true;
+                break;
+            case PerkType.SecondLife:
+                secondLife = true;
+                break;
+            case PerkType.MoveSpeed:
+                fasterSprint = true;
+                break;
+            case PerkType.NULLPERK:
+                break;
+            default:
+                break;
+        }
+        if (_type != PerkType.NULLPERK)
+        {
+            UIManager.Instance.PerkUIScript.UnlockedNewPerk(_type);
+        }
+    }
+
     public void ResetAllPerks()
     {
         // reset double health
-        // reset faster reload
-        // reset faster shoot
-        // reset faster sprint
+        doubleHealth = false;
+        fasterReload = false;   
+        fasterShoot = false;
+        fasterSprint = false;
         secondLife = false;
+
+        UIManager.Instance.PerkUIScript.ResetPerks();
     }
 }

@@ -3,49 +3,58 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
     [SerializeField] private GameObject death;
-    [SerializeField] private GameState gameState;
-    [SerializeField] private WeaponUI weaponUIScript;
+    [SerializeField] private DeathMenu deathUI;
     [Seperator]
-    [SerializeField] private PlayerHit hitUI;
-    [SerializeField] private CrosshairHover crosshairScript;
-    [SerializeField] private GameObject playerUI;
-    [Seperator]
-    [SerializeField] private GameObject deathUI;
-    [SerializeField] private GameObject pauseMenu;
-
+    [SerializeField] private PlayerUI playerUIScript;
+    [SerializeField] private GameObject pauseMenuObject;
     [SerializeField] private PauseMenu pauseMenuScript;
+    [SerializeField] private PerkUI perkUI;
+    [Seperator]
+    [SerializeField] private GameObject minimapObject;
+    [SerializeField] private Animator waveAnimation;
+
+    public PerkUI PerkUIScript => perkUI;
+    public PlayerUI PlayerUIScript => playerUIScript;
 
     private void Awake()
     {
         Instance = this;
     }
-
-    private void Update()
+    
+    void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Debug.Log("wa");
-            TogglePauseMenu();
-        }
+        TurnOnPlayerMenu();
+        playerUIScript.StartUp();
+
+        StartCoroutine(FadeIn());
+    }
+
+    private IEnumerator FadeIn()
+    {
+
+
+
+        yield return null;
     }
 
     private void TurnOffAllUI()
     {
-        playerUI.SetActive(false);
-        deathUI.SetActive(false);
-        pauseMenu.SetActive(false);
+        playerUIScript.TurnOff();
         pauseMenuScript.TurnOff();
+        pauseMenuObject.SetActive(false);
+        minimapObject.SetActive(false);
     }
 
     public void TogglePauseMenu()
     {
-        if (pauseMenu.activeSelf)
+        if (pauseMenuObject.activeSelf)
         {
             TurnOffPauseMenu();
         }
@@ -65,62 +74,46 @@ public class UIManager : MonoBehaviour
     {
         GameManager.Instance.PauseGame();
         TurnOffAllUI();
-        pauseMenu.SetActive(true);
+        pauseMenuObject.SetActive(true);
     }
 
     private void TurnOnPlayerMenu()
     {
         TurnOffAllUI();
-        playerUI.SetActive(true);
-    }
-
-    public void UpdateScore()
-    {
-        gameState.UpdateScore();
-    }
-
-    public void UpdateWaveCounter()
-    {
-        // update the text here for that
-        // use WaveManager.Instance.CurrentWave;
+        playerUIScript.TurnOnPlayerUI();
+        minimapObject.SetActive(true);
     }
 
     public void DeathMenu()
     {
+        TurnOffAllUI();
         death.SetActive(true);
-        hitUI.PlayerDiedVignette();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        TurnOnPlayerMenu();
+        GameManager.Instance.PauseGame();
+        deathUI.UpdateTotalScore();
     }
 
     public void UpdateWeaponsUI()
     {
-        weaponUIScript.UpdateUI();
+        playerUIScript.UpdateWeaponUI();
     }
 
-    public IEnumerator FlashWeaponsUI()
+    public void FlashWeaponsUI()
     {
-        weaponUIScript.ColorAmmo(Color.red);
-        yield return new WaitForSeconds(0.25f);
-        weaponUIScript.ColorAmmo(Color.white);
+        StartCoroutine(playerUIScript.FlashWeaponsUI());
     }
 
     public void UpdateCrosshair(Color color)
     {
-        crosshairScript.ChangeCrosshairColor(color);
+        playerUIScript.ChangeCrosshairColor(color);
     }
 
-    public void HitFlash()
+    public void PauseMenu(InputAction.CallbackContext context)
     {
-        hitUI.Active();
+        TogglePauseMenu();
     }
 
-    public void LockUI()
+    public void FlashWaveCounter()
     {
-        playerUI.SetActive(false);
+        waveAnimation.SetTrigger("FlashWave");
     }
 }

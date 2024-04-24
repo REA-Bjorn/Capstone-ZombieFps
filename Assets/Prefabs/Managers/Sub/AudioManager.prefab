@@ -43,7 +43,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -8305014294045757352, guid: bf718591e359ae34d9173881c20482db,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 31f54a2ea85a2404195768dafa2ac22d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a35b9427bf12ce346a6ca7daf32a8dea, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -54,9 +54,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 15
+  MaxDistance: 150000
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -177,6 +177,11 @@ MonoBehaviour:
   masterGroup: {fileID: 24300002, guid: bf718591e359ae34d9173881c20482db, type: 2}
   musicGroup: {fileID: -8305014294045757352, guid: bf718591e359ae34d9173881c20482db,
     type: 2}
-  sfxGroup: {fileID: 0}
-  playerGroup: {fileID: 0}
-  enemyGroup: {fileID: 0}
+  sfxGroup: {fileID: -2751456852365057347, guid: bf718591e359ae34d9173881c20482db,
+    type: 2}
+  playerGroup: {fileID: -7593972594107595799, guid: bf718591e359ae34d9173881c20482db,
+    type: 2}
+  enemyGroup: {fileID: 3484501290523859997, guid: bf718591e359ae34d9173881c20482db,
+    type: 2}
+  weaponGroup: {fileID: 2449669514870342803, guid: bf718591e359ae34d9173881c20482db,
+    type: 2}

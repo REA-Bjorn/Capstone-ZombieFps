@@ -46,6 +46,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allWeapons:
   - Cost: 500
+    Weapon: 2
+    WeaponPrefab: {fileID: 786855788845125091, guid: 04008db72d3168f48abdb16d0aec8cbe,
+      type: 3}
+  - Cost: 600
+    Weapon: 1
+    WeaponPrefab: {fileID: 929281628726723779, guid: 026ac872b8c156a42887d0868a1eb8db,
+      type: 3}
+  - Cost: 700
     Weapon: 5
-    WeaponPrefab: {fileID: 8809648702204308384, guid: 0381236d94c1a7f418c396d23c712a74,
+    WeaponPrefab: {fileID: 8100188583920009805, guid: c3bb845bad0d6884d9ab8fe20b3a1ef6,
+      type: 3}
+  - Cost: 350
+    Weapon: 3
+    WeaponPrefab: {fileID: 6910951265627128258, guid: 24a29ac5efa858744bf66009bc8c69cd,
+      type: 3}
+  - Cost: 750
+    Weapon: 4
+    WeaponPrefab: {fileID: 6297100959983144003, guid: 177352e7171a0fb47b209b184f635fd5,
+      type: 3}
+  - Cost: 1250
+    Weapon: 5
+    WeaponPrefab: {fileID: 8100188583920009805, guid: c3bb845bad0d6884d9ab8fe20b3a1ef6,
+      type: 3}
+  - Cost: 1000
+    Weapon: 7
+    WeaponPrefab: {fileID: 8862963188213629692, guid: 20fc857189e0a234ca60589f7207228f,
+      type: 3}
+  - Cost: 650
+    Weapon: 8
+    WeaponPrefab: {fileID: 5760991350033466311, guid: a3cec5acd8edbbf4cb9af21355f9d753,
       type: 3}

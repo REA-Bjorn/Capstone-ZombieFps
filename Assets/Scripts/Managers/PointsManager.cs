@@ -7,14 +7,15 @@ public class PointsManager : MonoBehaviour
 {
     public static PointsManager Instance;
 
-    public event Action OnPointsChanged;
-
     [SerializeField] private PointsPool points;
-
-    public float CurrPts => points.CurrentValue;
-
     [SerializeField] private CustomTimer doublePointsTimer;
 
+    public event Action OnPointsChanged;
+    public float CurrPts => points.CurrentValue;
+
+    private float totalPoints = 0;
+    public float TotalPts => totalPoints;
+    
     private int mult = 1;
 
     private void Awake()
@@ -25,15 +26,14 @@ public class PointsManager : MonoBehaviour
     public void AddPoints(float val)
     {
         points.Increase(mult * val);
+        totalPoints += (mult * val);
         OnPointsChanged?.Invoke();
-        UIManager.Instance.UpdateScore();
     }
 
     public void RemovePoints(float val)
     {
         points.Decrease(val);
         OnPointsChanged?.Invoke();
-        UIManager.Instance.UpdateScore();
     }
 
     public float GetPoints()

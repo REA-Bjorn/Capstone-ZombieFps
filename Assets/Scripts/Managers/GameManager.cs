@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     public void RetryLevel()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void LoadLevel(Levels level)
@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerReviving()
     {
-        WaveManager.Instance.DistractEnemies();
+        //WaveManager.Instance.DistractEnemies();
         Debug.Log("Player Reviving");
     }
 
@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = storedTimeScale;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
+        InputManager.Instance.UnPauseActions();
     }
 
     public void PauseGame()
@@ -97,6 +98,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        InputManager.Instance.PauseActions();
     }
 
     public void QuitGame()

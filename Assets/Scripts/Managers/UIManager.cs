@@ -32,6 +32,16 @@ public class UIManager : MonoBehaviour
     {
         TurnOnPlayerMenu();
         playerUIScript.StartUp();
+
+        StartCoroutine(FadeIn());
+    }
+
+    private IEnumerator FadeIn()
+    {
+
+
+
+        yield return null;
     }
 
     private void TurnOffAllUI()

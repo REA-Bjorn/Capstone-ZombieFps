@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
     [SerializeField] private GameObject death;
+    [SerializeField] private DeathMenu deathUI;
     [Seperator]
     [SerializeField] private PlayerUI playerUIScript;
     [SerializeField] private GameObject pauseMenuObject;
@@ -17,8 +18,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private PerkUI perkUI;
     [Seperator]
     [SerializeField] private GameObject minimapObject;
+    [SerializeField] private Animator waveAnimation;
 
     public PerkUI PerkUIScript => perkUI;
+    public PlayerUI PlayerUIScript => playerUIScript;
 
     private void Awake()
     {
@@ -29,6 +32,16 @@ public class UIManager : MonoBehaviour
     {
         TurnOnPlayerMenu();
         playerUIScript.StartUp();
+
+        StartCoroutine(FadeIn());
+    }
+
+    private IEnumerator FadeIn()
+    {
+
+
+
+        yield return null;
     }
 
     private void TurnOffAllUI()
@@ -73,7 +86,10 @@ public class UIManager : MonoBehaviour
 
     public void DeathMenu()
     {
+        TurnOffAllUI();
         death.SetActive(true);
+        GameManager.Instance.PauseGame();
+        deathUI.UpdateTotalScore();
     }
 
     public void UpdateWeaponsUI()
@@ -96,23 +112,8 @@ public class UIManager : MonoBehaviour
         TogglePauseMenu();
     }
 
-    // Flash Waves
     public void FlashWaveCounter()
     {
-        StartCoroutine(FlashWave());
-    }
-
-    private IEnumerator FlashWave()
-    {
-        yield return null;
-        //float tickTime = 6;
-        //while (tickTime > 0)
-        //{
-        //    tickTime -= Time.deltaTime;
-
-        //    yield return null;
-        //}
-
-        //yield return new WaitForSeconds(1);
+        waveAnimation.SetTrigger("FlashWave");
     }
 }

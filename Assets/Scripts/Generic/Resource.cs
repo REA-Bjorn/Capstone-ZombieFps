@@ -26,7 +26,11 @@ public class Resource
 
     public void Increase(float value)
     {
-        float newValue = Mathf.Max(currentValue + value, max);
+        float newValue = currentValue + value;
+        if (max != 0)
+        {
+            newValue = Mathf.Max(newValue, max);
+        }
         currentValue = newValue;
         OnIncrease?.Invoke();
         OnChanged?.Invoke();

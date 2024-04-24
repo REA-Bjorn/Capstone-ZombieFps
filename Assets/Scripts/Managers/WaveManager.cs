@@ -113,9 +113,14 @@ public class WaveManager : MonoBehaviour
 
     private void WaveCountdownStarted()
     {
+        UIManager.Instance.FlashWaveCounter();
+    }
+
+    public void IncWave()
+    {
         // Update Wave
         waveCount++;
-        UIManager.Instance.FlashWaveCounter();
+        UIManager.Instance.PlayerUIScript.UpdateWavesText();
     }
 
     private void WaveCountdownEnded()

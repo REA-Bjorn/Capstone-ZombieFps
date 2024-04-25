@@ -24,7 +24,7 @@ public class SceneFader : MonoBehaviour
     // Changes the alpha of the fade image over time (positive)
     IEnumerator FadeIn()
     {
-        float t = 1f;
+        float t = 2f;
 
         while (t > 0f)
         {

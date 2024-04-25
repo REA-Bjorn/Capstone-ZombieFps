@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3324448926205056728}
   - component: {fileID: 3895708913087501413}
   - component: {fileID: 33861104558661119}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 7709783179672135730}
   - component: {fileID: 6716095114573105351}
   - component: {fileID: 4794940036457156309}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4962,7 +4962,7 @@ GameObject:
   - component: {fileID: 2601391182101623644}
   - component: {fileID: 146679453742322442}
   - component: {fileID: -765561332804641776}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MaxAmmoPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5059,6 +5059,10 @@ PrefabInstance:
     - target: {fileID: 1646637928674852, guid: b385504c9772b534c8202b6bd227109a, type: 3}
       propertyPath: m_Name
       value: SimpleAmmo
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646637928674852, guid: b385504c9772b534c8202b6bd227109a, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4093383823132316, guid: b385504c9772b534c8202b6bd227109a, type: 3}
       propertyPath: m_LocalScale.x

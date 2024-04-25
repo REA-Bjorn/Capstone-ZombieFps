@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class WaveManager : MonoBehaviour
 {
@@ -40,6 +41,9 @@ public class WaveManager : MonoBehaviour
 
     private void Start()
     {
+        if (SceneManager.GetActiveScene().name == "MainMenuLevel")
+            return;
+
         FindAllSpawnPoints();
 
         if (spawnPoints.Count == 0)

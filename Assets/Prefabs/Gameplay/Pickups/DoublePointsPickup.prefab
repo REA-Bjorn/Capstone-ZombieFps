@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2163762853903628596}
   - component: {fileID: 6689727384585917613}
   - component: {fileID: -3588156084305693044}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DoublePointsPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 6577416608792141482}
   - component: {fileID: 1234777902806105933}
   - component: {fileID: 508789343818985843}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4941,7 +4941,7 @@ GameObject:
   - component: {fileID: 7573001901588668258}
   - component: {fileID: 4550803136955774919}
   - component: {fileID: 2911500394831353743}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5060,6 +5060,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SimpleMultiplier
       objectReference: {fileID: 0}
+    - target: {fileID: 1794796997057558, guid: 8f2e8d6e790285342ae8315e25917893, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4057544039434512, guid: 8f2e8d6e790285342ae8315e25917893, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5099,6 +5103,11 @@ PrefabInstance:
     - target: {fileID: 4057544039434512, guid: 8f2e8d6e790285342ae8315e25917893, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3021747862957381275, guid: 8f2e8d6e790285342ae8315e25917893,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

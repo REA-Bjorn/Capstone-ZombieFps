@@ -7,24 +7,11 @@ using UnityEngine.UIElements;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] NavMeshAgent agent;
-    private Transform player;
-    private Vector3 playerDir;
-    private Vector3 startingPos;
-
     [SerializeField] Transform Headpos;
     [SerializeField] float faceSpeed;
 
-    float playerAngle;
-    float ogStopingDis;
+    private Vector3 playerDir;
     private Vector3 distractedPos = new Vector3(10000, 10000, 1000);
-    bool choseDis;
-
-    private void Start()
-    {
-        startingPos = transform.position;
-        ogStopingDis = agent.stoppingDistance;
-        player = GameManager.Instance.Player;
-    }
 
     void FacePlayer()
     {

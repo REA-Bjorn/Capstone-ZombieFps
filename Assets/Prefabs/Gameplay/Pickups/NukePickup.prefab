@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7131918822190887881}
   - component: {fileID: 7147279071740379065}
   - component: {fileID: 3272594067302824049}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: NukePickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 2795355394093045837}
   - component: {fileID: 4886520626271593545}
   - component: {fileID: 6520082460257412673}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 3740140452522025881}
   - component: {fileID: 6867193382078108982}
   - component: {fileID: 3525157194131462757}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5060,6 +5060,10 @@ PrefabInstance:
     - target: {fileID: 1451987925613268, guid: 7f9d532298aebed478128535d8eaa1a3, type: 3}
       propertyPath: m_Name
       value: SimpleBomb
+      objectReference: {fileID: 0}
+    - target: {fileID: 1451987925613268, guid: 7f9d532298aebed478128535d8eaa1a3, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4053261198112206, guid: 7f9d532298aebed478128535d8eaa1a3, type: 3}
       propertyPath: m_LocalScale.x

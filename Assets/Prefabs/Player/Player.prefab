@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimerName: 
   duration: 0.1
   RunTimer: 0
 --- !u!1 &3295221884533245622
@@ -230,7 +231,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d0ce969cfec1654780d8b02b429a079, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSenitivity: 10
   playerBody: {fileID: 1763888271620170312}
 --- !u!1 &4282033910931779895
 GameObject:
@@ -246,7 +246,8 @@ GameObject:
   - component: {fileID: 1386707243795869324}
   - component: {fileID: 8571749272088024675}
   - component: {fileID: 1477816089772822167}
-  - component: {fileID: 6209364256602338761}
+  - component: {fileID: 8147301574113968619}
+  - component: {fileID: 5224551774445335625}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -292,10 +293,13 @@ MonoBehaviour:
     max: 10
     min: 0
     currentValue: 0
+  stamina:
+    max: 2
+    min: 0
+    currentValue: 0
   move: {fileID: 7290629467626061871}
   cam: {fileID: 5237468259295031846}
   respawnTimer: {fileID: 1477816089772822167}
-  staminaTimer: {fileID: 6209364256602338761}
 --- !u!114 &7290629467626061871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,6 +312,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60dae3acc1685264582a5317fb23760c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  staminaRecharge: {fileID: 8147301574113968619}
+  staminaDelay: {fileID: 5224551774445335625}
   charController: {fileID: 8571749272088024675}
 --- !u!114 &1386707243795869324
 MonoBehaviour:
@@ -359,9 +365,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimerName: Respawn Timer
   duration: 3
   RunTimer: 0
---- !u!114 &6209364256602338761
+--- !u!114 &8147301574113968619
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -373,7 +380,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 0
+  TimerName: Recharge Stamina Timer
+  duration: 5
+  RunTimer: 0
+--- !u!114 &5224551774445335625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4282033910931779895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimerName: Delay Stamina Recharge Timer
+  duration: 2
   RunTimer: 0
 --- !u!1 &5251930197408892096
 GameObject:
@@ -512,6 +535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimerName: 
   duration: 15
   RunTimer: 0
 --- !u!1 &6961818667317439636

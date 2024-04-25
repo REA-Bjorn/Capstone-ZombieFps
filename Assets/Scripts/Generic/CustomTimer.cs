@@ -5,6 +5,8 @@ using UnityEngine;
 public class CustomTimer : MonoBehaviour
 {
 
+    [SerializeField] private string TimerName;
+
     //Events
     public event System.Action OnEnd;
     public event System.Action OnStart;

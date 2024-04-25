@@ -11,15 +11,16 @@ public class PlayerBase : MonoBehaviour, IDamage
 
     [SerializeField] HealthPool health;
     [SerializeField] SpeedPool speed;
+    [SerializeField] StaminaPool stamina;
     [Seperator]
     [SerializeField] PlayerMovement move;
     [SerializeField] PlayerCamera cam;
     [SerializeField] CustomTimer respawnTimer;
-    [SerializeField] CustomTimer staminaTimer;
 
     // Properties
     public SpeedPool Spd => speed;
     public HealthPool Health => health;
+    public StaminaPool Stam => stamina;
     public float ShootDist => WeaponManager.Instance.ShootDist;
 
     private void Awake()
@@ -32,6 +33,8 @@ public class PlayerBase : MonoBehaviour, IDamage
     {
         speed.SetMax();
         health.SetMax();
+        stamina.SetMax();
+        stamina.OnChanged += UIManager.Instance.PlayerUIScript.UpdateStaminaBar;
         health.OnDepleted += HealthDepleted;
 
         respawnTimer.OnStart += RespawnTimer_OnStart;
@@ -72,6 +75,15 @@ public class PlayerBase : MonoBehaviour, IDamage
     private void OnDisable()
     {
         health.OnDepleted -= HealthDepleted;
+    }
+
+    private void OnDestroy()
+    {
+        stamina.OnChanged -= UIManager.Instance.PlayerUIScript.UpdateStaminaBar;
+        health.OnDepleted -= HealthDepleted;
+
+        respawnTimer.OnStart -= RespawnTimer_OnStart;
+        respawnTimer.OnEnd -= RespawnTimer_OnEnd;
     }
 
     void Update()

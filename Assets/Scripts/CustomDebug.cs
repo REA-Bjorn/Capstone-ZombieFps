@@ -27,9 +27,14 @@ public class CustomDebug : MonoBehaviour
             PerkManager.Instance.UnlockPerk(PerkType.ReloadSpeed);
         }
 
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            WaveManager.Instance.KillAllAliveEnemies();
+        }
+
         if (Input.GetKeyDown(KeyCode.P))
         {
-            PointsManager.Instance.AddPoints(50);
+            PointsManager.Instance.AddPoints(500);
         }
     }
 

@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     private Transform playerTransfrom;
     public Transform Player => PlayerBase.instance.transform;
 
-    public const string KEY_MAINMENU = "MainMenu";
+    public const string KEY_MAINMENU = "MainMenuLevel";
     public const string KEY_LEVEL1 = "Level1";
     public const string KEY_LEVEL2 = "Level2";
     public const string KEY_LEVEL3 = "Level3";
@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     public void RetryLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        UIManager.Instance.SceneFade.FadeTo(SceneManager.GetActiveScene().name);
     }
 
     public void LoadLevel(Levels level)
@@ -68,10 +68,13 @@ public class GameManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        storedTimeScale = Time.timeScale;
+
+        storedTimeScale = 1; // hard coded... need to find a better way to do this but for now our time scale will always be 1 regardless
+        UIManager.Instance.TurnOffPauseMenu();
 
         PlayerBase.instance.transform.SetPositionAndRotation(playerSpawnPoint.position, playerSpawnPoint.rotation);
         playerTransfrom = PlayerBase.instance.transform;
+
     }
 
     public void BoughtARevive()
@@ -105,6 +108,7 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         //UnPauseGame();
-        Application.Quit();
+        UnPauseGame();
+        UIManager.Instance.SceneFade.FadeTo(KEY_MAINMENU);
     }
 }

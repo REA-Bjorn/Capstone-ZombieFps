@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerCamera : MonoBehaviour
 {
     // Basic Camera Information
-    [SerializeField] public float mouseSenitivity;
     public Transform playerBody;
     private float xRotation = 0f;
 
@@ -19,12 +19,18 @@ public class PlayerCamera : MonoBehaviour
     private void OnEnable()
     {
         originalPos = transform.localPosition;
+        //Camera.main.GetComponent<UniversalAdditionalCameraData>().renderPostProcessing = SettingsManager.Instance.GetSettings().postProcessing;
+    }
+
+    private void Start()
+    {
+        Camera.main.fieldOfView = SettingsManager.Instance.GetSettings().fieldOfView;
     }
 
     public void Look()
     {
-        float mouseX = InputManager.Instance.Look.x * mouseSenitivity * Time.deltaTime;
-        float mouseY = InputManager.Instance.Look.y * mouseSenitivity * Time.deltaTime;
+        float mouseX = InputManager.Instance.Look.x * SettingsManager.Instance.MouseSens * Time.deltaTime;
+        float mouseY = InputManager.Instance.Look.y * SettingsManager.Instance.MouseSens * Time.deltaTime;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);

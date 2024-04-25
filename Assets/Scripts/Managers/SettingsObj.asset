@@ -18,6 +18,8 @@ MonoBehaviour:
   sfxVol: 0
   enemyVol: 0
   weaponVol: 0
-  fieldOfView: 0
-  mouseSensitivity: 0
+  fieldOfView: 60
+  mouseSensitivity: 3
   invertY: 0
+  fullscreen: 0
+  postProcessing: 0

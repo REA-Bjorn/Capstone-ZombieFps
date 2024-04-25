@@ -36,7 +36,6 @@ public class PlayerBase : MonoBehaviour, IDamage
 
         respawnTimer.OnStart += RespawnTimer_OnStart;
         respawnTimer.OnEnd += RespawnTimer_OnEnd;
-        
     }
 
     private void RespawnTimer_OnEnd()
@@ -95,6 +94,22 @@ public class PlayerBase : MonoBehaviour, IDamage
     public void TakeMaxDamage()
     {
         // nothing here, player should never take max damage
+    }
+
+
+    public void HealthPerkEnabled()
+    {
+        health.UpdateMax(20);
+    }
+
+    public void SprintSpeedPerkEnabled()
+    {
+
+    }
+
+    public void SecondLifePerkEnabled()
+    {
+
     }
 
     public void ShakeCam(float camShakeAmount, float camShakeDuration)

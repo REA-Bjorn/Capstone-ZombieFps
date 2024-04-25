@@ -42,6 +42,7 @@ public class PerkManager : MonoBehaviour
                 fasterShoot = true;
                 break;
             case PerkType.Health:
+                PlayerBase.instance.HealthPerkEnabled();
                 doubleHealth = true;
                 break;
             case PerkType.ReloadSpeed:

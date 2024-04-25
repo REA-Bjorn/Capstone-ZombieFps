@@ -18,4 +18,8 @@ public class SettingsSO : ScriptableObject
     public float fieldOfView;
     public float mouseSensitivity;
     public bool invertY;
+
+    [Seperator]
+    public bool fullscreen;
+    public bool postProcessing;
 }

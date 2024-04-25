@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     private Transform playerTransfrom;
     public Transform Player => PlayerBase.instance.transform;
 
-    public const string KEY_MAINMENU = "MainMenu";
+    public const string KEY_MAINMENU = "MainMenuLevel";
     public const string KEY_LEVEL1 = "Level1";
     public const string KEY_LEVEL2 = "Level2";
     public const string KEY_LEVEL3 = "Level3";
@@ -105,6 +105,7 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         //UnPauseGame();
+        UnPauseGame();
         UIManager.Instance.SceneFade.FadeTo(KEY_MAINMENU);
     }
 }

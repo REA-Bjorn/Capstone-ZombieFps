@@ -14,4 +14,6 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private SettingsSO settingsObject;
 
     public SettingsSO GetSettings() { return settingsObject; }
+
+    public float MouseSens => settingsObject.mouseSensitivity;
 }

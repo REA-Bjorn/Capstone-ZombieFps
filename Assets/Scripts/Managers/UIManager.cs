@@ -19,9 +19,11 @@ public class UIManager : MonoBehaviour
     [Seperator]
     [SerializeField] private GameObject minimapObject;
     [SerializeField] private Animator waveAnimation;
+    [SerializeField] private SceneFader fader;
 
     public PerkUI PerkUIScript => perkUI;
     public PlayerUI PlayerUIScript => playerUIScript;
+    public SceneFader SceneFade => fader;
 
     private void Awake()
     {

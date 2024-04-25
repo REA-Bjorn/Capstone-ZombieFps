@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
     {
         //WaveManager.Instance.DistractEnemies();
         Debug.Log("Player Reviving");
+        PlayerBase.instance.Health.SetMax();
     }
 
     public void UnPauseGame()

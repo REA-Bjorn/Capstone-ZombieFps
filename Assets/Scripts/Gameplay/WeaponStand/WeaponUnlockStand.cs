@@ -61,6 +61,17 @@ public class WeaponUnlockStand : BaseInteractable
             return false;
         }
 
+        /*Checking if player previously brought weapon and wants to buy it again
+        bool WeaponBuyBack = WeaponManager.Instance.HasWeapon(weaponType);
+        if (base.Interact())
+        {
+            WeaponManager.Instance.HasWeapon(weaponType);
+            UIManager.Instance.UpdateWeaponsUI();
+            return 
+        }
+        */
+
+
         return false;
     }
 

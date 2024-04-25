@@ -66,8 +66,6 @@ public class PlayerBase : MonoBehaviour, IDamage
     {
         move.enabled = false;
         cam.enabled = false;
-
-        WeaponManager.Instance.DisableWeapon();
         Cursor.lockState = CursorLockMode.None;
     }
 

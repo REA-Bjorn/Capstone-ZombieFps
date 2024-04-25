@@ -103,13 +103,13 @@ public class WeaponManager : MonoBehaviour
         }
         else if (currWeapon == Primary)
         {
-            Destroy(currWeapon);
+            Destroy(currWeapon.gameObject);
             Primary = _weapon.GetComponent<BaseWeapon>();
             EnablePrimary();
         }
         else if (currWeapon == Secondary)
         {
-            Destroy(currWeapon);
+            Destroy(currWeapon.gameObject);
             Secondary = _weapon.GetComponent<BaseWeapon>();
             EnableSecondary();
         }
@@ -133,11 +133,6 @@ public class WeaponManager : MonoBehaviour
         Secondary.gameObject.SetActive(true);
         Primary.gameObject.SetActive(false);
         currWeapon.WeaponOn();
-    }
-
-    public void DisableWeapon()
-    {
-        currWeapon = null;
     }
 
     public void EnableWeapon()

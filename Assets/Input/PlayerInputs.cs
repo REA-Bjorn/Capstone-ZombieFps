@@ -80,6 +80,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Value"",
+                    ""id"": ""d060a69b-829c-455e-8da5-12df1c0dfeaf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -192,6 +201,17 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b205a1c4-148d-468e-8440-143e307e0f63"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -234,6 +254,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_General_ScrollWeapon = m_General.FindAction("ScrollWeapon", throwIfNotFound: true);
         m_General_Interact = m_General.FindAction("Interact", throwIfNotFound: true);
         m_General_Reload = m_General.FindAction("Reload", throwIfNotFound: true);
+        m_General_Sprint = m_General.FindAction("Sprint", throwIfNotFound: true);
         // PauseActions
         m_PauseActions = asset.FindActionMap("PauseActions", throwIfNotFound: true);
         m_PauseActions_Pause = m_PauseActions.FindAction("Pause", throwIfNotFound: true);
@@ -304,6 +325,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_General_ScrollWeapon;
     private readonly InputAction m_General_Interact;
     private readonly InputAction m_General_Reload;
+    private readonly InputAction m_General_Sprint;
     public struct GeneralActions
     {
         private @PlayerInputs m_Wrapper;
@@ -314,6 +336,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         public InputAction @ScrollWeapon => m_Wrapper.m_General_ScrollWeapon;
         public InputAction @Interact => m_Wrapper.m_General_Interact;
         public InputAction @Reload => m_Wrapper.m_General_Reload;
+        public InputAction @Sprint => m_Wrapper.m_General_Sprint;
         public InputActionMap Get() { return m_Wrapper.m_General; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -341,6 +364,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Reload.started += instance.OnReload;
             @Reload.performed += instance.OnReload;
             @Reload.canceled += instance.OnReload;
+            @Sprint.started += instance.OnSprint;
+            @Sprint.performed += instance.OnSprint;
+            @Sprint.canceled += instance.OnSprint;
         }
 
         private void UnregisterCallbacks(IGeneralActions instance)
@@ -363,6 +389,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Reload.started -= instance.OnReload;
             @Reload.performed -= instance.OnReload;
             @Reload.canceled -= instance.OnReload;
+            @Sprint.started -= instance.OnSprint;
+            @Sprint.performed -= instance.OnSprint;
+            @Sprint.canceled -= instance.OnSprint;
         }
 
         public void RemoveCallbacks(IGeneralActions instance)
@@ -434,6 +463,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         void OnScrollWeapon(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
     }
     public interface IPauseActionsActions
     {

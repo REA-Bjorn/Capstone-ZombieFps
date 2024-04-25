@@ -12,7 +12,11 @@ public class InputManager : MonoBehaviour
 
     public PlayerInputs.GeneralActions Action => inputs.General;
 
+    public bool SprintON => inputs.General.Sprint.WasPressedThisFrame();
+    public bool SprintOff => inputs.General.Sprint.WasReleasedThisFrame();
+
     public Vector2 MoveVect => inputs.General.Movement.ReadValue<Vector2>();
+
     public Vector2 Look => inputs.General.Looking.ReadValue<Vector2>();
 
     public Vector2 ScrollVect => inputs.General.ScrollWeapon.ReadValue<Vector2>();

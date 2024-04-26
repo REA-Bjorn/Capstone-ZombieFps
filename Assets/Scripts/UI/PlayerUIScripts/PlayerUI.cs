@@ -21,6 +21,7 @@ public class PlayerUI : MonoBehaviour
     
     [Seperator]
     [SerializeField] private Image crossHair;
+    [SerializeField] private Image staminaBar;
     
     [Seperator]
     [SerializeField] private TextMeshProUGUI ammoText;
@@ -74,6 +75,11 @@ public class PlayerUI : MonoBehaviour
         ammoText.text = WeaponManager.Instance.CurrAmmoTxt;
         reservedAmmoText.text = WeaponManager.Instance.CurrReserveTxt;
         gunText.text = WeaponManager.Instance.GunName;
+    }
+
+    public void UpdateStaminaBar()
+    {
+        staminaBar.fillAmount = PlayerBase.instance.Stam.Percent;
     }
 
     public IEnumerator FlashWeaponsUI()

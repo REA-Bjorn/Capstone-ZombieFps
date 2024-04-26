@@ -25694,6 +25694,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7290629467626061871, guid: 6e1cce8783be33b4ab2250338778611a,
+        type: 3}
+      propertyPath: staminaDelay
+      value: 
+      objectReference: {fileID: 1659432196}
+    - target: {fileID: 7290629467626061871, guid: 6e1cce8783be33b4ab2250338778611a,
+        type: 3}
+      propertyPath: staminaRecharge
+      value: 
+      objectReference: {fileID: 1659432197}
     - target: {fileID: 8374491892488538315, guid: 6e1cce8783be33b4ab2250338778611a,
         type: 3}
       propertyPath: m_Layer
@@ -31646,6 +31656,30 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b118fa05c466654da7dadaec5f576ae, type: 3}
+--- !u!114 &1659432196 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5224551774445335625, guid: 6e1cce8783be33b4ab2250338778611a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1379211722}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1659432197 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8147301574113968619, guid: 6e1cce8783be33b4ab2250338778611a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1379211722}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1674008269
 PrefabInstance:
   m_ObjectHideFlags: 0

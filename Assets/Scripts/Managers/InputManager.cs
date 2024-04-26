@@ -12,14 +12,16 @@ public class InputManager : MonoBehaviour
 
     public PlayerInputs.GeneralActions Action => inputs.General;
 
-    public bool SprintON => inputs.General.Sprint.WasPressedThisFrame();
-    public bool SprintOff => inputs.General.Sprint.WasReleasedThisFrame();
+    public bool SprintON => Input.GetKey(KeyCode.LeftShift);
+    public bool SprintOff => Input.GetKeyUp(KeyCode.LeftShift);
 
     public Vector2 MoveVect => inputs.General.Movement.ReadValue<Vector2>();
 
     public Vector2 Look => inputs.General.Looking.ReadValue<Vector2>();
 
     public Vector2 ScrollVect => inputs.General.ScrollWeapon.ReadValue<Vector2>();
+
+    public bool PlayerMoved => inputs.General.Movement.ReadValue<Vector2>().x > 0 || inputs.General.Movement.ReadValue<Vector2>().y > 0;
 
     private void Awake()
     {

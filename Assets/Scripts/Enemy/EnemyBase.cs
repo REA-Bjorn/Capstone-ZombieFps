@@ -10,6 +10,7 @@ public class EnemyBase : MonoBehaviour, IDamage
     [SerializeField] SpeedPool speed;
     [Seperator]
     [SerializeField] private EnemyVisual visualScript;
+    [SerializeField] private EnemyAudio audioScript;
     [SerializeField] EnemyMovement move;
     [SerializeField] int PointVal;
 
@@ -32,6 +33,7 @@ public class EnemyBase : MonoBehaviour, IDamage
         PickupManager.Instance.DropPickup(transform);
         PointsManager.Instance.AddPoints(PointVal);
         WaveManager.Instance.EnemyKilled(gameObject);
+        audioScript.TurnOff();
         gameObject.SetActive(false);
     }
 
@@ -51,6 +53,7 @@ public class EnemyBase : MonoBehaviour, IDamage
     public void TakeDamage(float damage)
     {
         health.Decrease(damage);
+        audioScript.PlayRandomHit();
 
         if (health.IsValid)
         {
@@ -73,11 +76,13 @@ public class EnemyBase : MonoBehaviour, IDamage
     public void SpawnMe()
     {
         MaxStats();
+        audioScript.TurnOn();
         //PlaySpawnAnimation();
     }
 
     public void ForceKill()
     {
+        audioScript.PlayRandomHit();
         TakeDamage(health.CurrentValue);
     }
 

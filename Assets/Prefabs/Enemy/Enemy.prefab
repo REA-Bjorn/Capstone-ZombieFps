@@ -457,6 +457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimerName: 
   duration: 0.5
   RunTimer: 0
 --- !u!114 &689203417788913278
@@ -895,6 +896,8 @@ GameObject:
   - component: {fileID: 552432486706997343}
   - component: {fileID: 6319629393704522326}
   - component: {fileID: 7904518321601782603}
+  - component: {fileID: 8461675360523885030}
+  - component: {fileID: 3533875299735627958}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -966,6 +969,7 @@ MonoBehaviour:
     min: 2.5
     currentValue: 0
   visualScript: {fileID: 552432486706997343}
+  audioScript: {fileID: 8461675360523885030}
   move: {fileID: 6486444482730339916}
   PointVal: 50
   animator: {fileID: 4368471522738032736}
@@ -1066,7 +1070,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 3484501290523859997, guid: bf718591e359ae34d9173881c20482db,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: e6953d2ec9bb90d4ea90ed75af6ec8aa, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1152,6 +1156,49 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8461675360523885030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3261371145617336343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be6d9e1afbcb11e47aec3418151ddf37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 7904518321601782603}
+  ambientGroanSFX:
+  - {fileID: 8300000, guid: a89b0093742bf9e4c9591d7a021926f8, type: 3}
+  - {fileID: 8300000, guid: d279b119bbc3d8b449ae736067c3e2f3, type: 3}
+  - {fileID: 8300000, guid: c14e4425fb991ba4abd62cc78b1b3b5b, type: 3}
+  - {fileID: 8300000, guid: e0c7153f16b63714a9703ea536b6c0ba, type: 3}
+  - {fileID: 8300000, guid: e9501b5f817f3574ab50d49a1c0cfcc5, type: 3}
+  hitSFX:
+  - {fileID: 8300000, guid: 541fd7bbe37e5334ba2c2e8a3a64f23d, type: 3}
+  - {fileID: 8300000, guid: 5c816f8340003d14b8d830ac09dcc35a, type: 3}
+  - {fileID: 8300000, guid: c3b0abe1f2d893740a34705ee95fda3c, type: 3}
+  - {fileID: 8300000, guid: 20ff30a2bf4a0d541aebad00ced0fae7, type: 3}
+  - {fileID: 8300000, guid: 29fca5add60c50042bbf4cdf221ed3ba, type: 3}
+  groanTimer: {fileID: 3533875299735627958}
+  minWaitTime: 2
+  maxWaitTime: 5
+--- !u!114 &3533875299735627958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3261371145617336343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimerName: 
+  duration: 0
+  RunTimer: 0
 --- !u!1 &3279261903978712240
 GameObject:
   m_ObjectHideFlags: 0

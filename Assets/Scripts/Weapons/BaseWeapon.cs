@@ -60,12 +60,14 @@ public class BaseWeapon : MonoBehaviour
         InputManager.Instance.Action.Reload.started += Reload;
 
         gunAnimations.SetTrigger("Unholster");
+        audioScript.PlayUnholster();
         CanUse = true;
     }
 
     public virtual void OnDisable()
     {
-        gunAnimations.SetTrigger("Unholster");
+        audioScript.PlayHolster();
+        gunAnimations.SetTrigger("Holster");
         fireRateTimer.OnStart -= TimerStart;
         fireRateTimer.OnRestart -= TimerStart;
         fireRateTimer.OnEnd -= TimerEnd;
@@ -124,6 +126,7 @@ public class BaseWeapon : MonoBehaviour
                 reserves.Decrease(reserves.CurrentValue);
             }
 
+            audioScript.PlayReload();
             UIManager.Instance.UpdateWeaponsUI();
         }
         else

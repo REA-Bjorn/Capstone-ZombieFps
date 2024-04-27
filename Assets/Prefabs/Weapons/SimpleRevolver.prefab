@@ -103,6 +103,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 8233552250953843253}
+  shootSFX: {fileID: 8300000, guid: a328d853e25c93945be97919519921fe, type: 3}
+  reloadSFX: {fileID: 8300000, guid: a5f882c8120d781409b3cca7c33ffad9, type: 3}
+  holsterSFX: {fileID: 0}
+  unholsterSFX: {fileID: 0}
 --- !u!82 &8233552250953843253
 AudioSource:
   m_ObjectHideFlags: 0

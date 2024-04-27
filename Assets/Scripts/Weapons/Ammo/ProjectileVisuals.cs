@@ -8,6 +8,9 @@ public class ProjectileVisuals : MonoBehaviour
 {
     [SerializeField] private CustomTimer deathTimer;
     [SerializeField] private Light _light;
+    [Seperator]
+    [SerializeField] private AudioSource source;
+    [SerializeField] private AudioClip clip;
 
     private float lightRangeStart = 0;
     private float lightRangeEnd = 0;
@@ -28,7 +31,8 @@ public class ProjectileVisuals : MonoBehaviour
     }
 
     private void Died()
-    { 
+    {
+        source.PlayOneShot(clip);
         Destroy(gameObject);
     }
 }

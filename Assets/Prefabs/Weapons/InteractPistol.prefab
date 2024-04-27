@@ -164,6 +164,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 8263333177039295329}
+  shootSFX: {fileID: 8300000, guid: 766f4a301e3415c4889c5d2f5ce7e5dd, type: 3}
+  reloadSFX: {fileID: 8300000, guid: a328d853e25c93945be97919519921fe, type: 3}
+  holsterSFX: {fileID: 0}
+  unholsterSFX: {fileID: 0}
 --- !u!95 &9116446378634850436
 Animator:
   serializedVersion: 5

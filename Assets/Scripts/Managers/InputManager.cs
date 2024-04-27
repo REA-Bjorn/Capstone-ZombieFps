@@ -21,7 +21,15 @@ public class InputManager : MonoBehaviour
 
     public Vector2 ScrollVect => inputs.General.ScrollWeapon.ReadValue<Vector2>();
 
-    public bool PlayerMoved => inputs.General.Movement.ReadValue<Vector2>().x > 0 || inputs.General.Movement.ReadValue<Vector2>().y > 0;
+    public bool PlayerMoved
+    {
+        get
+        {
+            // Avoids garbage memory / using a function twice
+            Vector2 test = inputs.General.Movement.ReadValue<Vector2>();
+            return test.x > 0 || test.y > 0;
+        }
+    }
 
     private void Awake()
     {

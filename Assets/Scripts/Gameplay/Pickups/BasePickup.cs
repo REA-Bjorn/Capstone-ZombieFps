@@ -8,6 +8,7 @@ public class BasePickup : MonoBehaviour, IPickupable
     public event Action OnPickup;
 
     [SerializeField] private CustomTimer despawnTimer;
+    [SerializeField] private AudioClip pickupSFX;
 
     private void Start()
     {
@@ -27,6 +28,7 @@ public class BasePickup : MonoBehaviour, IPickupable
         {
             OnPickup?.Invoke();
             Pickup();
+            PlayerBase.instance.ExtraSFX(pickupSFX);
             Destroy(gameObject);
         }
     }

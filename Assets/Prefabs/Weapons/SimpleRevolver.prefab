@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 8233552250953843253}
-  shootSFX: {fileID: 8300000, guid: a328d853e25c93945be97919519921fe, type: 3}
+  shootSFX: {fileID: 8300000, guid: 766f4a301e3415c4889c5d2f5ce7e5dd, type: 3}
   reloadSFX: {fileID: 8300000, guid: a5f882c8120d781409b3cca7c33ffad9, type: 3}
   holsterSFX: {fileID: 0}
   unholsterSFX: {fileID: 0}

@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   despawnTimer: {fileID: 3272594067302824049}
+  pickupSFX: {fileID: 8300000, guid: 01ef558e5804dc7488b37283fdc4c179, type: 3}
 --- !u!114 &7131918822190887881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimerName: 
   duration: 20
   RunTimer: 0
 --- !u!1 &746895079090475591

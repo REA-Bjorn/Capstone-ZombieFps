@@ -27,7 +27,7 @@ public class InputManager : MonoBehaviour
         {
             // Avoids garbage memory / using a function twice
             Vector2 test = inputs.General.Movement.ReadValue<Vector2>();
-            return test.x > 0 || test.y > 0;
+            return Mathf.Abs(test.x) > 0 || Mathf.Abs(test.y) > 0;
         }
     }
 

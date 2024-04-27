@@ -9,13 +9,14 @@ public class PlayerBase : MonoBehaviour, IDamage
 {
     public static PlayerBase instance;
 
-    [SerializeField] HealthPool health;
-    [SerializeField] SpeedPool speed;
-    [SerializeField] StaminaPool stamina;
+    [SerializeField] private HealthPool health;
+    [SerializeField] private SpeedPool speed;
+    [SerializeField] private StaminaPool stamina;
     [Seperator]
-    [SerializeField] PlayerMovement move;
-    [SerializeField] PlayerCamera cam;
-    [SerializeField] CustomTimer respawnTimer;
+    [SerializeField] private PlayerMovement move;
+    [SerializeField] private PlayerCamera cam;
+    [SerializeField] private CustomTimer respawnTimer;
+    [SerializeField] private AudioSource extraSFXSource;
 
     // Properties
     public SpeedPool Spd => speed;
@@ -106,24 +107,18 @@ public class PlayerBase : MonoBehaviour, IDamage
         // nothing here, player should never take max damage
     }
 
-
     public void HealthPerkEnabled()
     {
         health.UpdateMax(20);
     }
 
-    public void SprintSpeedPerkEnabled()
-    {
-
-    }
-
-    public void SecondLifePerkEnabled()
-    {
-
-    }
-
     public void ShakeCam(float camShakeAmount, float camShakeDuration)
     {
         cam.TurnOnCamShake(camShakeAmount, camShakeDuration);
+    }
+
+    public void ExtraSFX(AudioClip _clip)
+    {
+        extraSFXSource.PlayOneShot(_clip);
     }
 }

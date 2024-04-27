@@ -33,7 +33,6 @@ public class EnemyBase : MonoBehaviour, IDamage
         PickupManager.Instance.DropPickup(transform);
         PointsManager.Instance.AddPoints(PointVal);
         WaveManager.Instance.EnemyKilled(gameObject);
-        audioScript.TurnOff();
         gameObject.SetActive(false);
     }
 
@@ -53,10 +52,10 @@ public class EnemyBase : MonoBehaviour, IDamage
     public void TakeDamage(float damage)
     {
         health.Decrease(damage);
-        audioScript.PlayRandomHit();
 
         if (health.IsValid)
         {
+            audioScript.PlayRandomHit();
             // Update enemy speed based off of their health's percent and their min/max speed
             float newSpeed = Mathf.Clamp(health.Percent * speed.Max, speed.Min, speed.Max);
             move.UpdateMoveSpeed(newSpeed);
@@ -76,13 +75,11 @@ public class EnemyBase : MonoBehaviour, IDamage
     public void SpawnMe()
     {
         MaxStats();
-        audioScript.TurnOn();
         //PlaySpawnAnimation();
     }
 
     public void ForceKill()
     {
-        audioScript.PlayRandomHit();
         TakeDamage(health.CurrentValue);
     }
 

@@ -24,7 +24,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private CustomTimer distractEnemiesTimer;
 
     // Spawn point collection
-    public List<GameObject> spawnPoints = new List<GameObject>();
+    private List<GameObject> spawnPoints = new List<GameObject>();
     // All enemies spawned
     private List<EnemyBase> enemyPool = new List<EnemyBase>();
     [SerializeField] private Transform enemyParent;

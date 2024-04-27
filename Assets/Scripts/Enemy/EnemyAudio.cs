@@ -8,28 +8,26 @@ public class EnemyAudio : MonoBehaviour
     [SerializeField] private AudioClip[] ambientGroanSFX;
     [SerializeField] private AudioClip[] hitSFX;
     [Seperator]
-    [SerializeField] private CustomTimer groanTimer;
     [SerializeField] private float minWaitTime = 2.0f;
     [SerializeField] private float maxWaitTime = 5.0f;
 
-    public void TurnOn()
+    private void Start()
     {
-        groanTimer.OnEnd += PlayRandomGroan;
-        groanTimer.StartTimer(Random.Range(minWaitTime, maxWaitTime));
+        StartCoroutine(PlayRandomGroan());
     }
 
-    public void TurnOff()
+    public IEnumerator PlayRandomGroan()
     {
-        groanTimer.OnEnd -= PlayRandomGroan;
-    }
-
-    public void PlayRandomGroan()
-    {
+        yield return new WaitForSeconds(Random.Range(minWaitTime, maxWaitTime));
+        
         if (source != null && ambientGroanSFX.Length > 0)
         {
+            float dbg = Random.Range(minWaitTime, maxWaitTime);
             source.PlayOneShot(ambientGroanSFX[Random.Range(0, ambientGroanSFX.Length)]);
-            groanTimer.StartTimer(Random.Range(minWaitTime, maxWaitTime));
         }
+
+        StopAllCoroutines();
+        StartCoroutine(PlayRandomGroan());
     }
 
     public void PlayRandomHit()

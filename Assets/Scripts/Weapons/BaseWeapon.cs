@@ -168,6 +168,9 @@ public class BaseWeapon : MonoBehaviour
             transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
             weaponStand.UnbuyWeaponFunctionality();
 
+            ammo.SetMax();
+            reserves.SetMax();
+
             fireRateTimer.OnStart -= TimerStart;
             fireRateTimer.OnRestart -= TimerStart;
             fireRateTimer.OnEnd -= TimerEnd;
@@ -175,7 +178,7 @@ public class BaseWeapon : MonoBehaviour
 
             CanUse = false;
         }
-        else
+        else // This if for the default revolver
         {
             transform.parent = null;
             transform.SetLocalPositionAndRotation(new Vector3(-50, -50, -50), Quaternion.identity);

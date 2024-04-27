@@ -20,6 +20,7 @@ public class ProjectileVisuals : MonoBehaviour
         lightRangeStart = _light.range;
         lightRangeEnd = 0;
 
+        source.PlayOneShot(clip);
         deathTimer.OnEnd += Died;
         deathTimer.OnTick += Ticked;
         deathTimer.StartTimer();
@@ -32,7 +33,6 @@ public class ProjectileVisuals : MonoBehaviour
 
     private void Died()
     {
-        source.PlayOneShot(clip);
         Destroy(gameObject);
     }
 }

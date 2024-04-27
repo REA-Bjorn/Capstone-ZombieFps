@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
             // Manually stop the timer cause we are at max stamina
             // and we should call the OnEnd func()
             staminaRecharge.StopTimer();
-            RechargeStamina_OnEnd(); 
+            RechargeStamina_OnEnd();
         }
     }
 

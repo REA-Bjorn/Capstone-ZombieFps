@@ -51,7 +51,9 @@ MonoBehaviour:
     type: 3}
   waveCountdownTimer: {fileID: 1580593079843486163}
   distractEnemiesTimer: {fileID: 2912086469616213728}
+  spawnPoints: []
   enemyParent: {fileID: 0}
+  spawnPointsParent: {fileID: 0}
 --- !u!114 &1580593079843486163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,6 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimerName: Wave Countdown Timer
   duration: 6
   RunTimer: 0
 --- !u!114 &2912086469616213728
@@ -78,5 +81,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimerName: Distraction Timer
   duration: 5
   RunTimer: 0

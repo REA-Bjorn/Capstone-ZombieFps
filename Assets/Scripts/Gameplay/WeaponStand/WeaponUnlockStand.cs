@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class WeaponUnlockStand : BaseInteractable
@@ -28,12 +29,12 @@ public class WeaponUnlockStand : BaseInteractable
 
                 // Update new unlock cost
                 unlockCost = weaponHold.Cost / 2f;
-
+                costDisplay.text = weaponType.ToString() + "Ammo \n$" + unlockCost.ToString();
                 return true;
             }
             else
             {
-                // not enough points, show on UI manager as read points
+                UIManager.Instance.PlayerUIScript.FlashPointsUI();
             }
         }
         else
@@ -52,27 +53,19 @@ public class WeaponUnlockStand : BaseInteractable
                 }
                 else
                 {
-                    // not enough points, show on UI manager as read points
-                    return false;
+                    UIManager.Instance.PlayerUIScript.FlashPointsUI();
                 }
             }
-
-            // we don't have the weapon
-            return false;
         }
 
-        /*Checking if player previously brought weapon and wants to buy it again
-        bool WeaponBuyBack = WeaponManager.Instance.HasWeapon(weaponType);
-        if (base.Interact())
-        {
-            WeaponManager.Instance.HasWeapon(weaponType);
-            UIManager.Instance.UpdateWeaponsUI();
-            return 
-        }
-        */
-
-
-        return false;
+        /* 
+         * One of the following happened:
+         *  - We have not bought the weapon off the stand
+         *      - We do not have enough points to do so.
+         *  - We have the weapon
+         *      - We do not have enough points to buy ammo
+         */
+        return false; // we did not pass the vibe check to buy gun/ammo
     }
 
     public override void Start()
@@ -95,6 +88,8 @@ public class WeaponUnlockStand : BaseInteractable
         // Get Current Weapon Data
         weaponHold = WeaponPoolManager.Instance.GetGunGO(weaponType);
         weaponObj = Instantiate(weaponHold.WeaponPrefab, weaponPoint);
+        // Set parent stand
+        weaponObj.GetComponent<BaseWeapon>().SetParentStandObj(weaponPoint.gameObject, this);
 
         // Set Unlock cost to weapons cost and update text display
         unlockCost = weaponHold.Cost;
@@ -110,7 +105,7 @@ public class WeaponUnlockStand : BaseInteractable
 
     public override void UpdateTextColor()
     {
-        if (PointsManager.Instance.CurrPts >= weaponHold.Cost)
+        if (PointsManager.Instance.CurrPts >= unlockCost)
         {
             costDisplay.color = Color.green;
         }
@@ -118,5 +113,13 @@ public class WeaponUnlockStand : BaseInteractable
         {
             costDisplay.color = Color.red;
         }
+    }
+
+    public void UnbuyWeaponFunctionality()
+    {
+        boughtWeapon = false;
+        ammoObj.SetActive(false);
+        unlockCost = weaponHold.Cost;
+        costDisplay.text = weaponType.ToString() + "\n$" + unlockCost.ToString();
     }
 }

@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 929281628726723779}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimerName: 
   duration: 0.1
   RunTimer: 0
 --- !u!82 &1983142910950474111
@@ -173,7 +174,7 @@ Animator:
   m_GameObject: {fileID: 929281628726723779}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b886f28775957004c96500ce784434fd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -216,6 +217,9 @@ MonoBehaviour:
   gunName: Assault Rifle
   audioScript: {fileID: 227267099246488816}
   type: 1
+  meshRenderer: {fileID: 0}
+  matOne: {fileID: 0}
+  matTwo: {fileID: 0}
 --- !u!114 &1003009214210981959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 2.5
+  TimerName: 
+  duration: 1
   RunTimer: 0
 --- !u!1 &4855318200611838460
 GameObject:

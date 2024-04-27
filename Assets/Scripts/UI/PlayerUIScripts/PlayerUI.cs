@@ -96,4 +96,16 @@ public class PlayerUI : MonoBehaviour
     {
         crossHair.color = _color;
     }
+
+    public void FlashPointsUI()
+    {
+        StartCoroutine(FlashingPoints());
+    }
+
+    private IEnumerator FlashingPoints()
+    {
+        totalScore.color = UnityEngine.Color.red;
+        yield return new WaitForSeconds(0.25f);
+        totalScore.color = UnityEngine.Color.white;
+    }
 }

@@ -96,20 +96,25 @@ public class WeaponManager : MonoBehaviour
     {
         //_weapon.transform.SetLocalPositionAndRotation(currWeapon.transform.position, currWeapon.transform.rotation);
 
+        // Primary is never null -- Manually set in inspector
+
+        // If we do not have a secondary gun
         if (Secondary == null)
         {
             Secondary = _weapon.GetComponent<BaseWeapon>();
             EnableSecondary();
         }
+        // Otherwise if our current gun equipped is the primary (meaning that now we do have a secondary)
         else if (currWeapon == Primary)
         {
-            Destroy(currWeapon.gameObject);
+            currWeapon.SendBackToParentStand();
             Primary = _weapon.GetComponent<BaseWeapon>();
             EnablePrimary();
         }
+        // Otherwise if our current gun equipped is the secondary
         else if (currWeapon == Secondary)
         {
-            Destroy(currWeapon.gameObject);
+            currWeapon.SendBackToParentStand();
             Secondary = _weapon.GetComponent<BaseWeapon>();
             EnableSecondary();
         }

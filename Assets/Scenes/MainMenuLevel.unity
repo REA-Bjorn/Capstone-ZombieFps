@@ -671,6 +671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimerName: 
   duration: 5
   RunTimer: 0
 --- !u!65 &40222262
@@ -9895,6 +9896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimerName: 
   duration: 5
   RunTimer: 0
 --- !u!65 &1088767535
@@ -10508,7 +10510,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 126
   m_IsActive: 1
 --- !u!4 &1184895629
 Transform:
@@ -10562,9 +10564,9 @@ Terrain:
   m_DetailObjectDistance: 50
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
-  m_SplatMapDistance: 1000
+  m_SplatMapDistance: 250
   m_HeightmapMaximumLOD: 0
-  m_ShadowCastingMode: 2
+  m_ShadowCastingMode: 1
   m_DrawHeightmap: 1
   m_DrawInstanced: 1
   m_DrawTreesAndFoliage: 1
@@ -10998,6 +11000,81 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 632440706711204460}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1262946976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1262946977}
+  - component: {fileID: 1262946979}
+  - component: {fileID: 1262946978}
+  m_Layer: 5
+  m_Name: Stamina
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1262946977
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262946976}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6310428767709641615}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 212.18, y: 57}
+  m_SizeDelta: {x: 274.3615, y: 41.88}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1262946978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262946976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: ba9982880cbdbb5469d5d549e81b7dbb, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 0
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1262946979
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262946976}
+  m_CullTransparentMesh: 1
 --- !u!1001 &1264459167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16825,6 +16902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimerName: 
   duration: 5
   RunTimer: 0
 --- !u!114 &1967868703
@@ -20231,6 +20309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimerName: 
   duration: 15
   RunTimer: 0
 --- !u!4 &1019070071184130151
@@ -21324,10 +21403,13 @@ MonoBehaviour:
     max: 10
     min: 0
     currentValue: 0
+  stamina:
+    max: 500
+    min: 0
+    currentValue: 0
   move: {fileID: 7290629468436318867}
   cam: {fileID: 5237468258467412122}
   respawnTimer: {fileID: 1477816088991925291}
-  staminaTimer: {fileID: 6209364257918074741}
 --- !u!114 &1359234218128132012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21659,6 +21741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimerName: 
   duration: 3
   RunTimer: 0
 --- !u!222 &1499693339068474693
@@ -23344,6 +23427,7 @@ MonoBehaviour:
   totalScore: {fileID: 1762997871450598132}
   totalWaves: {fileID: 6200379997964219124}
   crossHair: {fileID: 1085512887976801748}
+  staminaBar: {fileID: 1262946978}
   ammoText: {fileID: 814856195789266177}
   reservedAmmoText: {fileID: 2188038397866984116}
   gunText: {fileID: 8223867929060727975}
@@ -26320,6 +26404,7 @@ GameObject:
   - component: {fileID: 8571749271298743519}
   - component: {fileID: 1477816088991925291}
   - component: {fileID: 6209364257918074741}
+  - component: {fileID: 8571749271298743520}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -28498,6 +28583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimerName: 
   duration: 0.1
   RunTimer: 0
 --- !u!224 &5538734071758873926
@@ -29833,6 +29919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimerName: Stamina Recharge
   duration: 0
   RunTimer: 0
 --- !u!222 &6214222134274687651
@@ -30041,6 +30128,7 @@ RectTransform:
   - {fileID: 7775115146624142931}
   - {fileID: 329413364824640051}
   - {fileID: 826013369563940382}
+  - {fileID: 1262946977}
   m_Father: {fileID: 8577418550765125404}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -31626,6 +31714,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60dae3acc1685264582a5317fb23760c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  staminaRecharge: {fileID: 8571749271298743520}
+  staminaDelay: {fileID: 6209364257918074741}
   charController: {fileID: 8571749271298743519}
 --- !u!224 &7316374063988064329
 RectTransform:
@@ -33749,6 +33839,21 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &8571749271298743520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4282033912265276299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimerName: Stamina Delay
+  duration: 0
+  RunTimer: 0
 --- !u!222 &8577285732469966330
 CanvasRenderer:
   m_ObjectHideFlags: 0

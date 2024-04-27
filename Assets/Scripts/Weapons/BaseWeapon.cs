@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(CustomTimer), typeof(WeaponAudio), typeof(Animator))]
@@ -23,6 +24,11 @@ public class BaseWeapon : MonoBehaviour
     [SerializeField] protected WeaponAudio audioScript;
     [SerializeField] protected WeaponType type;
 
+    // Need to use these a lot
+    public MeshRenderer meshRenderer;
+    public Material matOne;
+    public Material matTwo;
+
     // Properties
     public string Name => gunName;
     public AmmoPool Ammo => ammo;
@@ -33,10 +39,11 @@ public class BaseWeapon : MonoBehaviour
 
     protected bool CanUse;
 
+    private GameObject parentStand;
+    private WeaponUnlockStand weaponStand;
+
     public virtual void Start()
     {
-        Subscribers();
-
         attack.SetMax();
         ammo.SetMax();
         reserves.SetMax();
@@ -45,24 +52,30 @@ public class BaseWeapon : MonoBehaviour
         CanUse = false;
     }
 
-    private void Subscribers()
+    public virtual void WeaponOn()
     {
         fireRateTimer.OnStart += TimerStart;
         fireRateTimer.OnRestart += TimerStart;
-    }
-
-    public virtual void WeaponOn()
-    {
+        fireRateTimer.OnEnd += TimerEnd;
         InputManager.Instance.Action.Reload.started += Reload;
+
+        gunAnimations.SetTrigger("Unholster");
         CanUse = true;
     }
 
     public virtual void OnDisable()
     {
+        gunAnimations.SetTrigger("Unholster");
         fireRateTimer.OnStart -= TimerStart;
         fireRateTimer.OnRestart -= TimerStart;
+        fireRateTimer.OnEnd -= TimerEnd;
 
         InputManager.Instance.Action.Reload.started -= Reload;
+    }
+
+    private void TimerEnd()
+    {
+        CanUse = true;
     }
 
     private void TimerStart()
@@ -130,8 +143,46 @@ public class BaseWeapon : MonoBehaviour
         // Plays gun shot audio
         audioScript?.PlayShoot();
 
+        // Player Shoot Animation
+        gunAnimations.SetTrigger("Shoot");
+
         // Use an ammo because we can shoot it
         ammo.Decrease(1f);
         UIManager.Instance.UpdateWeaponsUI();
+    }
+
+    public void SetParentStandObj(GameObject _obj, WeaponUnlockStand _stand)
+    {
+        parentStand = _obj;
+        weaponStand = _stand;
+    }
+
+    public void SendBackToParentStand()
+    {
+        if (parentStand != null)
+        {
+            transform.parent = parentStand.transform;
+            transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+            weaponStand.UnbuyWeaponFunctionality();
+
+            fireRateTimer.OnStart -= TimerStart;
+            fireRateTimer.OnRestart -= TimerStart;
+            fireRateTimer.OnEnd -= TimerEnd;
+            InputManager.Instance.Action.Reload.started -= Reload;
+
+            CanUse = false;
+        }
+        else
+        {
+            transform.parent = null;
+            transform.SetLocalPositionAndRotation(new Vector3(-50, -50, -50), Quaternion.identity);
+
+            fireRateTimer.OnStart -= TimerStart;
+            fireRateTimer.OnRestart -= TimerStart;
+            fireRateTimer.OnEnd -= TimerEnd;
+            InputManager.Instance.Action.Reload.started -= Reload;
+
+            CanUse = false;
+        }
     }
 }

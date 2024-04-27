@@ -41,7 +41,7 @@ public class WaveManager : MonoBehaviour
 
     private void Start()
     {
-        if (SceneManager.GetActiveScene().name == "MainMenuLevel")
+        if (SceneManager.GetActiveScene().name == "MainMenuLevel" || enemyParent == null || spawnPointsParent == null)
             return;
 
         FindAllSpawnPoints();

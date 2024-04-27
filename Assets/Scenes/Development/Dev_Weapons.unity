@@ -191,6 +191,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponUnlockStand (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7105957388543614505, guid: 5bd2247003eaa6640a17707a944c2fa7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -263,6 +268,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WeaponUnlockStand (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7105957388543614505, guid: 5bd2247003eaa6640a17707a944c2fa7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -483,6 +493,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponUnlockStand (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 7105957388543614505, guid: 5bd2247003eaa6640a17707a944c2fa7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -555,6 +570,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WeaponUnlockStand (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7105957388543614505, guid: 5bd2247003eaa6640a17707a944c2fa7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -938,6 +958,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponUnlockStand (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7105957388543614505, guid: 5bd2247003eaa6640a17707a944c2fa7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1226,6 +1251,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WeaponUnlockStand (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7105957388543614505, guid: 5bd2247003eaa6640a17707a944c2fa7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

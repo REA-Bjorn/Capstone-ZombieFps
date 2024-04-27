@@ -135,7 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 1
+  TimerName: 
+  duration: 0.5
   RunTimer: 0
 --- !u!82 &2416885581016544511
 AudioSource:
@@ -257,7 +258,7 @@ Animator:
   m_GameObject: {fileID: 6910951265627128258}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 96ef557ab3134b840a2ebc7700f76d04, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -300,6 +301,9 @@ MonoBehaviour:
   gunName: Conceal Carry
   audioScript: {fileID: 5375768673548277898}
   type: 3
+  meshRenderer: {fileID: 0}
+  matOne: {fileID: 0}
+  matTwo: {fileID: 0}
 --- !u!114 &6190295787265376105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,7 +316,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 2.5
+  TimerName: 
+  duration: 1
   RunTimer: 0
 --- !u!1001 &9012176574912180484
 PrefabInstance:

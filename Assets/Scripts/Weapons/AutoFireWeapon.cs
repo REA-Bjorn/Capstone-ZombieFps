@@ -22,7 +22,7 @@ public class AutoFireWeapon : BaseWeapon
 
     private void Update()
     {
-        if (CanUse && Input.GetMouseButton(0))
+        if (CanUse && Input.GetKey(KeyCode.Mouse0))
         {
             Shoot();
         }

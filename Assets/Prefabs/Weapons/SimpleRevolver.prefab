@@ -52,7 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 0.25
+  TimerName: 
+  duration: 0.5
   RunTimer: 0
 --- !u!114 &7804853621793259924
 MonoBehaviour:
@@ -86,8 +87,9 @@ MonoBehaviour:
   gunName: Revolver
   audioScript: {fileID: 7485725871518676988}
   type: 0
-  camShakeAmount: 0.75
-  camShakeDuration: 0.25
+  meshRenderer: {fileID: 0}
+  matOne: {fileID: 0}
+  matTwo: {fileID: 0}
 --- !u!114 &1685424534629834749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,6 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimerName: 
   duration: 0.5
   RunTimer: 0
 --- !u!114 &7485725871518676988
@@ -243,7 +246,7 @@ Animator:
   m_GameObject: {fileID: 8395054478332866087}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9000e7fb873f9944fac7156ce428fe64, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

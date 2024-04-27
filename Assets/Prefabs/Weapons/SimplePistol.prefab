@@ -51,7 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 1
+  TimerName: 
+  duration: 0.5
   RunTimer: 0
 --- !u!82 &8263333177039295329
 AudioSource:
@@ -173,7 +174,7 @@ Animator:
   m_GameObject: {fileID: 786855788845125091}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 36b26acba33388d4e99234c155acff74, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -216,6 +217,9 @@ MonoBehaviour:
   gunName: Pistol
   audioScript: {fileID: 4260176190011867750}
   type: 2
+  meshRenderer: {fileID: 0}
+  matOne: {fileID: 0}
+  matTwo: {fileID: 0}
 --- !u!114 &3909972932112153846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 2
+  TimerName: 
+  duration: 0.5
   RunTimer: 0
 --- !u!1 &8458798218452150722
 GameObject:

@@ -135,7 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 1.5
+  TimerName: 
+  duration: 0.5
   RunTimer: 0
 --- !u!82 &376334250136571035
 AudioSource:
@@ -257,7 +258,7 @@ Animator:
   m_GameObject: {fileID: 5760991350033466311}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b886f28775957004c96500ce784434fd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -300,6 +301,9 @@ MonoBehaviour:
   gunName: Shotgun
   audioScript: {fileID: 4255513727678367180}
   type: 8
+  meshRenderer: {fileID: 0}
+  matOne: {fileID: 0}
+  matTwo: {fileID: 0}
 --- !u!114 &3879372763705896364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,7 +316,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 6
+  TimerName: 
+  duration: 0.5
   RunTimer: 0
 --- !u!1001 &5537126038727430118
 PrefabInstance:

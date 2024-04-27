@@ -317,7 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimerName: 
-  duration: 1
+  duration: 0.5
   RunTimer: 0
 --- !u!1001 &9012176574912180484
 PrefabInstance:

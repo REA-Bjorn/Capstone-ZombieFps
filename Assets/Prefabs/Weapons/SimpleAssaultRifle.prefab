@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimerName: 
-  duration: 1
+  duration: 0.5
   RunTimer: 0
 --- !u!1 &4855318200611838460
 GameObject:

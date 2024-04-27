@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 8660858652837307456}
   - component: {fileID: 2076701541571885191}
   - component: {fileID: 7804853621793259924}
-  - component: {fileID: 1685424534629834749}
   - component: {fileID: 7485725871518676988}
   - component: {fileID: 8233552250953843253}
   - component: {fileID: 7324834648502035902}
   - component: {fileID: 103504988865196731}
+  - component: {fileID: 1685424534629834749}
   m_Layer: 0
   m_Name: SimpleRevolver
   m_TagString: Untagged
@@ -90,21 +90,6 @@ MonoBehaviour:
   meshRenderer: {fileID: 0}
   matOne: {fileID: 0}
   matTwo: {fileID: 0}
---- !u!114 &1685424534629834749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8395054478332866087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TimerName: 
-  duration: 0.5
-  RunTimer: 0
 --- !u!114 &7485725871518676988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,6 +242,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1685424534629834749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8395054478332866087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimerName: 
+  duration: 0.5
+  RunTimer: 0
 --- !u!1001 &951832963033238353
 PrefabInstance:
   m_ObjectHideFlags: 0

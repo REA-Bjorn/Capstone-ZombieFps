@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimerName: 
-  duration: 1
+  duration: 0.1
   RunTimer: 0
 --- !u!82 &8263333177039295329
 AudioSource:

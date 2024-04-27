@@ -135,7 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 3
+  TimerName: 
+  duration: 0.5
   RunTimer: 0
 --- !u!82 &1907719525277770251
 AudioSource:
@@ -257,7 +258,7 @@ Animator:
   m_GameObject: {fileID: 8100188583920009805}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9000e7fb873f9944fac7156ce428fe64, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -300,6 +301,9 @@ MonoBehaviour:
   gunName: Sniper Rifle
   audioScript: {fileID: 2770081570088809518}
   type: 5
+  meshRenderer: {fileID: 0}
+  matOne: {fileID: 0}
+  matTwo: {fileID: 0}
 --- !u!114 &6973577540250172848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,7 +316,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 8
+  TimerName: 
+  duration: 0.5
   RunTimer: 0
 --- !u!1001 &4394494519549039112
 PrefabInstance:

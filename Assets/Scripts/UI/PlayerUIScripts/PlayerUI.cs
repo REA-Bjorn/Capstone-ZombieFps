@@ -22,7 +22,7 @@ public class PlayerUI : MonoBehaviour
     [Seperator]
     [SerializeField] private Image crossHair;
     [SerializeField] private Image staminaBar;
-    
+
     [Seperator]
     [SerializeField] private TextMeshProUGUI ammoText;
     [SerializeField] private TextMeshProUGUI reservedAmmoText;

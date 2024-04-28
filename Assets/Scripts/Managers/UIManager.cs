@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenuObject;
     [SerializeField] private PauseMenu pauseMenuScript;
     [SerializeField] private PerkUI perkUI;
+    [SerializeField] private PlayerHit hitUI;
     [Seperator]
     [SerializeField] private GameObject minimapObject;
     [SerializeField] private Animator waveAnimation;
@@ -23,7 +24,9 @@ public class UIManager : MonoBehaviour
 
     public PerkUI PerkUIScript => perkUI;
     public PlayerUI PlayerUIScript => playerUIScript;
+    public PlayerHit PlayerHitScript=> hitUI;
     public SceneFader SceneFade => fader;
+
 
     private void Awake()
     {
@@ -34,16 +37,6 @@ public class UIManager : MonoBehaviour
     {
         TurnOnPlayerMenu();
         playerUIScript.StartUp();
-
-        StartCoroutine(FadeIn());
-    }
-
-    private IEnumerator FadeIn()
-    {
-
-
-
-        yield return null;
     }
 
     private void TurnOffAllUI()

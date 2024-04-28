@@ -13,13 +13,19 @@ public class DeathMenu : MonoBehaviour
     void Start()
     {
         retry.onClick.AddListener(GameManager.Instance.RetryLevel);
-        mainMenuBtn.onClick.AddListener(() => { GameManager.Instance.LoadLevel(Levels.MainMenu); });
+        mainMenuBtn.onClick.AddListener(() =>
+        {
+            UIManager.Instance.SceneFade.FadeTo(GameManager.KEY_MAINMENU);
+        });
     }
 
     private void OnDisable()
     {
         retry.onClick.RemoveListener(GameManager.Instance.RetryLevel);
-        mainMenuBtn.onClick.RemoveListener(() => { GameManager.Instance.LoadLevel(Levels.MainMenu); });
+        mainMenuBtn.onClick.RemoveListener(() =>
+        {
+            UIManager.Instance.SceneFade.FadeTo(GameManager.KEY_MAINMENU);
+        });
     }
 
     public void UpdateTotalScore()

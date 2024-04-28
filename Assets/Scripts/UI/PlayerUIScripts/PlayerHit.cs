@@ -7,21 +7,17 @@ public class PlayerHit : MonoBehaviour
 {
     // Added these for post effects (post-processing) 
     [SerializeField] Volume postFXVolume;
+    [SerializeField] private AnimationCurve flashSpeedCurve;
+    [SerializeField] float showDuration;
 
     private Vignette pfxVignette;
-
     private float tmpDamageFlash;
-
     private bool currentlyDamaged;
-
-    [SerializeField] private AnimationCurve flashSpeedCurve;
-
-    [SerializeField] float showDuration;
 
     void Start()
     {
         tmpDamageFlash = showDuration;
-        postFXVolume?.profile.TryGet<Vignette>(out pfxVignette);
+        postFXVolume?.profile.TryGet(out pfxVignette);
         Disabler();
     }
 

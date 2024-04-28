@@ -17,6 +17,9 @@ public class PlayerBase : MonoBehaviour, IDamage
     [SerializeField] private PlayerCamera cam;
     [SerializeField] private CustomTimer respawnTimer;
     [SerializeField] private AudioSource extraSFXSource;
+    [Seperator]
+    [SerializeField] private CustomTimer passiveHealthRegenTimer;
+    [SerializeField] private CustomTimer delayPassiveHealthRegenTimer;
 
     // Properties
     public SpeedPool Spd => speed;
@@ -40,6 +43,19 @@ public class PlayerBase : MonoBehaviour, IDamage
 
         respawnTimer.OnStart += RespawnTimer_OnStart;
         respawnTimer.OnEnd += RespawnTimer_OnEnd;
+
+        delayPassiveHealthRegenTimer.OnEnd += () =>
+        {
+            passiveHealthRegenTimer.StartTimer();
+        };
+
+        passiveHealthRegenTimer.OnTick += () =>
+        {
+            health.Increase(Time.deltaTime * 0.1f); // time.delta time will be a lot so 0.1 times that
+            
+            if (health.IsMaxed)
+                passiveHealthRegenTimer.StopTimer();
+        };
     }
 
     private void RespawnTimer_OnEnd()
@@ -85,6 +101,19 @@ public class PlayerBase : MonoBehaviour, IDamage
 
         respawnTimer.OnStart -= RespawnTimer_OnStart;
         respawnTimer.OnEnd -= RespawnTimer_OnEnd;
+
+        delayPassiveHealthRegenTimer.OnEnd -= () =>
+        {
+            passiveHealthRegenTimer.StartTimer();
+        };
+
+        passiveHealthRegenTimer.OnTick -= () =>
+        {
+            health.Increase(Time.deltaTime * 0.1f);
+
+            if (health.IsMaxed)
+                passiveHealthRegenTimer.StopTimer();
+        };
     }
 
     void Update()
@@ -99,6 +128,17 @@ public class PlayerBase : MonoBehaviour, IDamage
 
     public void TakeDamage(float damage)
     {
+        // Show visual feedback
+        UIManager.Instance.PlayerHitScript.Active();
+
+        // Timer code for regen resetting
+        if (passiveHealthRegenTimer.RunTimer)
+            passiveHealthRegenTimer.StopTimer();
+        
+        delayPassiveHealthRegenTimer.RestartTimer();
+
+
+        // Actually take damage
         health.Decrease(damage);
     }
 

@@ -65,12 +65,13 @@ public class PlayerMovement : MonoBehaviour
 
             movement = (transform.right * InputManager.Instance.MoveVect.x) + (transform.forward * InputManager.Instance.MoveVect.y);
             charController.Move(movement * Time.deltaTime * moveSpeedValModified);
-            charController.Move(new Vector3(0, -9.81f * Time.deltaTime, 0));
         }
         else if (movementAudio.isPlaying)
         {
             movementAudio.Stop();
         }
+
+        charController.Move(new Vector3(0, (-9.81f * Time.deltaTime) * 2, 0));
     }
 
     private void StaminaCheck()

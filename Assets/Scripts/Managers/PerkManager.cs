@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,8 @@ public class PerkManager : MonoBehaviour
     public Texture SecondLifeSprite;
     public Texture MoveSpeedSprite;
 
+    public event Action ResetStand;
+
     private void Awake()
     {
         Instance = this;
@@ -38,20 +41,21 @@ public class PerkManager : MonoBehaviour
     {
         switch (_type)
         {
-            case PerkType.FireRate:
+            case PerkType.FireRate: // PERK TODO: Faster Fire Rate
                 fasterShoot = true;
                 break;
-            case PerkType.Health:
+            case PerkType.Health: // Implemented
                 PlayerBase.instance.HealthPerkEnabled();
                 doubleHealth = true;
                 break;
-            case PerkType.ReloadSpeed:
+            case PerkType.ReloadSpeed: // PERK TODO: Faster Reload
                 fasterReload = true;
                 break;
-            case PerkType.SecondLife:
+            case PerkType.SecondLife: // Trying to implement
+                GameManager.Instance.BoughtARevive();
                 secondLife = true;
                 break;
-            case PerkType.MoveSpeed:
+            case PerkType.MoveSpeed: // Implemented
                 fasterSprint = true;
                 break;
             case PerkType.NULLPERK:
@@ -74,6 +78,9 @@ public class PerkManager : MonoBehaviour
         fasterSprint = false;
         secondLife = false;
 
+        ResetStand?.Invoke();
+
+        PlayerBase.instance.HealthPerkDisabled();
         UIManager.Instance.PerkUIScript.ResetPerks();
     }
 }

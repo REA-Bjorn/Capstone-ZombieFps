@@ -42,6 +42,8 @@ public class BaseWeapon : MonoBehaviour
     private GameObject parentStand;
     private WeaponUnlockStand weaponStand;
 
+    // TODO: Create 2 private float variables for storing the reload and fireRate durations
+
     public virtual void Start()
     {
         attack.SetMax();
@@ -50,6 +52,10 @@ public class BaseWeapon : MonoBehaviour
 
         UIManager.Instance.UpdateWeaponsUI();
         CanUse = false;
+
+        // TODO: set stored reload speed variable to the reload timer's DurationTime
+        
+        // TODO: set stored fire rate variable to the fire rate timer's DurationTime
     }
 
     public virtual void WeaponOn()
@@ -105,11 +111,23 @@ public class BaseWeapon : MonoBehaviour
         if (reloadTimer.RunTimer)
             return;
 
-        reloadTimer.StartTimer();
-
         // If we have reserves
         if (reserves.IsValid && !ammo.IsMaxed)
         {
+            // PERK TODO: Faster Reload
+            // (do not create any new functions)
+            // you should only be calling:
+            //      perk's boolean variable from PerkManager,
+            //      the stored reload speed variable,
+            //      and the start timer function from the reload timer
+
+            // If the "FasterReload" perk is enabled
+            // call the reload timer's start timer function and pass in the stored reload speed / 2
+            // otherwise call the reload timer's start timer function and pass in the stored reload speed (this way its not 2x faster)
+
+            // Remove this line when done or comment it out
+            reloadTimer.StartTimer();
+
             gunAnimations?.SetTrigger("Reload");
 
             float used = ammo.Max - ammo.CurrentValue;
@@ -140,6 +158,18 @@ public class BaseWeapon : MonoBehaviour
         // Plays the muzzle flash animation
         muzzleFlash.Play();
 
+        // PERK TODO: FireRate
+        // (do not create any new functions)
+        // you should only be calling:
+        //      perk's boolean variable from PerkManager,
+        //      the stored fire rate variable,
+        //      and the start timer function from the fireRate Timer
+
+        // If the "FasterReload" perk is enabled
+        // call the fireRate Timer's start timer function and pass in the stored fire rate / 2
+        // otherwise call the fireRate Timer's start timer function and pass in the stored fire rate (this way its not 2x faster)
+
+        // Remove this line when done or comment it out
         // Runs the timer for fire rate
         fireRateTimer.StartTimer();
 

@@ -32,6 +32,11 @@ public class CustomDebug : MonoBehaviour
             WaveManager.Instance.KillAllAliveEnemies();
         }
 
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            PerkManager.Instance.ResetAllPerks();
+        }
+
         if (Input.GetKeyDown(KeyCode.P))
         {
             PointsManager.Instance.AddPoints(500);

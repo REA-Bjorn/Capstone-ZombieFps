@@ -152,6 +152,11 @@ public class PlayerBase : MonoBehaviour, IDamage
         health.UpdateMax(20);
     }
 
+    public void HealthPerkDisabled()
+    {
+        health.UpdateMax(10);
+    }
+
     public void ShakeCam(float camShakeAmount, float camShakeDuration)
     {
         cam.TurnOnCamShake(camShakeAmount, camShakeDuration);

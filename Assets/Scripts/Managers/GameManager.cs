@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     private int reviveBoughtCount = 0;
 
-    public bool CanBuyRevive => reviveBoughtCount <= 2;
+    public bool CanBuyRevive => (reviveBoughtCount <= 2);
 
     [SerializeField] private Transform playerSpawnPoint;
 
@@ -80,12 +80,14 @@ public class GameManager : MonoBehaviour
     public void BoughtARevive()
     {
         reviveBoughtCount++;
+        Debug.Log(reviveBoughtCount);
     }
 
     public void PlayerReviving()
     {
-        //WaveManager.Instance.DistractEnemies();
         Debug.Log("Player Reviving");
+        WaveManager.Instance.KillAllAliveEnemies();
+        PerkManager.Instance.ResetAllPerks();
         PlayerBase.instance.Health.SetMax();
     }
 

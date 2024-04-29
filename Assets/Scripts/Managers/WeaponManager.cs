@@ -94,8 +94,6 @@ public class WeaponManager : MonoBehaviour
 
     public void AddWeapon(GameObject _weapon)
     {
-        //_weapon.transform.SetLocalPositionAndRotation(currWeapon.transform.position, currWeapon.transform.rotation);
-
         // Primary is never null -- Manually set in inspector
 
         // If we do not have a secondary gun
@@ -190,6 +188,9 @@ public class WeaponManager : MonoBehaviour
 
     public bool HasWeapon(WeaponType _type)
     {
+        // this needs to be spread out because we don't want to refill
+        // our "sniper rifle" if we are at a "shotgun" weapon stand
+
         // Do we have the current type
         if (Primary.Type == _type)
         {
@@ -197,20 +198,12 @@ public class WeaponManager : MonoBehaviour
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
         }
         else if (Secondary.Type == _type)
         {
             if (!Secondary.Ammo.IsMaxed)
             {
                 return true;
-            }
-            else
-            {
-                return false;
             }
         }
 

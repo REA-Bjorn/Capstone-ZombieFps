@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -11,6 +12,9 @@ public class PerkStation : BaseInteractable
 
     public override bool Interact()
     {
+        if (type == PerkType.SecondLife && !GameManager.Instance.CanBuyRevive)
+            return false; 
+        
         if (base.Interact())
         {
             PerkManager.Instance.UnlockPerk(type);
@@ -22,15 +26,25 @@ public class PerkStation : BaseInteractable
             return false;
     }
 
-    // override the Start Function
     public override void Start()
     {
         base.Start();
+
+        PerkManager.Instance.ResetStand += ResetStand;
     }
 
-    // override the OnDestroy function (leave the base in there)
+    private void ResetStand()
+    {
+        if (type == PerkType.SecondLife && !GameManager.Instance.CanBuyRevive)
+            return;
+        
+        coll.enabled = true;
+        perkPoint.SetActive(true);
+    }
+
     public override void OnDestroy()
     {
+        PerkManager.Instance.ResetStand -= ResetStand;
         base.OnDestroy();
     }
 

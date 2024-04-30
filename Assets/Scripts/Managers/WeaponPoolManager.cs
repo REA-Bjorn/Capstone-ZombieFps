@@ -14,7 +14,8 @@ public enum WeaponType
     SniperRifle,
     LightningStaff,
     RocketLauncher,
-    Shotgun
+    Shotgun,
+    Granade
 }
 
 [Serializable]

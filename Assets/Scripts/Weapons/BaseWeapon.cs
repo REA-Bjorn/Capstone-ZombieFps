@@ -43,6 +43,8 @@ public class BaseWeapon : MonoBehaviour
     private WeaponUnlockStand weaponStand;
 
     // TODO: Create 2 private float variables for storing the reload and fireRate durations
+    private float storedReload = 0f;
+    private float storedFireRate = 0f;
 
     public virtual void Start()
     {
@@ -54,8 +56,11 @@ public class BaseWeapon : MonoBehaviour
         CanUse = false;
 
         // TODO: set stored reload speed variable to the reload timer's DurationTime
-        
+        storedReload = reloadTimer.DurationTime;
+
         // TODO: set stored fire rate variable to the fire rate timer's DurationTime
+        storedFireRate = fireRateTimer.DurationTime;
+
     }
 
     public virtual void WeaponOn()
@@ -125,8 +130,17 @@ public class BaseWeapon : MonoBehaviour
             // call the reload timer's start timer function and pass in the stored reload speed / 2
             // otherwise call the reload timer's start timer function and pass in the stored reload speed (this way its not 2x faster)
 
+            if (PerkManager.Instance.FasterReload)
+            {
+                reloadTimer.StartTimer(storedReload / 2);
+            }
+            else
+            {
+                reloadTimer.StartTimer(storedReload);
+            }
+
             // Remove this line when done or comment it out
-            reloadTimer.StartTimer();
+            //reloadTimer.StartTimer();
 
             gunAnimations?.SetTrigger("Reload");
 
@@ -169,9 +183,18 @@ public class BaseWeapon : MonoBehaviour
         // call the fireRate Timer's start timer function and pass in the stored fire rate / 2
         // otherwise call the fireRate Timer's start timer function and pass in the stored fire rate (this way its not 2x faster)
 
+        if (PerkManager.Instance.FasterShoot)
+        {
+            fireRateTimer.StartTimer(storedFireRate / 2);
+        }
+        else
+        {
+            fireRateTimer.StartTimer();
+        }
+
         // Remove this line when done or comment it out
         // Runs the timer for fire rate
-        fireRateTimer.StartTimer();
+        //fireRateTimer.StartTimer();
 
         // Plays gun shot audio
         audioScript?.PlayShoot();

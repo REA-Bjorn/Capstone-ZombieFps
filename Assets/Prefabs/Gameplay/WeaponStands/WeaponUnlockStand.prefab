@@ -365,7 +365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unlockCost: 0
   costDisplay: {fileID: 6351592409332571150}
-  weaponType: 0
+  weaponType: 9
   weaponPoint: {fileID: 6472137714771290059}
   ammoObj: {fileID: 3154934958266803157}
   coll: {fileID: 1966038100534009977}

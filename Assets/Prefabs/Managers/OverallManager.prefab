@@ -286,6 +286,27 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8053306167955361998}
     m_Modifications:
+    - target: {fileID: 1283337193094574455, guid: c233b89d51a4bb54a829f240517aa856,
+        type: 3}
+      propertyPath: allWeapons.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1283337193094574455, guid: c233b89d51a4bb54a829f240517aa856,
+        type: 3}
+      propertyPath: allWeapons.Array.data[8].Cost
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1283337193094574455, guid: c233b89d51a4bb54a829f240517aa856,
+        type: 3}
+      propertyPath: allWeapons.Array.data[8].Weapon
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1283337193094574455, guid: c233b89d51a4bb54a829f240517aa856,
+        type: 3}
+      propertyPath: allWeapons.Array.data[8].WeaponPrefab
+      value: 
+      objectReference: {fileID: 892408351374191873, guid: f3d04ba9bbb9c0045a996b6d08a1c326,
+        type: 3}
     - target: {fileID: 3883757737466246621, guid: c233b89d51a4bb54a829f240517aa856,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -743,12 +764,12 @@ PrefabInstance:
     - target: {fileID: 7536443635325236303, guid: 63507625f6832fc49acf9df70dde03e7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7536443635325236303, guid: 63507625f6832fc49acf9df70dde03e7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -71.75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7822808914443770417, guid: 63507625f6832fc49acf9df70dde03e7,
         type: 3}

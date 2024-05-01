@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
             // Find out what the modified value of speed is
             // Use the current move speed amount times the sprint modifier * if the move speed perk is unlocked then times 1.3
-            float moveSpeedValModified = PlayerBase.instance.Spd.CurrentValue * sprint * (PerkManager.Instance.MoveSpeedSprite ? 1.3f : 1.0f);
+            float moveSpeedValModified = PlayerBase.instance.Spd.CurrentValue * sprint * (PerkManager.Instance.FasterSprint ? 1.3f : 1.0f);
 
             movement = (transform.right * InputManager.Instance.MoveVect.x) + (transform.forward * InputManager.Instance.MoveVect.y);
             charController.Move(movement * Time.deltaTime * moveSpeedValModified);

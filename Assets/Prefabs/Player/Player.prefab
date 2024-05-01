@@ -57,7 +57,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 285891126900335935}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: MinimapIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -517,7 +517,7 @@ GameObject:
   - component: {fileID: 7915079803618604939}
   - component: {fileID: 7162163561729152824}
   - component: {fileID: 2697722379069322623}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -658,7 +658,7 @@ GameObject:
   - component: {fileID: 8115741223264367144}
   - component: {fileID: 3444064847159160956}
   - component: {fileID: 5854308796451355944}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

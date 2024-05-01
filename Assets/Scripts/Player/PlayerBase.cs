@@ -126,7 +126,7 @@ public class PlayerBase : MonoBehaviour, IDamage
         }
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, bool forceKilled = false)
     {
         // Show visual feedback
         UIManager.Instance.PlayerHitScript.Active();

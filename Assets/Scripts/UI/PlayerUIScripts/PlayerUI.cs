@@ -12,16 +12,19 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private GameObject waveObj;
     [SerializeField] private GameObject crossHairObj;
     [SerializeField] private GameObject weaponsObj;
-    
+
     [Seperator]
     [SerializeField] private TextMeshProUGUI totalScore;
     [SerializeField] private TextMeshProUGUI totalWaves;
 
     public TextMeshProUGUI WaveText => totalWaves;
-    
+
     [Seperator]
     [SerializeField] private Image crossHair;
     [SerializeField] private Image staminaBar;
+    [SerializeField] private GameObject go_stamBar;
+    [SerializeField] private Image staminaRadial;
+    [SerializeField] private GameObject go_stamRadial;
 
     [Seperator]
     [SerializeField] private TextMeshProUGUI ammoText;
@@ -30,6 +33,8 @@ public class PlayerUI : MonoBehaviour
 
     public void StartUp()
     {
+        ToggleRadialStamina(SettingsManager.Instance.GetSettings().radialStamina);
+
         PointsManager.Instance.OnPointsChanged += UpdateScore;
     }
 
@@ -80,6 +85,7 @@ public class PlayerUI : MonoBehaviour
     public void UpdateStaminaBar()
     {
         staminaBar.fillAmount = PlayerBase.instance.Stam.Percent;
+        staminaRadial.fillAmount = PlayerBase.instance.Stam.Percent;
     }
 
     public IEnumerator FlashWeaponsUI()
@@ -108,4 +114,11 @@ public class PlayerUI : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         totalScore.color = UnityEngine.Color.white;
     }
+
+    public void ToggleRadialStamina(bool state)
+    {
+        go_stamRadial.SetActive(state);
+        go_stamBar.SetActive(!state);
+    }
+
 }

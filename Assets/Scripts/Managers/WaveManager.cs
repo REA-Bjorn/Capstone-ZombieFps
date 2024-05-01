@@ -222,7 +222,7 @@ public class WaveManager : MonoBehaviour
         return tra.transform;
     }
 
-    private int TotalCurrentlyUndead()
+    public int TotalCurrentlyUndead()
     {
         int currentlyUndead = 0;
 

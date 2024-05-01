@@ -12,7 +12,8 @@ public class EnemyBase : MonoBehaviour, IDamage
     [SerializeField] private EnemyVisual visualScript;
     [SerializeField] private EnemyAudio audioScript;
     [SerializeField] EnemyMovement move;
-    [SerializeField] int PointVal;
+    [SerializeField] int deathPointWorth = 50;
+    [SerializeField] int hitPointVal = 15;
 
     [SerializeField] private Animator animator;
     private bool distracted;
@@ -20,7 +21,6 @@ public class EnemyBase : MonoBehaviour, IDamage
     public SpeedPool Spd => speed;
     public AttackPool Atk => attack;
 
-    // Start is called before the first frame update
     void Start()
     {
         MaxStats();
@@ -31,12 +31,10 @@ public class EnemyBase : MonoBehaviour, IDamage
     private void Health_OnDepleted()
     {
         PickupManager.Instance.DropPickup(transform);
-        PointsManager.Instance.AddPoints(PointVal);
         WaveManager.Instance.EnemyKilled(gameObject);
         gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (distracted)
@@ -49,16 +47,23 @@ public class EnemyBase : MonoBehaviour, IDamage
         }
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, bool forceKilled = false)
     {
         health.Decrease(damage);
 
         if (health.IsValid)
         {
+            PointsManager.Instance.AddPoints(hitPointVal);
             audioScript.PlayRandomHit();
             // Update enemy speed based off of their health's percent and their min/max speed
             float newSpeed = Mathf.Clamp(health.Percent * speed.Max, speed.Min, speed.Max);
             move.UpdateMoveSpeed(newSpeed);
+        }
+
+        // If we are not forcing the kill on the enemy and they did "die"
+        if (!forceKilled && !health.IsValid)
+        {
+            PointsManager.Instance.AddPoints(deathPointWorth);
         }
     }
 
@@ -80,7 +85,7 @@ public class EnemyBase : MonoBehaviour, IDamage
 
     public void ForceKill()
     {
-        TakeDamage(health.CurrentValue);
+        TakeDamage(health.CurrentValue, true);
     }
 
     private void PlaySpawnAnimation()

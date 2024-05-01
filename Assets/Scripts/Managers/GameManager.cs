@@ -80,12 +80,10 @@ public class GameManager : MonoBehaviour
     public void BoughtARevive()
     {
         reviveBoughtCount++;
-        Debug.Log(reviveBoughtCount);
     }
 
     public void PlayerReviving()
     {
-        Debug.Log("Player Reviving");
         WaveManager.Instance.KillAllAliveEnemies();
         PerkManager.Instance.ResetAllPerks();
         PlayerBase.instance.Health.SetMax();

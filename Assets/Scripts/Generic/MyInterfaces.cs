@@ -1,6 +1,6 @@
 public interface IDamage
 {
-    public void TakeDamage(float damage);
+    public void TakeDamage(float damage, bool forceKilled = false);
     public void TakeMaxDamage();
 }
 

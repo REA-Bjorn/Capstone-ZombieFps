@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9177211148229600743}
   - component: {fileID: 7232899631683181308}
   - component: {fileID: 2685137233582197380}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 5e-44, z: 1.597e-42, w: -7.0712373e+31}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 5.7e-44, z: 2.966e-41, w: 866664450}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 6162370998831905694}
   - component: {fileID: 9034448423307834895}
   - component: {fileID: 630064425652829507}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5014,6 +5014,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bobRate: 3
   amplitude: 0.1
+  rotate: 1
 --- !u!65 &8949300725368557987
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5064,7 +5065,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1191001183339056, guid: 19b7eec62d0a5e94d948dc49775b969b, type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4259318693755112, guid: 19b7eec62d0a5e94d948dc49775b969b, type: 3}
       propertyPath: m_LocalPosition.x

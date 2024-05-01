@@ -13,7 +13,7 @@ public class LevelPlinth : MonoBehaviour, IDamage
 
     private bool confirming = false;
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, bool forceKilled = false)
     {
         if (confirming)
         {

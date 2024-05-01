@@ -22,4 +22,5 @@ public class SettingsSO : ScriptableObject
     [Seperator]
     public bool fullscreen;
     public bool postProcessing;
+    public bool radialStamina;
 }

@@ -15,7 +15,9 @@ public enum WeaponType
     LightningStaff,
     RocketLauncher,
     Shotgun,
-    Granade
+    Granade,
+    Coconut,
+    CovertSMG
 }
 
 [Serializable]

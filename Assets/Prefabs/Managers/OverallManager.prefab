@@ -193,6 +193,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaveManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8111649332631024773, guid: 3c0f4501aee7d1f4c956289fbd8df4b2,
+        type: 3}
+      propertyPath: waitTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -286,11 +291,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8053306167955361998}
     m_Modifications:
-    - target: {fileID: 1283337193094574455, guid: c233b89d51a4bb54a829f240517aa856,
-        type: 3}
-      propertyPath: allWeapons.Array.size
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 1283337193094574455, guid: c233b89d51a4bb54a829f240517aa856,
         type: 3}
       propertyPath: allWeapons.Array.data[8].Cost

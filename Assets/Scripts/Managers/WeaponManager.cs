@@ -76,19 +76,21 @@ public class WeaponManager : MonoBehaviour
     // Update is called once per frame
     public void ToggleWeapon(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (Mathf.Abs(InputManager.Instance.ScrollVect.y) > 0f)
+        if (Primary != null && Secondary != null)
         {
-            if (Primary != null && currWeapon == Secondary)
+            if (Mathf.Abs(InputManager.Instance.ScrollVect.y) > 0f)
             {
-                EnablePrimary();
-            }
-            else if (Secondary != null)
-            {
-                EnableSecondary();
+                if (Primary != null && currWeapon == Secondary)
+                {
+                    EnablePrimary();
+                }
+                else if (Secondary != null)
+                {
+                    EnableSecondary();
+                }
             }
         }
 
-        currWeapon.WeaponOn();
         UIManager.Instance.UpdateWeaponsUI();
     }
 

@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 
 public class BlockadeManager : MonoBehaviour
 {
     public static BlockadeManager Instance;
+    public NavMeshSurface surface;
 
     private void Awake()
     {
@@ -27,7 +29,7 @@ public class BlockadeManager : MonoBehaviour
         foreach (BlockadeGroup blkade in levelBlockades)
         {
             blkade.blockadeScript.OnSuccessfulInteract += BlockadeUnlocked;
-            
+
             // Loop through all spawners under that one blockade
             foreach (GameObject spawner in blkade.spawnPoints)
             {
@@ -57,5 +59,6 @@ public class BlockadeManager : MonoBehaviour
                 return; // we don't need to check any more since this is the only one
             }
         }
+
     }
 }

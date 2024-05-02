@@ -24,6 +24,13 @@ public class EnemyBase : MonoBehaviour, IDamage
     void Start()
     {
         MaxStats();
+        // Force update on start of enemy because waves starts at 0
+        // therefore starting hp = 0 bad...
+        health.UpdateMax(1.41425f);
+        health.SetMax();
+
+        // Update extra visuals
+        visualScript.UpdateEnemyEyes(health.Percent * 10);
         visualScript.SetRandomMaterial();
         health.OnDepleted += Health_OnDepleted;
     }
@@ -50,6 +57,7 @@ public class EnemyBase : MonoBehaviour, IDamage
     public void TakeDamage(float damage, bool forceKilled = false)
     {
         health.Decrease(damage);
+        visualScript.UpdateEnemyEyes(health.Percent * 10);
 
         if (health.IsValid)
         {
@@ -70,8 +78,12 @@ public class EnemyBase : MonoBehaviour, IDamage
     public void MaxStats()
     {
         attack.SetMax();
-        health.SetMax();
         speed.SetMax();
+
+        health.UpdateMax(WaveManager.Instance.CurrWaveNumInt * 1.4142f);
+        health.SetMax();
+
+        visualScript.UpdateEnemyEyes(health.Percent * 10);
     }
 
     /// <summary>

@@ -515,7 +515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc5c1a7c71fca4d40a83c0700c595748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unlockCost: 0
+  unlockCost: 3000
   costDisplay: {fileID: 6368031290151104154}
   type: 0
   coll: {fileID: 9000090447276391622}
@@ -531,6 +531,10 @@ PrefabInstance:
     - target: {fileID: 1553200590246186, guid: c2a884191c0e3a5448feb8a016553ad0, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Plinth_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1553200590246186, guid: c2a884191c0e3a5448feb8a016553ad0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4830817784829162, guid: c2a884191c0e3a5448feb8a016553ad0, type: 3}
       propertyPath: m_LocalPosition.x

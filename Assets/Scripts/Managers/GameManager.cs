@@ -66,6 +66,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        SettingsManager.Instance.GetSettings().fullscreen = Screen.fullScreen;
+
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 

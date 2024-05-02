@@ -30,9 +30,10 @@ public class PlayerCamera : MonoBehaviour
     public void Look()
     {
         float mouseX = InputManager.Instance.Look.x * SettingsManager.Instance.MouseSens * Time.deltaTime;
-        float mouseY = InputManager.Instance.Look.y * SettingsManager.Instance.MouseSens * Time.deltaTime;
+        float mouseY = InputManager.Instance.Look.y * SettingsManager.Instance.MouseSens * Time.deltaTime * (SettingsManager.Instance.GetSettings().invertY ? -1 : 1);
 
         xRotation -= mouseY;
+
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);

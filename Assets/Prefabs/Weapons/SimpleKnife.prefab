@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4565562173124886}
   - component: {fileID: 33035055851636990}
   - component: {fileID: 23013697615537750}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SimpleKnife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4844190154016886}
   - component: {fileID: 33151505653383254}
   - component: {fileID: 23648952521718448}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SM_Wep_Butterfly_Knife_Handle_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 4305931397810190}
   - component: {fileID: 33400770572505948}
   - component: {fileID: 23323843062968262}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SM_Wep_Butterfly_Knife_Blade_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7653381290396185727}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RocketSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: -3801894500228656467}
   - component: {fileID: 5486741545025191294}
   - component: {fileID: 3363563536787362337}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SimpleRocketLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 6843937140847129190}
   - component: {fileID: 1445338177104862691}
   - component: {fileID: 1743391284415274176}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: AsimovRocketLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -371,6 +371,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MuzzleFlash
       objectReference: {fileID: 0}
+    - target: {fileID: 406030098329180835, guid: 5df316a205873634bb7a62842b5e6be7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1564168310189941097, guid: 5df316a205873634bb7a62842b5e6be7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -420,6 +425,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122239338469688592, guid: 5df316a205873634bb7a62842b5e6be7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

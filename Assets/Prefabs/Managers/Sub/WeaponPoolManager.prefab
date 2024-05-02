@@ -77,3 +77,15 @@ MonoBehaviour:
     Weapon: 8
     WeaponPrefab: {fileID: 5760991350033466311, guid: a3cec5acd8edbbf4cb9af21355f9d753,
       type: 3}
+  - Cost: 650
+    Weapon: 8
+    WeaponPrefab: {fileID: 5760991350033466311, guid: a3cec5acd8edbbf4cb9af21355f9d753,
+      type: 3}
+  - Cost: 350
+    Weapon: 10
+    WeaponPrefab: {fileID: 892408351374191873, guid: ff3aadaa0ddecc545afaa3cba66854da,
+      type: 3}
+  - Cost: 550
+    Weapon: 11
+    WeaponPrefab: {fileID: 8813639588562730857, guid: fc64b47556649b9408b7d80ec108c857,
+      type: 3}

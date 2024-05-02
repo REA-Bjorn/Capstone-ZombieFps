@@ -22,6 +22,7 @@ public class WaveManager : MonoBehaviour
     [Seperator]
     [SerializeField] private CustomTimer waveCountdownTimer;
     [SerializeField] private CustomTimer distractEnemiesTimer;
+    [SerializeField] private float waitTime = 0.5f;
 
     // Spawn point collection
     private List<GameObject> spawnPoints = new List<GameObject>();
@@ -37,6 +38,7 @@ public class WaveManager : MonoBehaviour
     public float Time => waveCountdownTimer.DurationTime;
 
     private int waveCount = 0;
+    public int CurrWaveNumInt => waveCount;
     public string CurrentWave => waveCount.ToString();
 
     private void Start()
@@ -162,7 +164,7 @@ public class WaveManager : MonoBehaviour
             // Spawn the starting amount of enemies
             // - When enemies die, the wave manager decides if it should enable another enemy.
             SpawnEnemy();
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(waitTime);
         }
     }
 

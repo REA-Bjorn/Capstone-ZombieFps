@@ -7,6 +7,7 @@ using UnityEngine;
 public class Blockade : BaseInteractable
 {
     public event Action OnSuccessfulInteract;
+    [SerializeField] private List<Blockade> linkedBlockades;
 
     private bool boughtStatus = false;
     public bool Bought => boughtStatus;
@@ -17,6 +18,13 @@ public class Blockade : BaseInteractable
         {
             boughtStatus = true;
             OnSuccessfulInteract?.Invoke();
+
+            // Loop through all linked blockades and turn it off
+            foreach (var blockade in linkedBlockades)
+            {
+                blockade.gameObject.SetActive(false);
+            }
+
             gameObject.SetActive(false);
             return true;
         }

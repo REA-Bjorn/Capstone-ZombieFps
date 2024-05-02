@@ -101,7 +101,7 @@ public class BaseWeapon : MonoBehaviour
         // Return if the fire rate timer is not running
         // meaning we can shoot again!
 
-        return !fireRateTimer.RunTimer && !reloadTimer.RunTimer;
+        return !fireRateTimer.RunTimer && !reloadTimer.RunTimer && !UIManager.Instance.IsUIPause;
     }
 
     public void SetMaxAmmo()

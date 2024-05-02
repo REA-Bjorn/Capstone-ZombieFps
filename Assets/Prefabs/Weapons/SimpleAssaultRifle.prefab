@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5243862007477797544}
   - component: {fileID: 6210274662414055999}
   - component: {fileID: 1003009214210981959}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SimpleAssaultRifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 2086346219194299508}
   - component: {fileID: 6255994173905242193}
   - component: {fileID: 668472892727708741}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: AsimovAssaultRifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,6 +336,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MuzzleFlash
       objectReference: {fileID: 0}
+    - target: {fileID: 406030098329180835, guid: 5df316a205873634bb7a62842b5e6be7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1564168310189941097, guid: 5df316a205873634bb7a62842b5e6be7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -385,6 +390,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122239338469688592, guid: 5df316a205873634bb7a62842b5e6be7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

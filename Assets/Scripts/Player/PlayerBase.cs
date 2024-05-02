@@ -149,7 +149,7 @@ public class PlayerBase : MonoBehaviour, IDamage
 
     public void HealthPerkEnabled()
     {
-        health.UpdateMax(20);
+        health.UpdateMax(Mathf.Floor(health.Max * 2.5f));
     }
 
     public void HealthPerkDisabled()

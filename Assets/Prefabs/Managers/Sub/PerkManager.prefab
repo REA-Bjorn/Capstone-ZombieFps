@@ -44,7 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da8968405c43dd3439701a5086c29f1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondLife: 1
+  doubleHealth: 0
+  fasterReload: 0
+  fasterShoot: 0
+  fasterSprint: 0
+  secondLife: 0
   FireRateSprite: {fileID: 8400000, guid: d3e94d7f67f68b549b15c93b38d97dc2, type: 2}
   HealthSprite: {fileID: 8400000, guid: 048500b63f6821e4a9cc222ccf72cf9b, type: 2}
   ReloadSpeedSprite: {fileID: 8400000, guid: 34901bcfa9b5d1e4695094156636adc5, type: 2}

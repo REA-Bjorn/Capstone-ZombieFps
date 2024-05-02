@@ -98,6 +98,11 @@ PrefabInstance:
       propertyPath: type
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6151466273443403059, guid: 70160bacad1958042b573bf52369c5da,
+        type: 3}
+      propertyPath: unlockCost
+      value: 3250
+      objectReference: {fileID: 0}
     - target: {fileID: 7126270553924299853, guid: 70160bacad1958042b573bf52369c5da,
         type: 3}
       propertyPath: m_LocalPosition.x

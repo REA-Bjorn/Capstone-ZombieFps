@@ -27,6 +27,8 @@ public class UIManager : MonoBehaviour
     public PlayerHit PlayerHitScript=> hitUI;
     public SceneFader SceneFade => fader;
 
+    private bool isUIPause = true;
+    public bool IsUIPause => isUIPause;
 
     private void Awake()
     {
@@ -69,12 +71,14 @@ public class UIManager : MonoBehaviour
     {
         GameManager.Instance.PauseGame();
         TurnOffAllUI();
+        isUIPause = true;
         pauseMenuObject.SetActive(true);
     }
 
     private void TurnOnPlayerMenu()
     {
         TurnOffAllUI();
+        isUIPause = false;
         playerUIScript.TurnOnPlayerUI();
         minimapObject.SetActive(true);
     }

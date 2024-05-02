@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6072074661491432877}
   - component: {fileID: 9145416366813518549}
   - component: {fileID: 6663614130843640360}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: AsimovConcealCarry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 1188549063346666287}
   - component: {fileID: 8136654610684883485}
   - component: {fileID: 6190295787265376105}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SimpleConcealCarry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,6 +336,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MuzzleFlash
       objectReference: {fileID: 0}
+    - target: {fileID: 406030098329180835, guid: 5df316a205873634bb7a62842b5e6be7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1564168310189941097, guid: 5df316a205873634bb7a62842b5e6be7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -385,6 +390,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122239338469688592, guid: 5df316a205873634bb7a62842b5e6be7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

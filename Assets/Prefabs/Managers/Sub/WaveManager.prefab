@@ -46,12 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c71da5257e350474a87f3dbe41e70386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnLimit: 10
+  SpawnLimit: 100
   enemyPrefab: {fileID: 3261371145617336343, guid: 2249d4b645ce5694dbf5cca82d9ba6c6,
     type: 3}
   waveCountdownTimer: {fileID: 1580593079843486163}
   distractEnemiesTimer: {fileID: 2912086469616213728}
-  spawnPoints: []
   enemyParent: {fileID: 0}
   spawnPointsParent: {fileID: 0}
 --- !u!114 &1580593079843486163

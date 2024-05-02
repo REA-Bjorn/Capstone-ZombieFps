@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Vector3 movement;
-    float sprint = 1.0f;
+    float sprintMod = 1.0f;
 
     [SerializeField] private CharacterController charController;
     [Seperator]
@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
             // Find out what the modified value of speed is
             // Use the current move speed amount times the sprint modifier * if the move speed perk is unlocked then times 1.3
-            float moveSpeedValModified = PlayerBase.instance.Spd.CurrentValue * sprint * (PerkManager.Instance.FasterSprint ? 1.3f : 1.0f);
+            float moveSpeedValModified = PlayerBase.instance.Spd.CurrentValue * sprintMod * (PerkManager.Instance.FasterSprint ? 1.3f : 1.0f);
 
             movement = (transform.right * InputManager.Instance.MoveVect.x) + (transform.forward * InputManager.Instance.MoveVect.y);
             charController.Move(movement * Time.deltaTime * moveSpeedValModified);
@@ -92,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
 
             // Set values for sprint
             movementAudio.pitch = sprintAudioIncPitch;
-            sprint = sprintMoveInc;
+            sprintMod = sprintMoveInc;
         }
         else if (InputManager.Instance.SprintOff)
         {
@@ -102,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             movementAudio.pitch = sprintAudioBasePitch;
-            sprint = sprintMoveBase;
+            sprintMod = sprintMoveBase;
         }
         else if (PlayerBase.instance.Stam.CurrentValue == 0)
         {
@@ -112,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             movementAudio.pitch = sprintAudioBasePitch;
-            sprint = sprintMoveBase;
+            sprintMod = sprintMoveBase;
         }
     }
 }

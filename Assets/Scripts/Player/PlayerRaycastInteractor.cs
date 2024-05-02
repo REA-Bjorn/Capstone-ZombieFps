@@ -16,7 +16,7 @@ public class PlayerRaycastInteractor : MonoBehaviour
 
     private void InteractorStarted(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, 10))
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, 3))
         {
             IInteractable interactable = hit.collider.GetComponent<IInteractable>();
             if (interactable != null)

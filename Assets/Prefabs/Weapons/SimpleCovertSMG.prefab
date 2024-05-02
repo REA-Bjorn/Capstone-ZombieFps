@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6782018406358187635}
   - component: {fileID: 5519370385230409187}
   - component: {fileID: 8197210632544513934}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: SM_Wep_SMG_Mag_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 6960603851634624813}
   - component: {fileID: 3737081609213531879}
   - component: {fileID: 6710956732461227455}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: SM_Wep_SMG_Slide_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 5561619015044359091}
   - component: {fileID: 5584562021339953542}
   - component: {fileID: 5744234594763024339}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: SM_Wep_SMG_Silencer_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 2385665754415788549}
   - component: {fileID: 3217008786851386092}
   - component: {fileID: 487104256236688442}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: SM_Wep_SMG_Gun_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 7692713385926613267}
   - component: {fileID: 953708814446558322}
   - component: {fileID: 6527581654773902958}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: SM_Wep_SMG_Trigger_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -424,7 +424,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8029415440889950785}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Old_SimpleSMG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -466,7 +466,7 @@ GameObject:
   - component: {fileID: 2480527453509566340}
   - component: {fileID: 2526707510307321776}
   - component: {fileID: 3842506462801313013}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: SimpleCovertSMG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -672,6 +672,12 @@ MonoBehaviour:
   gunName: CovertSMG
   audioScript: {fileID: 2126988709403436512}
   type: 4
+  subObjects:
+  - {fileID: 4284721963963582245}
+  - {fileID: 419766010021375378}
+  - {fileID: 3800992370643886637}
+  - {fileID: 3485686573900147772}
+  - {fileID: 6406450043455364043}
   meshRenderer: {fileID: 0}
   matOne: {fileID: 0}
   matTwo: {fileID: 0}
@@ -706,7 +712,7 @@ PrefabInstance:
     - target: {fileID: 406030098329180835, guid: 5df316a205873634bb7a62842b5e6be7,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1564168310189941097, guid: 5df316a205873634bb7a62842b5e6be7,
         type: 3}
@@ -781,7 +787,7 @@ PrefabInstance:
     - target: {fileID: 9122239338469688592, guid: 5df316a205873634bb7a62842b5e6be7,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1802771790173787382}
   - component: {fileID: 6540406729771002982}
   - component: {fileID: 1905159307780836119}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: SimpleCoconut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,6 +222,8 @@ MonoBehaviour:
   gunName: Coconut
   audioScript: {fileID: 8015880045472093527}
   type: 10
+  subObjects:
+  - {fileID: 4310115217734526691}
   meshRenderer: {fileID: 0}
   matOne: {fileID: 0}
   matTwo: {fileID: 0}
@@ -252,7 +254,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6104657033200982872}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: CoconutSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +270,7 @@ Transform:
   m_GameObject: {fileID: 4374141293109908488}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.145, z: 1.25}
+  m_LocalPosition: {x: 0, y: 0.145, z: 0.471}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -290,7 +292,7 @@ PrefabInstance:
     - target: {fileID: 406030098329180835, guid: 5df316a205873634bb7a62842b5e6be7,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 406030098329180835, guid: 5df316a205873634bb7a62842b5e6be7,
         type: 3}
@@ -350,7 +352,7 @@ PrefabInstance:
     - target: {fileID: 9122239338469688592, guid: 5df316a205873634bb7a62842b5e6be7,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -440,7 +442,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4ce17894d9a1f2d45918ae0077ec55a8,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -450,6 +452,12 @@ PrefabInstance:
 --- !u!4 &3502474880327236697 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4ce17894d9a1f2d45918ae0077ec55a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 3968220090052074418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4310115217734526691 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4ce17894d9a1f2d45918ae0077ec55a8,
     type: 3}
   m_PrefabInstance: {fileID: 3968220090052074418}
   m_PrefabAsset: {fileID: 0}

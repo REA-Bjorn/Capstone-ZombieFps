@@ -120,6 +120,7 @@ public class WeaponManager : MonoBehaviour
         }
 
         currWeapon.transform.SetParent(gameObject.transform);
+        currWeapon.UpdateLayers(true);
         _weapon.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         UIManager.Instance.UpdateWeaponsUI();
     }

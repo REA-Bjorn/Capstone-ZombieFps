@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7324834648502035902}
   - component: {fileID: 103504988865196731}
   - component: {fileID: 1685424534629834749}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: SimpleRevolver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,6 +87,9 @@ MonoBehaviour:
   gunName: Revolver
   audioScript: {fileID: 7485725871518676988}
   type: 0
+  subObjects:
+  - {fileID: 618986770966352370}
+  - {fileID: 4205317262527372932}
   meshRenderer: {fileID: 0}
   matOne: {fileID: 0}
   matTwo: {fileID: 0}
@@ -277,7 +280,7 @@ PrefabInstance:
     - target: {fileID: 406030098329180835, guid: 5df316a205873634bb7a62842b5e6be7,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1564168310189941097, guid: 5df316a205873634bb7a62842b5e6be7,
         type: 3}
@@ -332,13 +335,19 @@ PrefabInstance:
     - target: {fileID: 9122239338469688592, guid: 5df316a205873634bb7a62842b5e6be7,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5df316a205873634bb7a62842b5e6be7, type: 3}
+--- !u!1 &618986770966352370 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 406030098329180835, guid: 5df316a205873634bb7a62842b5e6be7,
+    type: 3}
+  m_PrefabInstance: {fileID: 951832963033238353}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1765584515290491448 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1564168310189941097, guid: 5df316a205873634bb7a62842b5e6be7,
@@ -365,23 +374,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 88322a7c5400a4e458752b731a210bbf, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 88322a7c5400a4e458752b731a210bbf, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 88322a7c5400a4e458752b731a210bbf, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: 88322a7c5400a4e458752b731a210bbf, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: 88322a7c5400a4e458752b731a210bbf, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 88322a7c5400a4e458752b731a210bbf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -448,6 +457,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88322a7c5400a4e458752b731a210bbf, type: 3}
+--- !u!1 &4205317262527372932 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 88322a7c5400a4e458752b731a210bbf,
+    type: 3}
+  m_PrefabInstance: {fileID: 4205317262527338532}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4205317262527464100 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 88322a7c5400a4e458752b731a210bbf,

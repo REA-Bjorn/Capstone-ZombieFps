@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -23,6 +24,10 @@ public class BaseWeapon : MonoBehaviour
     [SerializeField] protected string gunName = "";
     [SerializeField] protected WeaponAudio audioScript;
     [SerializeField] protected WeaponType type;
+
+    [Seperator]
+    [SerializeField] protected List<GameObject> subObjects;
+
 
     // Need to use these a lot
     public MeshRenderer meshRenderer;
@@ -73,6 +78,7 @@ public class BaseWeapon : MonoBehaviour
         gunAnimations.SetTrigger("Unholster");
         audioScript.PlayUnholster();
         CanUse = true;
+
     }
 
     public virtual void OnDisable()
@@ -243,5 +249,27 @@ public class BaseWeapon : MonoBehaviour
 
             CanUse = false;
         }
+
+        UpdateLayers(false);
     }
+
+    public void UpdateLayers(bool SwitchToWeaponLayer)
+    {
+        if (SwitchToWeaponLayer)
+        {
+            foreach (GameObject obj in subObjects)
+            {
+                obj.layer = 12;
+            }
+        }
+        else
+        {
+            foreach (GameObject obj in subObjects)
+            {
+                obj.layer = 0;
+            }
+        }
+    }
+
 }
+

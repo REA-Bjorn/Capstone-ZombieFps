@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1802771790173787382}
   - component: {fileID: 6540406729771002982}
   - component: {fileID: 1905159307780836119}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: SimpleGranadeWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,6 +222,8 @@ MonoBehaviour:
   gunName: Granade
   audioScript: {fileID: 8015880045472093527}
   type: 9
+  subObjects:
+  - {fileID: 5707378708160610197}
   meshRenderer: {fileID: 0}
   matOne: {fileID: 0}
   matTwo: {fileID: 0}
@@ -252,7 +254,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6104657033200982872}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: GranadeSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +292,7 @@ PrefabInstance:
     - target: {fileID: 406030098329180835, guid: 5df316a205873634bb7a62842b5e6be7,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 406030098329180835, guid: 5df316a205873634bb7a62842b5e6be7,
         type: 3}
@@ -350,7 +352,7 @@ PrefabInstance:
     - target: {fileID: 9122239338469688592, guid: 5df316a205873634bb7a62842b5e6be7,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -383,7 +385,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1947772785457376, guid: fa4c1dd5194ba6443b9c3928dd899272, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4870019860002330, guid: fa4c1dd5194ba6443b9c3928dd899272, type: 3}
       propertyPath: m_LocalPosition.x
@@ -433,6 +435,12 @@ PrefabInstance:
 --- !u!4 &5702410962812629359 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4870019860002330, guid: fa4c1dd5194ba6443b9c3928dd899272,
+    type: 3}
+  m_PrefabInstance: {fileID: 5706700433233315701}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5707378708160610197 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1947772785457376, guid: fa4c1dd5194ba6443b9c3928dd899272,
     type: 3}
   m_PrefabInstance: {fileID: 5706700433233315701}
   m_PrefabAsset: {fileID: 0}

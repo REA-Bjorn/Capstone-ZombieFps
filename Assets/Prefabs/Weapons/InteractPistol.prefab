@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9116446378634850436}
   - component: {fileID: 3909972932112153846}
   - component: {fileID: -6678599410294696875}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: InteractPistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,6 +236,9 @@ MonoBehaviour:
   gunName: InteractPistol
   audioScript: {fileID: 4260176190011867750}
   type: 0
+  subObjects:
+  - {fileID: 1590304304246384780}
+  - {fileID: 8458798218452150722}
   meshRenderer: {fileID: 0}
   matOne: {fileID: 0}
   matTwo: {fileID: 0}
@@ -250,7 +253,7 @@ GameObject:
   - component: {fileID: 1440082651334075727}
   - component: {fileID: 8643089801629440356}
   - component: {fileID: 6484778776653749149}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: AsimovPistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -339,7 +342,7 @@ PrefabInstance:
     - target: {fileID: 406030098329180835, guid: 5df316a205873634bb7a62842b5e6be7,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1564168310189941097, guid: 5df316a205873634bb7a62842b5e6be7,
         type: 3}
@@ -394,7 +397,7 @@ PrefabInstance:
     - target: {fileID: 9122239338469688592, guid: 5df316a205873634bb7a62842b5e6be7,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -404,6 +407,12 @@ PrefabInstance:
 --- !u!4 &434154971968901958 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1564168310189941097, guid: 5df316a205873634bb7a62842b5e6be7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1419592037755679279}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1590304304246384780 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 406030098329180835, guid: 5df316a205873634bb7a62842b5e6be7,
     type: 3}
   m_PrefabInstance: {fileID: 1419592037755679279}
   m_PrefabAsset: {fileID: 0}

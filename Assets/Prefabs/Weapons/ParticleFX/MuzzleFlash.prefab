@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1564168310189941097}
   - component: {fileID: 8871613564357730582}
   - component: {fileID: 6250166355196386788}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: MuzzleFlash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4900,7 +4900,7 @@ GameObject:
   - component: {fileID: 1732170976029658839}
   - component: {fileID: 7209088585103676695}
   - component: {fileID: 2379721611929481839}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: MuzzleLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}

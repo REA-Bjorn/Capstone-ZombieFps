@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7291271086469883703}
   - component: {fileID: 4445665393731021383}
   - component: {fileID: 1049044180590688086}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: SimpleSMG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,6 +221,8 @@ MonoBehaviour:
   gunName: SMG
   audioScript: {fileID: 2028860010463139171}
   type: 4
+  subObjects:
+  - {fileID: 8982578848075448092}
   meshRenderer: {fileID: 0}
   matOne: {fileID: 0}
   matTwo: {fileID: 0}
@@ -250,7 +252,7 @@ GameObject:
   - component: {fileID: 2666415903212596135}
   - component: {fileID: 5070654883737797512}
   - component: {fileID: 9151176729047331819}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: AsimovSMG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -339,7 +341,7 @@ PrefabInstance:
     - target: {fileID: 406030098329180835, guid: 5df316a205873634bb7a62842b5e6be7,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1564168310189941097, guid: 5df316a205873634bb7a62842b5e6be7,
         type: 3}
@@ -394,7 +396,7 @@ PrefabInstance:
     - target: {fileID: 9122239338469688592, guid: 5df316a205873634bb7a62842b5e6be7,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

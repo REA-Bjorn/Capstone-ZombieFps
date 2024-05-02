@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8801105522742591838}
   - component: {fileID: 1536886111832491803}
   - component: {fileID: 4661489748670860931}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: AsimovSniperRifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 4176740013961047462}
   - component: {fileID: 9216524361914743109}
   - component: {fileID: 6973577540250172848}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: SimpleSniperRifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,6 +305,8 @@ MonoBehaviour:
   gunName: Sniper Rifle
   audioScript: {fileID: 2770081570088809518}
   type: 5
+  subObjects:
+  - {fileID: 469858835671184603}
   meshRenderer: {fileID: 0}
   matOne: {fileID: 0}
   matTwo: {fileID: 0}
@@ -339,7 +341,7 @@ PrefabInstance:
     - target: {fileID: 406030098329180835, guid: 5df316a205873634bb7a62842b5e6be7,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1564168310189941097, guid: 5df316a205873634bb7a62842b5e6be7,
         type: 3}
@@ -399,7 +401,7 @@ PrefabInstance:
     - target: {fileID: 9122239338469688592, guid: 5df316a205873634bb7a62842b5e6be7,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

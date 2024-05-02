@@ -113,8 +113,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3537182811137955909}
   - {fileID: 5243380924760229637}
+  - {fileID: 3537182811137955909}
   m_Father: {fileID: 1763888271620170312}
   m_LocalEulerAnglesHint: {x: 3.23, y: 0, z: 0}
 --- !u!20 &1271044972032980023
@@ -633,6 +633,9 @@ MonoBehaviour:
   Primary: {fileID: 3353120695589493500}
   Secondary: {fileID: 0}
   instaKillTimer: {fileID: 1017170623341548440}
+  _weaponCamLayer:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!114 &1017170623341548440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -745,14 +748,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 1
+  m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
+  m_CameraType: 1
   m_Cameras: []
   m_RendererIndex: 0
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 0
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
@@ -1097,6 +1100,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4205317262527372932, guid: 83a688caebe4c144eb9f08de179466ee,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4205317262527372934, guid: 83a688caebe4c144eb9f08de179466ee,
         type: 3}

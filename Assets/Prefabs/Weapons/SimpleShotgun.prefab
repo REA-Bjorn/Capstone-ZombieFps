@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attack:
-    max: 0
+    max: 2
     min: 0
     currentValue: 0
   ammo:

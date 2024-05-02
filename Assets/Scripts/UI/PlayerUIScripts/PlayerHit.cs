@@ -32,7 +32,7 @@ public class PlayerHit : MonoBehaviour
 
             float alphaFadeIn = flashSpeedCurve.Evaluate(tmpDamageFlash);
 
-            pfxVignette.intensity.value = alphaFadeIn;
+            pfxVignette.intensity.value = Mathf.Clamp(alphaFadeIn, 0, PlayerBase.instance.Health.RevPercent * 0.5f);
 
             yield return 0;
         }

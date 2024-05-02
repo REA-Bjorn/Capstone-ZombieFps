@@ -671,7 +671,7 @@ MonoBehaviour:
   gunAnimations: {fileID: 2480527453509566340}
   gunName: CovertSMG
   audioScript: {fileID: 2126988709403436512}
-  type: 4
+  type: 11
   subObjects:
   - {fileID: 4284721963963582245}
   - {fileID: 419766010021375378}

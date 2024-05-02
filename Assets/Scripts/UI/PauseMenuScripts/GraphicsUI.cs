@@ -37,6 +37,6 @@ public class GraphicsUI : MonoBehaviour
     private void UpdatePostProcess(bool _state)
     {
         SettingsManager.Instance.GetSettings().postProcessing = _state;
-        //Camera.main.GetComponent<UniversalAdditionalCameraData>().renderPostProcessing = _state;
+        PostProcessManager.Instance?.TogglePostProcess(_state);
     }
 }

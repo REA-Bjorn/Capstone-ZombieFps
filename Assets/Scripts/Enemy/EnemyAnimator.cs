@@ -5,13 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class EnemyAnimator : MonoBehaviour
 {
-    private Animator anim;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        anim = gameObject.GetComponent<Animator>();
-    }
+    [SerializeField] private Animator anim;
 
     public void PlayRunAnimation()
     {
@@ -41,5 +35,10 @@ public class EnemyAnimator : MonoBehaviour
     public void PlayDeathAnimation()
     {
         anim.SetTrigger("Killed");
+    }
+
+    public void UpdateRootMotion(bool _state)
+    {
+        anim.applyRootMotion = _state;
     }
 }

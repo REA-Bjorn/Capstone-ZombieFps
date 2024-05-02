@@ -19,6 +19,7 @@ public class Resource
     //Properties
     public float CurrentValue => currentValue;
     public float Percent => currentValue / max;
+    public float RevPercent => 1 - (currentValue / max);
     public float Max => max;
     public float Min => min;
     public bool IsValid => currentValue > 0;

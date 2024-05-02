@@ -194,6 +194,8 @@ public class WeaponManager : MonoBehaviour
         // this needs to be spread out because we don't want to refill
         // our "sniper rifle" if we are at a "shotgun" weapon stand
 
+        Debug.Log(_type.ToString() + " " + Primary.Type + " " + Secondary.Type);
+
         // Do we have the current type
         if (Primary.Type == _type)
         {

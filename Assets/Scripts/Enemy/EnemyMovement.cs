@@ -30,10 +30,10 @@ public class EnemyMovement : MonoBehaviour
 
             FacePlayer();
         }
-        else
-        {
-            Debug.Log("Agent Active&Enabled : " + agent.isActiveAndEnabled + " Agent On Mesh: " + agent.isOnNavMesh);
-        }
+        //else
+        //{
+        //    Debug.Log("Agent Active&Enabled : " + agent.isActiveAndEnabled + " Agent On Mesh: " + agent.isOnNavMesh);
+        //}
     }
 
     public void DistractedMovement()

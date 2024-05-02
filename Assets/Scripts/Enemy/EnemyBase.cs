@@ -48,6 +48,7 @@ public class EnemyBase : MonoBehaviour, IDamage
     {
         PickupManager.Instance.DropPickup(transform);
         DisableNavMesh();
+        anim.UpdateRootMotion(true);
         anim.PlayDeathAnimation();
         atkColl.enabled = false;
         baseColl.enabled = false;
@@ -109,8 +110,8 @@ public class EnemyBase : MonoBehaviour, IDamage
     {
         attack.SetMax();
         speed.SetMax();
-
-        health.UpdateMax(WaveManager.Instance.CurrWaveNumInt * 1.4142f);
+        float val = 2 * Mathf.Sqrt((8.5f * WaveManager.Instance.CurrWaveNumInt) + 2f);
+        health.UpdateMax(val);
         health.SetMax();
     }
 
@@ -120,6 +121,7 @@ public class EnemyBase : MonoBehaviour, IDamage
     public void SpawnMe()
     {
         MaxStats();
+        anim.UpdateRootMotion(false);
         visualScript.UpdateEnemyEyes(health.Percent * 10);
         atkColl.enabled = true;
         baseColl.enabled = true;

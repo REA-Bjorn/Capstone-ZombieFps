@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(EnemyAnimator))]
 public class EnemyVisual : MonoBehaviour
 {
     [SerializeField] List<Material> _modelMaterial;

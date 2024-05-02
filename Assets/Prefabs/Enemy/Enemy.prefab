@@ -895,6 +895,7 @@ GameObject:
   - component: {fileID: 7095413207640277574}
   - component: {fileID: 4368471522738032736}
   - component: {fileID: 6319629393704522326}
+  - component: {fileID: 3174478159427340888}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -950,7 +951,10 @@ MonoBehaviour:
   move: {fileID: 6486444482730339916}
   deathPointWorth: 50
   hitPointVal: 15
-  animator: {fileID: 4368471522738032736}
+  anim: {fileID: 3174478159427340888}
+  atkColl: {fileID: 1078957920648701855}
+  baseColl: {fileID: 7095413207640277574}
+  navMeshAgent: {fileID: 6319629393704522326}
 --- !u!114 &6486444482730339916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1060,6 +1064,18 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
+--- !u!114 &3174478159427340888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3261371145617336343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef1b9167565aefd4e9da1ffe526718e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3279261903978712240
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyBase : MonoBehaviour, IDamage
 {
@@ -15,14 +16,22 @@ public class EnemyBase : MonoBehaviour, IDamage
     [SerializeField] int deathPointWorth = 50;
     [SerializeField] int hitPointVal = 15;
 
-    [SerializeField] private Animator animator;
+    [Seperator]
+    [SerializeField] EnemyAnimator anim;
+    [SerializeField] private BoxCollider atkColl;
+    [SerializeField] private CapsuleCollider baseColl;
+    [SerializeField] private NavMeshAgent navMeshAgent;
+
     private bool distracted;
 
     public SpeedPool Spd => speed;
     public AttackPool Atk => attack;
 
+    public EnemyAnimator Ani => anim;
+
     void Start()
     {
+        navMeshAgent = GetComponent<NavMeshAgent>();
         MaxStats();
         // Force update on start of enemy because waves starts at 0
         // therefore starting hp = 0 bad...
@@ -38,8 +47,10 @@ public class EnemyBase : MonoBehaviour, IDamage
     private void Health_OnDepleted()
     {
         PickupManager.Instance.DropPickup(transform);
-        WaveManager.Instance.EnemyKilled(gameObject);
-        gameObject.SetActive(false);
+        DisableNavMesh();
+        anim.PlayDeathAnimation();
+        atkColl.enabled = false;
+        baseColl.enabled = false;
     }
 
     void Update()
@@ -66,6 +77,7 @@ public class EnemyBase : MonoBehaviour, IDamage
             // Update enemy speed based off of their health's percent and their min/max speed
             float newSpeed = Mathf.Clamp(health.Percent * speed.Max, speed.Min, speed.Max);
             move.UpdateMoveSpeed(newSpeed);
+            anim.PlayHitAnimation();
         }
 
         // If we are not forcing the kill on the enemy and they did "die"
@@ -75,6 +87,24 @@ public class EnemyBase : MonoBehaviour, IDamage
         }
     }
 
+    private void EnableNavMesh()
+    {
+        //Debug.Log("Enemy navmesh turned on!");
+        navMeshAgent.enabled = true;
+    }
+
+    private void DisableNavMesh()
+    {
+        //Debug.Log("Enemy navmesh turned off!");
+        navMeshAgent.enabled = false;
+    }
+
+    private void EndOfDeathAnim()
+    {
+        WaveManager.Instance.EnemyKilled(gameObject);
+        gameObject.SetActive(false);
+    }
+
     public void MaxStats()
     {
         attack.SetMax();
@@ -82,8 +112,6 @@ public class EnemyBase : MonoBehaviour, IDamage
 
         health.UpdateMax(WaveManager.Instance.CurrWaveNumInt * 1.4142f);
         health.SetMax();
-
-        visualScript.UpdateEnemyEyes(health.Percent * 10);
     }
 
     /// <summary>
@@ -92,17 +120,14 @@ public class EnemyBase : MonoBehaviour, IDamage
     public void SpawnMe()
     {
         MaxStats();
-        //PlaySpawnAnimation();
+        visualScript.UpdateEnemyEyes(health.Percent * 10);
+        atkColl.enabled = true;
+        baseColl.enabled = true;
     }
 
     public void ForceKill()
     {
         TakeDamage(health.CurrentValue, true);
-    }
-
-    private void PlaySpawnAnimation()
-    {
-        //animator.SetTrigger("Spawn");
     }
 
     public void TakeMaxDamage()

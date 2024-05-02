@@ -7,13 +7,10 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour 
 {
     [SerializeField] BoxCollider box;
-
     [SerializeField] EnemyBase enemy;
-
     [SerializeField] CustomTimer timer;
 
     private float storedTime;
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -22,6 +19,7 @@ public class EnemyAttack : MonoBehaviour
             IDamage dmg = other.GetComponent<IDamage>();
             if (dmg != null)
             {
+                enemy.Ani.PlayAttackAnimation();
                 dmg.TakeDamage(enemy.Atk.CurrentValue);
                 timer.StartTimer(storedTime);
             }

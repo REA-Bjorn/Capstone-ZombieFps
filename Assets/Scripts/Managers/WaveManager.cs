@@ -171,8 +171,6 @@ public class WaveManager : MonoBehaviour
     void EnableEnemy(EnemyBase _enemy)
     {
         _enemy.gameObject.SetActive(true);
-        // handles maxing the stats for us
-        _enemy.SpawnMe();
 
         // Gets and stores a random transform
         Transform tr = GetRandomSpawnPoint();
@@ -180,15 +178,14 @@ public class WaveManager : MonoBehaviour
         //Debug.Log("enemy position: " + tr.position, tr.gameObject);
         //Debug.Log(_enemy.name, _enemy.gameObject);
 
-        _enemy.GetComponent<NavMeshAgent>().enabled = true;
-        //Debug.Log("Enemy navmesh turned on!");
-        
-        
         NavMeshHit myNavHit;
         if (NavMesh.SamplePosition(_enemy.transform.position, out myNavHit, 0.5f, -1))
         {
             _enemy.transform.SetPositionAndRotation(myNavHit.position, Quaternion.identity);
         }
+
+        // handles maxing the stats for us
+        _enemy.SpawnMe();
     }
 
     public void EnemyKilled(GameObject _enemy)

@@ -6,13 +6,10 @@ using UnityEngine;
 public class ShotgunScript : BaseWeapon
 {
     [Seperator]
-
+    //Can set the number of pellets
     [SerializeField] int NumberOfPellets;
-
+    //Can set the spread amount
     [SerializeField] float MaxSpread;
-
-    [SerializeField] private GameObject sphereMesh;
-    [SerializeField] private GameObject capsMesh;
 
     public override void Start()
     {
@@ -41,18 +38,15 @@ public class ShotgunScript : BaseWeapon
             // Loop through all pellets
             for (int i = 0; i < NumberOfPellets; i++)
             {
+                //Create two vectors direction and spread for the shot being created
                 Vector3 direction = Camera.main.transform.forward;
                 Vector3 spread = Camera.main.transform.up * Random.Range(-MaxSpread, MaxSpread);
-                
+                //Updating the vectors to a new value
                 spread += Camera.main.transform.right * Random.Range(-MaxSpread, MaxSpread);
                 direction += spread.normalized * Random.Range(0f, 0.2f);
 
-                //Debug.DrawRay(transform.position, direction, Color.blue, 100000);
-
                 if (Physics.Raycast(transform.position, direction, out hit, ShootDist))
                 {
-                    //Debug.DrawLine(transform.position, hit.point, Color.red, 100000);
-
                     IDamage damage = hit.collider.GetComponent<IDamage>();
                     if (damage != null)
                     {

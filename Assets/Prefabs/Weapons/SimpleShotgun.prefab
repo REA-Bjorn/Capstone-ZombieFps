@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 376334250136571035}
   - component: {fileID: 4255513727678367180}
   - component: {fileID: 465400891335633700}
-  - component: {fileID: 6452815823629389845}
+  - component: {fileID: 8194582080009204741}
   - component: {fileID: 3879372763705896364}
   m_Layer: 0
   m_Name: SimpleShotgun
@@ -273,7 +273,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6452815823629389845
+--- !u!114 &8194582080009204741
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -282,11 +282,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5760991350033466311}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c8ca26e879603047bdb50c0d8056b18, type: 3}
+  m_Script: {fileID: 11500000, guid: 86e2a8237aa35cf4fa345b24b46f9c73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attack:
-    max: 2
+    max: 1
     min: 0
     currentValue: 0
   ammo:
@@ -297,7 +297,7 @@ MonoBehaviour:
     max: 20
     min: 0
     currentValue: 0
-  range: 30
+  range: 100
   fireRateTimer: {fileID: 2618276494698269231}
   reloadTimer: {fileID: 3879372763705896364}
   muzzleFlash: {fileID: 4019919256391937776}
@@ -305,11 +305,12 @@ MonoBehaviour:
   gunName: Shotgun
   audioScript: {fileID: 4255513727678367180}
   type: 8
-  subObjects:
-  - {fileID: 4445359083737991827}
+  subObjects: []
   meshRenderer: {fileID: 0}
   matOne: {fileID: 0}
   matTwo: {fileID: 0}
+  NumberOfPellets: 10
+  MaxSpread: 45
 --- !u!114 &3879372763705896364
 MonoBehaviour:
   m_ObjectHideFlags: 0

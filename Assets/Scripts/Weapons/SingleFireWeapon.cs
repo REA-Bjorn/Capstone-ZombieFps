@@ -19,6 +19,7 @@ public class SingleFireWeapon : BaseWeapon
         base.OnDisable();
     }
 
+
     public override bool Shoot()
     {
         if (base.Shoot() && ammo.IsValid)
@@ -29,6 +30,7 @@ public class SingleFireWeapon : BaseWeapon
             RaycastHit hit;
             // Shoot a ray from the screen with our shoot dist
             // COD World At War also does it from the camera (tested this in-game)
+            //First Shot
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, ShootDist))
             {
                 // Get an IDamage component from the hit object

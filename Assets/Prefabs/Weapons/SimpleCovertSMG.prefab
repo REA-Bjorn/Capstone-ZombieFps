@@ -657,11 +657,11 @@ MonoBehaviour:
     min: 0
     currentValue: 0
   ammo:
-    max: 25
+    max: 18
     min: 0
     currentValue: 0
   reserves:
-    max: 200
+    max: 60
     min: 0
     currentValue: 0
   range: 75

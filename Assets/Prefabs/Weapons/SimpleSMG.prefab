@@ -210,7 +210,7 @@ MonoBehaviour:
     min: 0
     currentValue: 0
   reserves:
-    max: 150
+    max: 45
     min: 0
     currentValue: 0
   range: 75

@@ -294,7 +294,7 @@ MonoBehaviour:
     min: 0
     currentValue: 0
   reserves:
-    max: 12
+    max: 20
     min: 0
     currentValue: 0
   range: 30

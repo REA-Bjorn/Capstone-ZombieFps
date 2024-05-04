@@ -310,7 +310,10 @@ MonoBehaviour:
   matOne: {fileID: 0}
   matTwo: {fileID: 0}
   NumberOfPellets: 10
-  MaxSpread: 45
+  MaxSpread: 15
+  sphereMesh: {fileID: 8021335462964506839, guid: e5aa10b9f6f06624cb9f71f5b47a0466,
+    type: 3}
+  capsMesh: {fileID: 195018121550107780, guid: ed2d521cebdab144f810cff8f5ab8347, type: 3}
 --- !u!114 &3879372763705896364
 MonoBehaviour:
   m_ObjectHideFlags: 0

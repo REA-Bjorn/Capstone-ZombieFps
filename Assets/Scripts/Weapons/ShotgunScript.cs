@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShotgunScript : BaseWeapon
@@ -9,7 +10,10 @@ public class ShotgunScript : BaseWeapon
     [SerializeField] int NumberOfPellets;
 
     [SerializeField] float MaxSpread;
-    
+
+    [SerializeField] private GameObject sphereMesh;
+    [SerializeField] private GameObject capsMesh;
+
     public override void Start()
     {
         base.Start();
@@ -31,25 +35,24 @@ public class ShotgunScript : BaseWeapon
         {
             WeaponFX();
 
+            // Create a raycast hit to store hit information
+            RaycastHit hit;
 
+            // Loop through all pellets
             for (int i = 0; i < NumberOfPellets; i++)
             {
-                Ray CameraRay = Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f));
+                Vector3 direction = Camera.main.transform.forward;
+                Vector3 spread = Camera.main.transform.up * Random.Range(-MaxSpread, MaxSpread);
+                
+                spread += Camera.main.transform.right * Random.Range(-MaxSpread, MaxSpread);
+                direction += spread.normalized * Random.Range(0f, 0.2f);
 
-                Physics.Raycast(CameraRay, ShootDist);
+                //Debug.DrawRay(transform.position, direction, Color.blue, 100000);
 
-                var a = Quaternion.LookRotation(CameraRay.direction);
-
-                a = Quaternion.Euler(a.eulerAngles.x + UnityEngine.Random.Range(0, MaxSpread), a.eulerAngles.y + UnityEngine.Random.Range(0, MaxSpread), a.eulerAngles.z);
-
-                RaycastHit hit;
-
-                Debug.Log(a.eulerAngles);
-
-                if (Physics.Raycast(Camera.main.transform.forward, a.eulerAngles, out hit, ShootDist))
+                if (Physics.Raycast(transform.position, direction, out hit, ShootDist))
                 {
-                    Debug.DrawLine(Camera.main.transform.forward, a.eulerAngles, Color.red);
-                    // Get an IDamage component from the hit object
+                    //Debug.DrawLine(transform.position, hit.point, Color.red, 100000);
+
                     IDamage damage = hit.collider.GetComponent<IDamage>();
                     if (damage != null)
                     {

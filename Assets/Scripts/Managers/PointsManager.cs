@@ -45,6 +45,9 @@ public class PointsManager : MonoBehaviour
     {
         doublePointsTimer.OnStart += DoublePointsTimer_OnStart;
         doublePointsTimer.OnEnd += DoublePointsTimer_OnEnd;
+
+        // Give 500 base points
+        points.Increase(500);
     }
 
     private void OnDestroy()

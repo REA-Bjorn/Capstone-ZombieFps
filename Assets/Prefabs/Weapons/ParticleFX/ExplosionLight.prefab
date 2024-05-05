@@ -141,6 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathTimer: {fileID: -4198966396457636006}
   _light: {fileID: 4117335885991507205}
+  particles: {fileID: 8926294276232527899}
   source: {fileID: 896950651632022699}
   clip: {fileID: 8300000, guid: 8d1a5533eb047bd449f5fa41136d3592, type: 3}
 --- !u!198 &8926294276232527899
@@ -151,7 +152,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1601092236965527833}
   serializedVersion: 8
-  lengthInSec: 1
+  lengthInSec: 0.25
   simulationSpeed: 1
   stopAction: 2
   cullingMode: 0
@@ -397,7 +398,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 10
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4936,7 +4937,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.7298756, b: 0, a: 1}
-  m_Intensity: 5
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208

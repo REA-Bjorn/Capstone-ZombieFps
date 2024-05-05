@@ -10,7 +10,12 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float faceSpeed;
 
     private Vector3 playerDir;
-    private Vector3 distractedPos = new Vector3(10000, 10000, 1000);
+    private float baseSpeed;
+
+    private void Start()
+    {
+        baseSpeed = agent.speed;
+    }
 
     void FacePlayer()
     {
@@ -21,31 +26,19 @@ public class EnemyMovement : MonoBehaviour
 
     public void Movement()
     {
-        if (agent.isActiveAndEnabled && agent.isOnNavMesh)
+        if (agent.isActiveAndEnabled && agent.isOnNavMesh && !agent.isStopped)
         {
-            if (!agent.isStopped)
+            if (agent.remainingDistance > 40f)
             {
-                agent.SetDestination(GameManager.Instance.Player.position);
+                UpdateMoveSpeed(25f);
+            }
+            else
+            {
+                UpdateMoveSpeed(baseSpeed);
             }
 
+            agent.SetDestination(GameManager.Instance.Player.position);
             FacePlayer();
-        }
-        //else
-        //{
-        //    Debug.Log("Agent Active&Enabled : " + agent.isActiveAndEnabled + " Agent On Mesh: " + agent.isOnNavMesh);
-        //}
-    }
-
-    public void DistractedMovement()
-    {
-        if (agent.isActiveAndEnabled && agent.isOnNavMesh)
-        {
-            if (!agent.isStopped)
-            {
-                agent.SetDestination(distractedPos);
-            }
-
-            //FacePlayer();
         }
     }
 

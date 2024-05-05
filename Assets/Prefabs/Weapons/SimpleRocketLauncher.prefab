@@ -108,7 +108,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 50
+  MaxDistance: 1.7422523
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -143,7 +143,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -196,10 +196,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 6958041736880963081}
-  shootSFX: {fileID: 8300000, guid: a69060200e9142042b15f00216932cef, type: 3}
-  reloadSFX: {fileID: 8300000, guid: f0561368495de7b49a2a8fd2ebb4587e, type: 3}
-  holsterSFX: {fileID: 0}
-  unholsterSFX: {fileID: 0}
+  shootSFX:
+  - {fileID: 8300000, guid: a69060200e9142042b15f00216932cef, type: 3}
+  reloadSFX:
+  - {fileID: 8300000, guid: f0561368495de7b49a2a8fd2ebb4587e, type: 3}
+  holsterSFX:
+  - {fileID: 8300000, guid: 52e2399560feae9469372de48a06b9bb, type: 3}
+  - {fileID: 8300000, guid: c4f1ca63b3da18c4c9754608f9cca62b, type: 3}
+  unholsterSFX:
+  - {fileID: 8300000, guid: 8a21a5bb94b61644481c6a2e97ae47cf, type: 3}
+  - {fileID: 8300000, guid: 9027766641a4dbf4fa0883f52021dfb5, type: 3}
 --- !u!95 &-3801894500228656467
 Animator:
   serializedVersion: 5
@@ -210,7 +216,7 @@ Animator:
   m_GameObject: {fileID: 8862963188213629692}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 36b26acba33388d4e99234c155acff74, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3e13505727c5871499a8b23ba323ae70, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -245,7 +251,7 @@ MonoBehaviour:
     max: 15
     min: 0
     currentValue: 0
-  range: 450
+  range: 75
   fireRateTimer: {fileID: 6235663014108052779}
   reloadTimer: {fileID: 3363563536787362337}
   muzzleFlash: {fileID: 699806007566156614}
@@ -255,12 +261,14 @@ MonoBehaviour:
   type: 7
   subObjects:
   - {fileID: 9095416562407445941}
-  meshRenderer: {fileID: 0}
-  matOne: {fileID: 0}
-  matTwo: {fileID: 0}
   ammoPrefabToSpawn: {fileID: 9060340230053329400, guid: 44407d5c4527b3e499e3401bb0cca605,
     type: 3}
   spawnPoint: {fileID: 7653381290396185727}
+  currentModel: {fileID: 1445338177104862691}
+  unarmedModel: {fileID: -8621400438561545205, guid: 01e3b3d7bc7077b48b59b817063177d5,
+    type: 3}
+  armedModel: {fileID: 7785320505716517797, guid: 2ffad733eecee164eb97b01b11ce04f1,
+    type: 3}
 --- !u!114 &3363563536787362337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,7 +296,7 @@ GameObject:
   - component: {fileID: 1445338177104862691}
   - component: {fileID: 1743391284415274176}
   m_Layer: 0
-  m_Name: AsimovRocketLauncher
+  m_Name: CurrentModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

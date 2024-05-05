@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyAnimator : MonoBehaviour
 {
     [SerializeField] private Animator anim;
-
+     
     public void PlayRunAnimation()
     {
         anim.SetTrigger("FinishedSpawn");

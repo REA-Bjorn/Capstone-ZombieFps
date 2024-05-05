@@ -33,13 +33,12 @@ public class VolumeUI : MonoBehaviour
     private void UpdateThemAll()
     {
         // Update Preexisting slider values
-        master.SliderUI.value = SettingsManager.Instance.GetSettings().masterVol;
-        music.SliderUI.value = SettingsManager.Instance.GetSettings().musicVol;
-        sfx.SliderUI.value = SettingsManager.Instance.GetSettings().sfxVol;
-        player.SliderUI.value = SettingsManager.Instance.GetSettings().playerVol;
-        enemy.SliderUI.value = SettingsManager.Instance.GetSettings().enemyVol;
-        weapon.SliderUI.value = SettingsManager.Instance.GetSettings().weaponVol;
-       
+        master.SliderUI.value = PlayerPrefs.GetFloat("MasterVol");
+        music.SliderUI.value = PlayerPrefs.GetFloat("MusicVol");
+        sfx.SliderUI.value = PlayerPrefs.GetFloat("SFXVol");
+        player.SliderUI.value = PlayerPrefs.GetFloat("PlayerVol");
+        enemy.SliderUI.value = PlayerPrefs.GetFloat("EnemyVol");
+        weapon.SliderUI.value = PlayerPrefs.GetFloat("WeaponVol");
     }
 
     private void Subscribe()

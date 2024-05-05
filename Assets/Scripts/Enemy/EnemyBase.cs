@@ -9,6 +9,7 @@ public class EnemyBase : MonoBehaviour, IDamage
     [SerializeField] HealthPool health;
     [SerializeField] AttackPool attack;
     [SerializeField] SpeedPool speed;
+    
     [Seperator]
     [SerializeField] private EnemyVisual visualScript;
     [SerializeField] private EnemyAudio audioScript;
@@ -22,11 +23,14 @@ public class EnemyBase : MonoBehaviour, IDamage
     [SerializeField] private CapsuleCollider baseColl;
     [SerializeField] private NavMeshAgent navMeshAgent;
 
+    [Seperator]
+    [SerializeField] private ParticleSystem spawnParticle1;
+    [SerializeField] private ParticleSystem spawnParticle2;
+    
     private bool distracted;
 
     public SpeedPool Spd => speed;
     public AttackPool Atk => attack;
-
     public EnemyAnimator Ani => anim;
 
     void Start()
@@ -56,14 +60,7 @@ public class EnemyBase : MonoBehaviour, IDamage
 
     void Update()
     {
-        if (distracted)
-        {
-            move.DistractedMovement();
-        }
-        else
-        {
-            move.Movement();
-        }
+        move.Movement();
     }
 
     public void TakeDamage(float damage, bool forceKilled = false)
@@ -88,10 +85,14 @@ public class EnemyBase : MonoBehaviour, IDamage
         }
     }
 
+    // Called in Animator
     private void EnableNavMesh()
     {
         //Debug.Log("Enemy navmesh turned on!");
         navMeshAgent.enabled = true;
+
+        spawnParticle1.gameObject.SetActive(false);
+        spawnParticle2.gameObject.SetActive(false);
     }
 
     private void DisableNavMesh()
@@ -100,6 +101,7 @@ public class EnemyBase : MonoBehaviour, IDamage
         navMeshAgent.enabled = false;
     }
 
+    // Called in Animator
     private void EndOfDeathAnim()
     {
         WaveManager.Instance.EnemyKilled(gameObject);
@@ -125,6 +127,11 @@ public class EnemyBase : MonoBehaviour, IDamage
         visualScript.UpdateEnemyEyes(health.Percent * 10);
         atkColl.enabled = true;
         baseColl.enabled = true;
+
+        spawnParticle1.gameObject.SetActive(true);
+        spawnParticle1.Play();
+        spawnParticle2.gameObject.SetActive(true);
+        spawnParticle2.Play();
     }
 
     public void ForceKill()

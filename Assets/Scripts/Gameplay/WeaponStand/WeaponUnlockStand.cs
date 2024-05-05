@@ -30,12 +30,10 @@ public class WeaponUnlockStand : BaseInteractable
                 // Update new unlock cost
                 unlockCost = weaponHold.Cost / 2f;
                 costDisplay.text = weaponType.ToString() + "Ammo \n$" + unlockCost.ToString();
-                Debug.Log("Bought Weapon");
                 return true;
             }
             else
             {
-                Debug.Log("Not enough points to buy weapon!");
                 UIManager.Instance.PlayerUIScript.FlashPointsUI();
             }
         }
@@ -51,19 +49,14 @@ public class WeaponUnlockStand : BaseInteractable
                 {
                     WeaponManager.Instance.BoughtAmmo(weaponType);
                     UIManager.Instance.UpdateWeaponsUI();
-                    Debug.Log("Bought ammo!");
                     return true;
                 }
                 else
                 {
-                    Debug.Log("Not enough points to buy ammo!");
                     UIManager.Instance.PlayerUIScript.FlashPointsUI();
                 }
             }
         }
-        
-        Debug.Log("olasma");
-        
 
         /* 
          * One of the following happened:

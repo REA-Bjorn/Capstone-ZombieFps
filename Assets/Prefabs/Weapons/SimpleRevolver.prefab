@@ -90,9 +90,6 @@ MonoBehaviour:
   subObjects:
   - {fileID: 618986770966352370}
   - {fileID: 4205317262527372932}
-  meshRenderer: {fileID: 0}
-  matOne: {fileID: 0}
-  matTwo: {fileID: 0}
 --- !u!114 &7485725871518676988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,10 +103,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 8233552250953843253}
-  shootSFX: {fileID: 8300000, guid: 766f4a301e3415c4889c5d2f5ce7e5dd, type: 3}
-  reloadSFX: {fileID: 8300000, guid: a5f882c8120d781409b3cca7c33ffad9, type: 3}
-  holsterSFX: {fileID: 0}
-  unholsterSFX: {fileID: 0}
+  shootSFX:
+  - {fileID: 8300000, guid: fcb2c16865c084b419eeac04d46b6cab, type: 3}
+  reloadSFX:
+  - {fileID: 8300000, guid: a5f882c8120d781409b3cca7c33ffad9, type: 3}
+  holsterSFX:
+  - {fileID: 8300000, guid: 52e2399560feae9469372de48a06b9bb, type: 3}
+  - {fileID: 8300000, guid: c4f1ca63b3da18c4c9754608f9cca62b, type: 3}
+  unholsterSFX:
+  - {fileID: 8300000, guid: 8a21a5bb94b61644481c6a2e97ae47cf, type: 3}
+  - {fileID: 8300000, guid: 9027766641a4dbf4fa0883f52021dfb5, type: 3}
 --- !u!82 &8233552250953843253
 AudioSource:
   m_ObjectHideFlags: 0
@@ -119,7 +122,7 @@ AudioSource:
   m_GameObject: {fileID: 8395054478332866087}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -7593972594107595799, guid: bf718591e359ae34d9173881c20482db,
+  OutputAudioMixerGroup: {fileID: 2449669514870342803, guid: bf718591e359ae34d9173881c20482db,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 766f4a301e3415c4889c5d2f5ce7e5dd, type: 3}
   m_PlayOnAwake: 0
@@ -167,7 +170,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -197,7 +200,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.15
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

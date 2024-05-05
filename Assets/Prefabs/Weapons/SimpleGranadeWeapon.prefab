@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimerName: 
-  duration: 0.5
+  duration: 0.2
   RunTimer: 0
 --- !u!82 &3768304452682764896
 AudioSource:
@@ -112,7 +112,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -165,10 +165,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 3768304452682764896}
-  shootSFX: {fileID: 8300000, guid: a69060200e9142042b15f00216932cef, type: 3}
-  reloadSFX: {fileID: 8300000, guid: f0561368495de7b49a2a8fd2ebb4587e, type: 3}
-  holsterSFX: {fileID: 0}
-  unholsterSFX: {fileID: 0}
+  shootSFX:
+  - {fileID: 8300000, guid: 5634841d32ea6914eba61e3c31c6c463, type: 3}
+  reloadSFX: []
+  holsterSFX:
+  - {fileID: 8300000, guid: 52e2399560feae9469372de48a06b9bb, type: 3}
+  - {fileID: 8300000, guid: c4f1ca63b3da18c4c9754608f9cca62b, type: 3}
+  unholsterSFX:
+  - {fileID: 8300000, guid: 8a21a5bb94b61644481c6a2e97ae47cf, type: 3}
+  - {fileID: 8300000, guid: 9027766641a4dbf4fa0883f52021dfb5, type: 3}
 --- !u!95 &1802771790173787382
 Animator:
   serializedVersion: 5
@@ -214,7 +219,7 @@ MonoBehaviour:
     max: 9
     min: 0
     currentValue: 0
-  range: 50
+  range: 30
   fireRateTimer: {fileID: 8436714623799273670}
   reloadTimer: {fileID: 1905159307780836119}
   muzzleFlash: {fileID: 7893528395190240591}
@@ -224,12 +229,13 @@ MonoBehaviour:
   type: 9
   subObjects:
   - {fileID: 5707378708160610197}
-  meshRenderer: {fileID: 0}
-  matOne: {fileID: 0}
-  matTwo: {fileID: 0}
   ammoPrefabToSpawn: {fileID: 58517878630338343, guid: eb53a7adf1447044b9b4461214879447,
     type: 3}
   spawnPoint: {fileID: 6104657033200982872}
+  currentModel: {fileID: 5711923930308610231}
+  unarmedModel: {fileID: 0}
+  armedModel: {fileID: -4825339825190257528, guid: aee7c852815983547b8a64207c740f94,
+    type: 3}
 --- !u!114 &1905159307780836119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,6 +447,12 @@ Transform:
 --- !u!1 &5707378708160610197 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1947772785457376, guid: fa4c1dd5194ba6443b9c3928dd899272,
+    type: 3}
+  m_PrefabInstance: {fileID: 5706700433233315701}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &5711923930308610231 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 33373760717950914, guid: fa4c1dd5194ba6443b9c3928dd899272,
     type: 3}
   m_PrefabInstance: {fileID: 5706700433233315701}
   m_PrefabAsset: {fileID: 0}

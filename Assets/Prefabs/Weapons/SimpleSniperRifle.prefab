@@ -195,7 +195,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -248,10 +248,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 1907719525277770251}
-  shootSFX: {fileID: 8300000, guid: fcb2c16865c084b419eeac04d46b6cab, type: 3}
-  reloadSFX: {fileID: 8300000, guid: 0c315e7cfaae2734cb3fc445cde5c452, type: 3}
-  holsterSFX: {fileID: 0}
-  unholsterSFX: {fileID: 0}
+  shootSFX:
+  - {fileID: 8300000, guid: fcb2c16865c084b419eeac04d46b6cab, type: 3}
+  reloadSFX:
+  - {fileID: 8300000, guid: 0c315e7cfaae2734cb3fc445cde5c452, type: 3}
+  holsterSFX:
+  - {fileID: 8300000, guid: 52e2399560feae9469372de48a06b9bb, type: 3}
+  - {fileID: 8300000, guid: c4f1ca63b3da18c4c9754608f9cca62b, type: 3}
+  unholsterSFX:
+  - {fileID: 8300000, guid: 8a21a5bb94b61644481c6a2e97ae47cf, type: 3}
+  - {fileID: 8300000, guid: 9027766641a4dbf4fa0883f52021dfb5, type: 3}
 --- !u!95 &4176740013961047462
 Animator:
   serializedVersion: 5
@@ -307,9 +313,6 @@ MonoBehaviour:
   type: 5
   subObjects:
   - {fileID: 469858835671184603}
-  meshRenderer: {fileID: 0}
-  matOne: {fileID: 0}
-  matTwo: {fileID: 0}
 --- !u!114 &6973577540250172848
 MonoBehaviour:
   m_ObjectHideFlags: 0

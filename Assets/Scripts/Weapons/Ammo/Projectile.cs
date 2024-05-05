@@ -9,7 +9,8 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private CustomTimer deathTimer;
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private GameObject projectileDeathEffects;
+    [SerializeField] private ProjectileVisuals visuals;
+    [SerializeField] private GameObject modelObj;
     [Seperator]
     [SerializeField] private float aoeRange;
     [SerializeField] private float speed;
@@ -38,12 +39,36 @@ public class Projectile : MonoBehaviour
 
     private void ProjectileDied()
     {
+        // stop and unsub the timer cause the projectile is about to be destroyed
         deathTimer.StopTimer();
-
-        Instantiate(projectileDeathEffects, transform.position, transform.rotation);
-
-        // unsub the timer cause the projectile is about to be destroyed
         deathTimer.OnEnd -= ProjectileDied;
+
+        DealDamage();
+        GetComponent<Collider>().enabled = false;
+
+        StartupVisuals();
+
+        Destroy(gameObject, 0.5f);
+    }
+
+    private void StartupVisuals()
+    {
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+        modelObj.SetActive(false);
+        visuals?.gameObject.SetActive(true);
+        visuals.Startup();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // If the collider hit anything!
+        ProjectileDied();
+    }
+
+    private void DealDamage()
+    {
         Collider[] allHits = Physics.OverlapSphere(transform.position, aoeRange);
         foreach (Collider hit in allHits)
         {
@@ -73,13 +98,5 @@ public class Projectile : MonoBehaviour
                 }
             }
         }
-
-        Destroy(gameObject);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        // If the collider hit anything!
-        ProjectileDied();
     }
 }

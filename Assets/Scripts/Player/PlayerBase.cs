@@ -15,7 +15,8 @@ public class PlayerBase : MonoBehaviour, IDamage
     [Seperator]
     [SerializeField] private PlayerMovement move;
     [SerializeField] private PlayerCamera cam;
-    [SerializeField] private CustomTimer respawnTimer;
+    [SerializeField] private PlayerAudio aud;
+    [Seperator]
     [SerializeField] private AudioSource extraSFXSource;
     [Seperator]
     [SerializeField] private CustomTimer passiveHealthRegenTimer;
@@ -26,6 +27,9 @@ public class PlayerBase : MonoBehaviour, IDamage
     public HealthPool Health => health;
     public StaminaPool Stam => stamina;
     public float ShootDist => WeaponManager.Instance.ShootDist;
+
+    private float iFrameCounter = 0;
+    private bool iFrameOn = false;
 
     private void Awake()
     {
@@ -41,9 +45,6 @@ public class PlayerBase : MonoBehaviour, IDamage
         stamina.OnChanged += UIManager.Instance.PlayerUIScript.UpdateStaminaBar;
         health.OnDepleted += HealthDepleted;
 
-        respawnTimer.OnStart += RespawnTimer_OnStart;
-        respawnTimer.OnEnd += RespawnTimer_OnEnd;
-
         delayPassiveHealthRegenTimer.OnEnd += () =>
         {
             passiveHealthRegenTimer.StartTimer();
@@ -52,28 +53,19 @@ public class PlayerBase : MonoBehaviour, IDamage
         passiveHealthRegenTimer.OnTick += () =>
         {
             health.Increase(Time.deltaTime * 0.1f); // time.delta time will be a lot so 0.1 times that
-            
+
             if (health.IsMaxed)
                 passiveHealthRegenTimer.StopTimer();
         };
-    }
-
-    private void RespawnTimer_OnEnd()
-    {
-        speed.SetMax();
-        health.SetMax();
-    }
-
-    private void RespawnTimer_OnStart()
-    {
-        GameManager.Instance.PlayerReviving();
     }
 
     private void HealthDepleted()
     {
         if (PerkManager.Instance.SecondaryLife)
         {
-            respawnTimer.StartTimer();
+            GameManager.Instance.PlayerReviving();
+            speed.SetMax();
+            health.SetMax();
         }
         else
         {
@@ -99,9 +91,6 @@ public class PlayerBase : MonoBehaviour, IDamage
         stamina.OnChanged -= UIManager.Instance.PlayerUIScript.UpdateStaminaBar;
         health.OnDepleted -= HealthDepleted;
 
-        respawnTimer.OnStart -= RespawnTimer_OnStart;
-        respawnTimer.OnEnd -= RespawnTimer_OnEnd;
-
         delayPassiveHealthRegenTimer.OnEnd -= () =>
         {
             passiveHealthRegenTimer.StartTimer();
@@ -124,22 +113,39 @@ public class PlayerBase : MonoBehaviour, IDamage
         {
             cam.Look();
         }
+
+        if (iFrameOn)
+        {
+            iFrameCounter++;
+
+            if (iFrameCounter >= 30)
+            {
+                iFrameCounter = 0;
+                iFrameOn = false;
+            }
+        }
     }
 
     public void TakeDamage(float damage, bool forceKilled = false)
     {
-        // Show visual feedback
-        UIManager.Instance.PlayerHitScript.Active();
+        if (!iFrameOn)
+        {
+            iFrameOn = true;
+            
+            // Visual UX
+            UIManager.Instance.PlayerHitScript.Active();
+            // Audio UX
+            aud.PlayHitSFX();
 
-        // Timer code for regen resetting
-        if (passiveHealthRegenTimer.RunTimer)
-            passiveHealthRegenTimer.StopTimer();
-        
-        delayPassiveHealthRegenTimer.RestartTimer();
+            // Timer code for regen resetting
+            if (passiveHealthRegenTimer.RunTimer)
+                passiveHealthRegenTimer.StopTimer();
 
+            delayPassiveHealthRegenTimer.RestartTimer();
 
-        // Actually take damage
-        health.Decrease(damage);
+            // Actually take damage
+            health.Decrease(damage);
+        }
     }
 
     public void TakeMaxDamage()
@@ -154,7 +160,8 @@ public class PlayerBase : MonoBehaviour, IDamage
 
     public void HealthPerkDisabled()
     {
-        health.UpdateMax(10);
+        health.UpdateMax(3);
+        health.SetMax();
     }
 
     public void ShakeCam(float camShakeAmount, float camShakeDuration)

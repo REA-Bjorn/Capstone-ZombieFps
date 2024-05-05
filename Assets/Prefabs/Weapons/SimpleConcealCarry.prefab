@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimerName: 
-  duration: 0.5
+  duration: 0.2
   RunTimer: 0
 --- !u!82 &2416885581016544511
 AudioSource:
@@ -195,7 +195,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -248,10 +248,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 2416885581016544511}
-  shootSFX: {fileID: 8300000, guid: 766f4a301e3415c4889c5d2f5ce7e5dd, type: 3}
-  reloadSFX: {fileID: 8300000, guid: a328d853e25c93945be97919519921fe, type: 3}
-  holsterSFX: {fileID: 0}
-  unholsterSFX: {fileID: 0}
+  shootSFX:
+  - {fileID: 8300000, guid: 1cf5a6b716a08bb42895070c0299c329, type: 3}
+  - {fileID: 8300000, guid: 74a0366ff0ae130489d898957f06f3dd, type: 3}
+  - {fileID: 8300000, guid: 1e09bfef20558e24596501e609a2a95e, type: 3}
+  - {fileID: 8300000, guid: 46356fd07143a8141ae0be24c7b9057b, type: 3}
+  reloadSFX:
+  - {fileID: 8300000, guid: 0e030b0e46bc98d40836fad34870923e, type: 3}
+  - {fileID: 8300000, guid: c082c93feab345e4fa1b3ec495205938, type: 3}
+  - {fileID: 8300000, guid: 7a664ac9b99dc4041a9f860c87a981ce, type: 3}
+  - {fileID: 8300000, guid: 920c600f81466c74e96b4166fa637ef1, type: 3}
+  holsterSFX:
+  - {fileID: 8300000, guid: 52e2399560feae9469372de48a06b9bb, type: 3}
+  - {fileID: 8300000, guid: c4f1ca63b3da18c4c9754608f9cca62b, type: 3}
+  unholsterSFX:
+  - {fileID: 8300000, guid: 8a21a5bb94b61644481c6a2e97ae47cf, type: 3}
+  - {fileID: 8300000, guid: 9027766641a4dbf4fa0883f52021dfb5, type: 3}
 --- !u!95 &1188549063346666287
 Animator:
   serializedVersion: 5
@@ -307,9 +319,6 @@ MonoBehaviour:
   type: 3
   subObjects:
   - {fileID: 2876889623520540516}
-  meshRenderer: {fileID: 0}
-  matOne: {fileID: 0}
-  matTwo: {fileID: 0}
 --- !u!114 &6190295787265376105
 MonoBehaviour:
   m_ObjectHideFlags: 0

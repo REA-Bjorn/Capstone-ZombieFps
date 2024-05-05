@@ -28,12 +28,6 @@ public class BaseWeapon : MonoBehaviour
     [Seperator]
     [SerializeField] protected List<GameObject> subObjects;
 
-
-    // Need to use these a lot
-    public MeshRenderer meshRenderer;
-    public Material matOne;
-    public Material matTwo;
-
     // Properties
     public string Name => gunName;
     public AmmoPool Ammo => ammo;
@@ -47,7 +41,6 @@ public class BaseWeapon : MonoBehaviour
     private GameObject parentStand;
     private WeaponUnlockStand weaponStand;
 
-    // TODO: Create 2 private float variables for storing the reload and fireRate durations
     private float storedReload = 0f;
     private float storedFireRate = 0f;
 
@@ -60,12 +53,8 @@ public class BaseWeapon : MonoBehaviour
         UIManager.Instance.UpdateWeaponsUI();
         CanUse = false;
 
-        // TODO: set stored reload speed variable to the reload timer's DurationTime
         storedReload = reloadTimer.DurationTime;
-
-        // TODO: set stored fire rate variable to the fire rate timer's DurationTime
         storedFireRate = fireRateTimer.DurationTime;
-
     }
 
     public virtual void WeaponOn()
@@ -116,7 +105,7 @@ public class BaseWeapon : MonoBehaviour
         reserves.SetMax();
     }
 
-    public void Reload(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    public virtual void Reload(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         // Don't reload if we already reloading or the timer is running
         if (reloadTimer.RunTimer)
@@ -125,17 +114,6 @@ public class BaseWeapon : MonoBehaviour
         // If we have reserves
         if (reserves.IsValid && !ammo.IsMaxed)
         {
-            // PERK TODO: Faster Reload
-            // (do not create any new functions)
-            // you should only be calling:
-            //      perk's boolean variable from PerkManager,
-            //      the stored reload speed variable,
-            //      and the start timer function from the reload timer
-
-            // If the "FasterReload" perk is enabled
-            // call the reload timer's start timer function and pass in the stored reload speed / 2
-            // otherwise call the reload timer's start timer function and pass in the stored reload speed (this way its not 2x faster)
-
             if (PerkManager.Instance.FasterReload)
             {
                 reloadTimer.StartTimer(storedReload / 2);
@@ -144,9 +122,6 @@ public class BaseWeapon : MonoBehaviour
             {
                 reloadTimer.StartTimer(storedReload);
             }
-
-            // Remove this line when done or comment it out
-            //reloadTimer.StartTimer();
 
             gunAnimations?.SetTrigger("Reload");
 
@@ -178,17 +153,6 @@ public class BaseWeapon : MonoBehaviour
         // Plays the muzzle flash animation
         muzzleFlash.Play();
 
-        // PERK TODO: FireRate
-        // (do not create any new functions)
-        // you should only be calling:
-        //      perk's boolean variable from PerkManager,
-        //      the stored fire rate variable,
-        //      and the start timer function from the fireRate Timer
-
-        // If the "FasterReload" perk is enabled
-        // call the fireRate Timer's start timer function and pass in the stored fire rate / 2
-        // otherwise call the fireRate Timer's start timer function and pass in the stored fire rate (this way its not 2x faster)
-
         if (PerkManager.Instance.FasterShoot)
         {
             fireRateTimer.StartTimer(storedFireRate / 2);
@@ -197,10 +161,6 @@ public class BaseWeapon : MonoBehaviour
         {
             fireRateTimer.StartTimer();
         }
-
-        // Remove this line when done or comment it out
-        // Runs the timer for fire rate
-        //fireRateTimer.StartTimer();
 
         // Plays gun shot audio
         audioScript?.PlayShoot();

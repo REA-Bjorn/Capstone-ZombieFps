@@ -110,8 +110,6 @@ public class GameManager : MonoBehaviour
 
     public void QuitGame()
     {
-        //UnPauseGame();
-        UnPauseGame();
         UIManager.Instance.SceneFade.FadeTo(KEY_MAINMENU);
     }
 }

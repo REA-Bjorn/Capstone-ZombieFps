@@ -52,6 +52,7 @@ public class SceneFader : MonoBehaviour
 
         img.color = new Color(0f, 0f, 0f, 255);
 
+        GameManager.Instance.UnPauseGame();
         SceneManager.LoadScene(scene);
     }
 }

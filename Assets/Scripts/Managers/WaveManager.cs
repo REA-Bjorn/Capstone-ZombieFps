@@ -146,6 +146,7 @@ public class WaveManager : MonoBehaviour
 
     private void WaveCountdownEnded()
     {
+        UIManager.Instance.PlayerUIScript.WaveText.color = Color.white;
         StartCoroutine(StartWave());
     }
 

@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 [RequireComponent(typeof(CustomTimer))]
 public class ProjectileVisuals : MonoBehaviour
 {
     [SerializeField] private CustomTimer deathTimer;
     [SerializeField] private Light _light;
+    [SerializeField] private ParticleSystem particles;
     [Seperator]
     [SerializeField] private AudioSource source;
     [SerializeField] private AudioClip clip;
@@ -15,24 +17,20 @@ public class ProjectileVisuals : MonoBehaviour
     private float lightRangeStart = 0;
     private float lightRangeEnd = 0;
 
-    private void Start()
+    public void Startup()
     {
         lightRangeStart = _light.range;
         lightRangeEnd = 0;
 
+        particles.Play();
+
         source.PlayOneShot(clip);
-        deathTimer.OnEnd += Died;
         deathTimer.OnTick += Ticked;
         deathTimer.StartTimer();
     }
 
     private void Ticked()
     {
-        _light.range = Mathf.Lerp(lightRangeStart, lightRangeEnd, deathTimer.ReversePercentage);
-    }
-
-    private void Died()
-    {
-        Destroy(gameObject);
+        _light.range = Mathf.Lerp(lightRangeEnd, lightRangeStart, deathTimer.ReversePercentage);
     }
 }

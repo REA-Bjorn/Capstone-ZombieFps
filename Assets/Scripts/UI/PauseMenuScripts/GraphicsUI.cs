@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
@@ -13,13 +14,13 @@ public class GraphicsUI : MonoBehaviour
 
     void Start()
     {
-        SettingsManager.Instance.GetSettings().radialStamina = PlayerPrefs.GetInt("RadialStamina") == 1 ? true : false;
-        SettingsManager.Instance.GetSettings().fullscreen = PlayerPrefs.GetInt("FullScreen") == 1 ? true : false;
-        SettingsManager.Instance.GetSettings().postProcessing = PlayerPrefs.GetInt("PostProcessing") == 1 ? true : false;
+        radialStaminaIndicator.isOn = PlayerPrefs.GetInt("RadialStamina") == 1 ? true : false;
+        fullScreen.isOn = PlayerPrefs.GetInt("FullScreen") == 1 ? true : false;
+        postProcessing.isOn = PlayerPrefs.GetInt("PostProcessing") == 1 ? true : false;
 
-        fullScreen.isOn = SettingsManager.Instance.GetSettings().fullscreen;
-        postProcessing.isOn = SettingsManager.Instance.GetSettings().postProcessing;
-        radialStaminaIndicator.isOn = SettingsManager.Instance.GetSettings().radialStamina;
+        PostProcessManager.Instance?.TogglePostProcess(radialStaminaIndicator.isOn);
+        Screen.fullScreen = fullScreen.isOn;
+        UIManager.Instance.PlayerUIScript.ToggleRadialStamina(postProcessing.isOn);
 
         fullScreen.onValueChanged.AddListener(UpdateFullScreen);
         postProcessing.onValueChanged.AddListener(UpdatePostProcess);

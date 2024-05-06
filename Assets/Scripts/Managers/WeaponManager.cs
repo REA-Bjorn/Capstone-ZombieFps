@@ -34,7 +34,7 @@ public class WeaponManager : MonoBehaviour
             float val = 0;
             if (currWeapon != null)
             {
-                val = (2 * Mathf.Sqrt(6f * CurrentWeapon.Attack.CurrentValue)) + WaveManager.Instance.CurrWaveNumInt;
+                val = (WaveManager.Instance.CurrWaveNumInt / 2f) + CurrentWeapon.Attack.CurrentValue;
             }
 
             return val;

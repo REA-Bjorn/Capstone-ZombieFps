@@ -112,7 +112,7 @@ public class EnemyBase : MonoBehaviour, IDamage
     {
         attack.SetMax();
         speed.SetMax();
-        float val = 2 * Mathf.Sqrt((8.5f * WaveManager.Instance.CurrWaveNumInt) + 2f);
+        float val = (WaveManager.Instance.CurrWaveNumInt / 2f) + 2;
         health.UpdateMax(val);
         health.SetMax();
     }

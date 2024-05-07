@@ -1,60 +1,83 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerMovement))]
 public class PlayerBase : MonoBehaviour, IDamage
 {
     public static PlayerBase instance;
+
+    [SerializeField] private HealthPool health;
+    [SerializeField] private SpeedPool speed;
+    [SerializeField] private StaminaPool stamina;
+    [Seperator]
+    [SerializeField] private PlayerMovement move;
+    [SerializeField] private PlayerCamera cam;
+    [SerializeField] private PlayerAudio aud;
+    [Seperator]
+    [SerializeField] private AudioSource extraSFXSource;
+    [Seperator]
+    [SerializeField] private CustomTimer passiveHealthRegenTimer;
+    [SerializeField] private CustomTimer delayPassiveHealthRegenTimer;
+
+    // Properties
+    public SpeedPool Spd => speed;
+    public HealthPool Health => health;
+    public StaminaPool Stam => stamina;
+    public float ShootDist => WeaponManager.Instance.ShootDist;
+
+    private float iFrameCounter = 0;
+    private bool iFrameOn = false;
 
     private void Awake()
     {
         instance = this;
     }
 
-    [SerializeField] PlayerHit hitUI;
-
-    [SerializeField] GameObject playerUI;
-
-    [SerializeField] HealthPool health;
-
-    [SerializeField] SpeedPool speed;
-
-    [SerializeField] PlayerMovement move;
-
-    [SerializeField] BaseCamera cam;
-
-    public SpeedPool Spd => speed;
-
-    public HealthPool Health => health;
-
-    public float ShootDist => WeaponManager.Instance.ShootDist;
-
     // Start is called before the first frame update
     void Start()
     {
         speed.SetMax();
         health.SetMax();
+        stamina.SetMax();
+        stamina.OnChanged += UIManager.Instance.PlayerUIScript.UpdateStaminaBar;
         health.OnDepleted += HealthDepleted;
+
+        delayPassiveHealthRegenTimer.OnEnd += () =>
+        {
+            passiveHealthRegenTimer.StartTimer();
+        };
+
+        passiveHealthRegenTimer.OnTick += () =>
+        {
+            health.Increase(Time.deltaTime * 0.1f); // time.delta time will be a lot so 0.1 times that
+
+            if (health.IsMaxed)
+                passiveHealthRegenTimer.StopTimer();
+        };
     }
 
     private void HealthDepleted()
     {
-        LockPlayer();
-        UIManager.Instance.DeathMenu();
-        hitUI.PlayerDiedVignette();
+        if (PerkManager.Instance.SecondaryLife)
+        {
+            GameManager.Instance.PlayerReviving();
+            speed.SetMax();
+            health.SetMax();
+        }
+        else
+        {
+            LockPlayer();
+            UIManager.Instance.DeathMenu();
+        }
     }
 
     public void LockPlayer()
     {
-        playerUI.SetActive(false);
-
         move.enabled = false;
-
         cam.enabled = false;
-
-        WeaponManager.Instance.DisableWeapon();
-
         Cursor.lockState = CursorLockMode.None;
     }
 
@@ -63,24 +86,91 @@ public class PlayerBase : MonoBehaviour, IDamage
         health.OnDepleted -= HealthDepleted;
     }
 
-    // Update is called once per frame
+    private void OnDestroy()
+    {
+        stamina.OnChanged -= UIManager.Instance.PlayerUIScript.UpdateStaminaBar;
+        health.OnDepleted -= HealthDepleted;
+
+        delayPassiveHealthRegenTimer.OnEnd -= () =>
+        {
+            passiveHealthRegenTimer.StartTimer();
+        };
+
+        passiveHealthRegenTimer.OnTick -= () =>
+        {
+            health.Increase(Time.deltaTime * 0.1f);
+
+            if (health.IsMaxed)
+                passiveHealthRegenTimer.StopTimer();
+        };
+    }
+
     void Update()
     {
         move.Movement();
+
         if (cam.enabled)
         {
             cam.Look();
         }
+
+        if (iFrameOn)
+        {
+            iFrameCounter++;
+
+            if (iFrameCounter >= 30)
+            {
+                iFrameCounter = 0;
+                iFrameOn = false;
+            }
+        }
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, bool forceKilled = false)
     {
-        health.UseResource(damage);
-        hitUI.Active();
+        if (!iFrameOn)
+        {
+            iFrameOn = true;
+            
+            // Visual UX
+            UIManager.Instance.PlayerHitScript.Active();
+            // Audio UX
+            aud.PlayHitSFX();
+
+            // Timer code for regen resetting
+            if (passiveHealthRegenTimer.RunTimer)
+                passiveHealthRegenTimer.StopTimer();
+
+            delayPassiveHealthRegenTimer.RestartTimer();
+
+            // Actually take damage
+            health.Decrease(damage);
+        }
     }
 
     public void TakeMaxDamage()
     {
         // nothing here, player should never take max damage
+    }
+
+    public void HealthPerkEnabled()
+    {
+        health.UpdateMax(Mathf.Floor(health.Max * 2.5f));
+    }
+
+    public void HealthPerkDisabled()
+    {
+        health.UpdateMax(3);
+        health.SetMax();
+    }
+
+    public void ShakeCam(float camShakeAmount, float camShakeDuration)
+    {
+        cam.TurnOnCamShake(camShakeAmount, camShakeDuration);
+    }
+
+    public void ExtraSFX(AudioClip _clip)
+    {
+        extraSFXSource.PlayOneShot(_clip);
     }
 }

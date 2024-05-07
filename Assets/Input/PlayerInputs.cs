@@ -80,6 +80,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Value"",
+                    ""id"": ""d060a69b-829c-455e-8da5-12df1c0dfeaf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -192,6 +201,45 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b205a1c4-148d-468e-8440-143e307e0f63"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""PauseActions"",
+            ""id"": ""0b2671e6-442a-4164-821c-ac6da92acfba"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""bac9bebe-96a9-4f7c-b578-71ce577e9b37"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""2f5f7844-f630-41a9-a033-c6a10f8bb155"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -206,6 +254,10 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_General_ScrollWeapon = m_General.FindAction("ScrollWeapon", throwIfNotFound: true);
         m_General_Interact = m_General.FindAction("Interact", throwIfNotFound: true);
         m_General_Reload = m_General.FindAction("Reload", throwIfNotFound: true);
+        m_General_Sprint = m_General.FindAction("Sprint", throwIfNotFound: true);
+        // PauseActions
+        m_PauseActions = asset.FindActionMap("PauseActions", throwIfNotFound: true);
+        m_PauseActions_Pause = m_PauseActions.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -273,6 +325,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_General_ScrollWeapon;
     private readonly InputAction m_General_Interact;
     private readonly InputAction m_General_Reload;
+    private readonly InputAction m_General_Sprint;
     public struct GeneralActions
     {
         private @PlayerInputs m_Wrapper;
@@ -283,6 +336,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         public InputAction @ScrollWeapon => m_Wrapper.m_General_ScrollWeapon;
         public InputAction @Interact => m_Wrapper.m_General_Interact;
         public InputAction @Reload => m_Wrapper.m_General_Reload;
+        public InputAction @Sprint => m_Wrapper.m_General_Sprint;
         public InputActionMap Get() { return m_Wrapper.m_General; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -310,6 +364,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Reload.started += instance.OnReload;
             @Reload.performed += instance.OnReload;
             @Reload.canceled += instance.OnReload;
+            @Sprint.started += instance.OnSprint;
+            @Sprint.performed += instance.OnSprint;
+            @Sprint.canceled += instance.OnSprint;
         }
 
         private void UnregisterCallbacks(IGeneralActions instance)
@@ -332,6 +389,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Reload.started -= instance.OnReload;
             @Reload.performed -= instance.OnReload;
             @Reload.canceled -= instance.OnReload;
+            @Sprint.started -= instance.OnSprint;
+            @Sprint.performed -= instance.OnSprint;
+            @Sprint.canceled -= instance.OnSprint;
         }
 
         public void RemoveCallbacks(IGeneralActions instance)
@@ -349,6 +409,52 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         }
     }
     public GeneralActions @General => new GeneralActions(this);
+
+    // PauseActions
+    private readonly InputActionMap m_PauseActions;
+    private List<IPauseActionsActions> m_PauseActionsActionsCallbackInterfaces = new List<IPauseActionsActions>();
+    private readonly InputAction m_PauseActions_Pause;
+    public struct PauseActionsActions
+    {
+        private @PlayerInputs m_Wrapper;
+        public PauseActionsActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Pause => m_Wrapper.m_PauseActions_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_PauseActions; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PauseActionsActions set) { return set.Get(); }
+        public void AddCallbacks(IPauseActionsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PauseActionsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PauseActionsActionsCallbackInterfaces.Add(instance);
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
+        }
+
+        private void UnregisterCallbacks(IPauseActionsActions instance)
+        {
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
+        }
+
+        public void RemoveCallbacks(IPauseActionsActions instance)
+        {
+            if (m_Wrapper.m_PauseActionsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPauseActionsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PauseActionsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PauseActionsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PauseActionsActions @PauseActions => new PauseActionsActions(this);
     public interface IGeneralActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -357,5 +463,10 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         void OnScrollWeapon(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
+    }
+    public interface IPauseActionsActions
+    {
+        void OnPause(InputAction.CallbackContext context);
     }
 }

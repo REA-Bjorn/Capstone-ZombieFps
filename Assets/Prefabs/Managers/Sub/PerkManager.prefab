@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6906122636907563141
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3545643876571741390}
+  - component: {fileID: -1013146761942743590}
+  m_Layer: 0
+  m_Name: PerkManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3545643876571741390
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6906122636907563141}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-1013146761942743590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6906122636907563141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8968405c43dd3439701a5086c29f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doubleHealth: 0
+  fasterReload: 0
+  fasterShoot: 0
+  fasterSprint: 0
+  secondLife: 0
+  FireRateSprite: {fileID: 8400000, guid: d3e94d7f67f68b549b15c93b38d97dc2, type: 2}
+  HealthSprite: {fileID: 8400000, guid: 048500b63f6821e4a9cc222ccf72cf9b, type: 2}
+  ReloadSpeedSprite: {fileID: 8400000, guid: 34901bcfa9b5d1e4695094156636adc5, type: 2}
+  SecondLifeSprite: {fileID: 8400000, guid: 0ed476ed036d7b74fad3ac996d077427, type: 2}
+  MoveSpeedSprite: {fileID: 8400000, guid: 823331609c543cc4e8d3f9e614a86e24, type: 2}

@@ -5,26 +5,35 @@ using UnityEngine;
 
 public class PointsManager : MonoBehaviour
 {
-    public static PointsManager instance;
+    public static PointsManager Instance;
 
-    public PointsPool points;
+    [SerializeField] private PointsPool points;
     [SerializeField] private CustomTimer doublePointsTimer;
 
+    public event Action OnPointsChanged;
+    public float CurrPts => points.CurrentValue;
+
+    private float totalPoints = 0;
+    public float TotalPts => totalPoints;
+    
     private int mult = 1;
 
     private void Awake()
     {
-        instance = this;
+        Instance = this;
     }
 
     public void AddPoints(float val)
     {
         points.Increase(mult * val);
+        totalPoints += (mult * val);
+        OnPointsChanged?.Invoke();
     }
 
     public void RemovePoints(float val)
     {
         points.Decrease(val);
+        OnPointsChanged?.Invoke();
     }
 
     public float GetPoints()
@@ -36,6 +45,9 @@ public class PointsManager : MonoBehaviour
     {
         doublePointsTimer.OnStart += DoublePointsTimer_OnStart;
         doublePointsTimer.OnEnd += DoublePointsTimer_OnEnd;
+
+        // Give 500 base points
+        points.Increase(500);
     }
 
     private void OnDestroy()

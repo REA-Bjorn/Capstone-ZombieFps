@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class WaveManager : MonoBehaviour
 {
@@ -19,24 +21,39 @@ public class WaveManager : MonoBehaviour
 
     [Seperator]
     [SerializeField] private CustomTimer waveCountdownTimer;
+    [SerializeField] private CustomTimer distractEnemiesTimer;
+    [SerializeField] private float waitTime = 0.5f;
 
     // Spawn point collection
     private List<GameObject> spawnPoints = new List<GameObject>();
     // All enemies spawned
-    private List<GameObject> enemyPool = new List<GameObject>();
+    private List<EnemyBase> enemyPool = new List<EnemyBase>();
+    [SerializeField] private Transform enemyParent;
+    [SerializeField] private Transform spawnPointsParent;
 
     // Goal Trackers
     private int currentEnemyGoal = 0;
     private int currentEnemyGoalStored = 0;
 
+    public float Time => waveCountdownTimer.DurationTime;
+
+    private int waveCount = 1;
+    public int CurrWaveNumInt => waveCount;
+    public string CurrentWave => waveCount.ToString();
+
     private void Start()
     {
+        if (SceneManager.GetActiveScene().name == "MainMenuLevel" || enemyParent == null || spawnPointsParent == null)
+            return;
+
         FindAllSpawnPoints();
 
         if (spawnPoints.Count == 0)
             return;
 
         InstantiateEnemies();
+
+        ReparentEnemiesToFirstSpawnpoint();
 
         // Now setup rest of data
         SubscribeEvents();
@@ -45,27 +62,42 @@ public class WaveManager : MonoBehaviour
         waveCountdownTimer.StartTimer();
     }
 
+    private void ReparentEnemiesToFirstSpawnpoint()
+    {
+        //Debug.Log("First Spawn Point Is Not Null! == Good!");
+        //foreach (EnemyBase enemy in enemyPool)
+        //{
+        //    enemy.transform.parent = firstSpawnPoint.transform;
+        //    enemy.transform.SetLocalPositionAndRotation(new Vector3(0, 0, 0), Quaternion.identity);
+        //}
+
+    }
+
     private void InstantiateEnemies()
     {
         // Instantiate Enemies
         for (int i = 0; i < SpawnLimit; i++)
         {
             // Instantiate enemy
-            GameObject spawnedEnemy = Instantiate(enemyPrefab, GetRandomSpawnPoint());
+            GameObject spawnedEnemy = Instantiate(enemyPrefab, enemyParent.position, Quaternion.identity);
             spawnedEnemy.SetActive(false);
 
             // Add enemy to the list
-            enemyPool.Add(spawnedEnemy);
+            // Get Component -- While not good to have a bunch of them,
+            // this is only called once at the start of the level
+            // so I am determining it to be fine here
+            enemyPool.Add(spawnedEnemy.GetComponent<EnemyBase>());
         }
     }
 
     private void FindAllSpawnPoints()
     {
         // Find all spawn points for enemies
-        var points = GameObject.FindGameObjectsWithTag("SpawnPoint");
-        foreach (GameObject point in points)
+        var points = spawnPointsParent.gameObject.GetComponentsInChildren<Transform>(true);
+        foreach (Transform point in points)
         {
-            spawnPoints.Add(point);
+            if (!point.CompareTag("Uninclude"))
+                spawnPoints.Add(point.gameObject);
         }
     }
 
@@ -73,18 +105,18 @@ public class WaveManager : MonoBehaviour
     {
         // Wave Countdown Timer events
         waveCountdownTimer.OnStart += WaveCountdownStarted;
-        waveCountdownTimer.OnTick += WaveCountdownTicked;
         waveCountdownTimer.OnEnd += WaveCountdownEnded;
 
+        distractEnemiesTimer.OnEnd += EnemiesGoBackToNormal;
     }
 
     private void OnDestroy()
     {
         // Wave Countdown Timer events
         waveCountdownTimer.OnStart -= WaveCountdownStarted;
-        waveCountdownTimer.OnTick -= WaveCountdownTicked;
         waveCountdownTimer.OnEnd -= WaveCountdownEnded;
 
+        distractEnemiesTimer.OnEnd -= EnemiesGoBackToNormal;
     }
 
     private void SpawnEnemy()
@@ -92,7 +124,7 @@ public class WaveManager : MonoBehaviour
         for (int i = 0; i < enemyPool.Count; ++i)
         {
             // enable the first deactivated enemy
-            if (!enemyPool[i].activeInHierarchy)
+            if (!enemyPool[i].gameObject.activeInHierarchy)
             {
                 EnableEnemy(enemyPool[i]);
                 return;
@@ -102,16 +134,19 @@ public class WaveManager : MonoBehaviour
 
     private void WaveCountdownStarted()
     {
-        // Call User Interfaces wave started logic here if needed
+        UIManager.Instance.FlashWaveCounter();
     }
 
-    private void WaveCountdownTicked()
+    public void IncWave()
     {
-        // Logic if we to call any functions during the wave countdown
+        // Update Wave
+        waveCount++;
+        UIManager.Instance.PlayerUIScript.UpdateWavesText();
     }
 
     private void WaveCountdownEnded()
     {
+        UIManager.Instance.PlayerUIScript.WaveText.color = Color.white;
         StartCoroutine(StartWave());
     }
 
@@ -121,6 +156,8 @@ public class WaveManager : MonoBehaviour
         currentEnemyGoalStored += Random.Range(1, 5);
         currentEnemyGoal = currentEnemyGoalStored;
 
+        // find if current goal is less than the limit, if so use goal
+        // otherwise far too many enemies needed so we use our limit
         int loopFor = currentEnemyGoal < SpawnLimit ? currentEnemyGoal : SpawnLimit;
 
         for (int i = 0; i < loopFor; ++i)
@@ -128,22 +165,34 @@ public class WaveManager : MonoBehaviour
             // Spawn the starting amount of enemies
             // - When enemies die, the wave manager decides if it should enable another enemy.
             SpawnEnemy();
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(waitTime);
         }
     }
 
-    void EnableEnemy(GameObject _enemy)
+    void EnableEnemy(EnemyBase _enemy)
     {
-        _enemy.SetActive(true);
-        _enemy.GetComponent<EnemyBase>().SpawnMe(); // handles maxing the stats for us
+        _enemy.gameObject.SetActive(true);
 
-        _enemy.transform.parent = GetRandomSpawnPoint().transform;
-        _enemy.transform.position = GetRandomSpawnPoint().position;
+        // Gets and stores a random transform
+        Transform tr = GetRandomSpawnPoint();
+        _enemy.transform.SetPositionAndRotation(tr.position, Quaternion.identity);
+        //Debug.Log("enemy position: " + tr.position, tr.gameObject);
+        //Debug.Log(_enemy.name, _enemy.gameObject);
+
+        NavMeshHit myNavHit;
+        if (NavMesh.SamplePosition(_enemy.transform.position, out myNavHit, 0.5f, -1))
+        {
+            _enemy.transform.SetPositionAndRotation(myNavHit.position, Quaternion.identity);
+        }
+
+        // handles maxing the stats for us
+        _enemy.SpawnMe();
     }
 
     public void EnemyKilled(GameObject _enemy)
     {
         --currentEnemyGoal; // subtract enemies
+        _enemy.GetComponent<NavMeshAgent>().enabled = false;
 
         // The +1 is because we disable the enemy after this function and not before hand
         // Anything above 10 would result in not spawning the last enemy therefore not spawning the next wave.
@@ -161,16 +210,25 @@ public class WaveManager : MonoBehaviour
     private Transform GetRandomSpawnPoint()
     {
         int idx = Random.Range(0, spawnPoints.Count);
-        return spawnPoints[idx].transform;
+        GameObject tra = spawnPoints[idx];
+
+        // Find active transform if the current one was disabled
+        while (!tra.activeInHierarchy)
+        {
+            idx = Random.Range(0, spawnPoints.Count);
+            tra = spawnPoints[idx];
+        }
+
+        return tra.transform;
     }
 
-    private int TotalCurrentlyUndead()
+    public int TotalCurrentlyUndead()
     {
         int currentlyUndead = 0;
 
-        foreach (GameObject enemy in enemyPool)
+        foreach (EnemyBase enemy in enemyPool)
         {
-            if (enemy.activeInHierarchy)
+            if (enemy.gameObject.activeInHierarchy)
             {
                 ++currentlyUndead;
             }
@@ -181,13 +239,29 @@ public class WaveManager : MonoBehaviour
 
     public void KillAllAliveEnemies()
     {
-        foreach (GameObject enemy in enemyPool)
+        foreach (EnemyBase enemy in enemyPool)
         {
-            if (enemy.activeInHierarchy)
+            if (enemy.gameObject.activeInHierarchy)
             {
-                enemy.GetComponent<EnemyBase>().ForceKill();
+                enemy.ForceKill();
             }
         }
     }
 
+    public void DistractEnemies()
+    {
+        distractEnemiesTimer.StartTimer();
+        foreach (EnemyBase enemy in enemyPool)
+        {
+            enemy.ToggleDistracted();
+        }
+    }
+
+    private void EnemiesGoBackToNormal()
+    {
+        foreach (EnemyBase enemy in enemyPool)
+        {
+            enemy.ToggleDistracted();
+        }
+    }
 }

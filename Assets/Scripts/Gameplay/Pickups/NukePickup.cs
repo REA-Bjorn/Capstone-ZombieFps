@@ -6,7 +6,10 @@ public class NukePickup : BasePickup
 {
     public override void Pickup()
     {
-        Debug.Log("Nuke Picked Up");
+        int totalAlive = WaveManager.Instance.TotalCurrentlyUndead();
+
+        PointsManager.Instance.AddPoints(Mathf.Max(totalAlive * 50, 200));
+        
         WaveManager.Instance.KillAllAliveEnemies();
     }
 }

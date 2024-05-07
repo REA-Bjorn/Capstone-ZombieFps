@@ -2,43 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
 
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] NavMeshAgent agent;
-    private Transform player;
-    private Vector3 playerDir;
-    private Vector3 startingPos;
-
     [SerializeField] Transform Headpos;
     [SerializeField] float faceSpeed;
 
-    float playerAngle;
-    float ogStopingDis;
-
-    bool choseDis;
+    private Vector3 playerDir;
+    private float baseSpeed;
 
     private void Start()
     {
-        startingPos = transform.position;
-        ogStopingDis = agent.stoppingDistance;
-        player = GameManager.instance.Player;
+        baseSpeed = agent.speed;
     }
 
     void FacePlayer()
     {
-        playerDir = GameManager.instance.Player.position - Headpos.position;
+        playerDir = GameManager.Instance.Player.position - Headpos.position;
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceSpeed);
     }
 
     public void Movement()
     {
-        if (agent.isActiveAndEnabled)
+        if (agent.isActiveAndEnabled && agent.isOnNavMesh && !agent.isStopped)
         {
-            agent.SetDestination(GameManager.instance.Player.position);
+            if (agent.remainingDistance > 50f)
+            {
+                UpdateMoveSpeed(15f);
+            }
+            else
+            {
+                UpdateMoveSpeed(baseSpeed);
+            }
+
+            agent.SetDestination(GameManager.Instance.Player.position);
             FacePlayer();
         }
+    }
+
+    public void UpdateMoveSpeed(float speed)
+    {
+        agent.speed = speed;
     }
 }

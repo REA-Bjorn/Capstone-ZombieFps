@@ -5,6 +5,8 @@ using UnityEngine;
 public class CustomTimer : MonoBehaviour
 {
 
+    [SerializeField] private string TimerName;
+
     //Events
     public event System.Action OnEnd;
     public event System.Action OnStart;
@@ -35,8 +37,15 @@ public class CustomTimer : MonoBehaviour
         OnRestart?.Invoke();
     }
 
-    public void StartTimer(float _duration = 0f)
+    public void StartTimer(float _duration = 0f, bool _override = false)
     {
+        if (_override)
+        {
+            SetToMax();
+            OnStart?.Invoke();
+            return;
+        }
+
         if (_duration != 0)
             SetDuration(_duration);
 

@@ -19,14 +19,20 @@ public class Resource
     //Properties
     public float CurrentValue => currentValue;
     public float Percent => currentValue / max;
+    public float RevPercent => 1 - (currentValue / max);
     public float Max => max;
     public float Min => min;
     public bool IsValid => currentValue > 0;
     public bool IsMaxed => currentValue >= max;
 
+    public void UpdateMax(float _max)
+    {
+        max = _max;
+    }
+
     public void Increase(float value)
     {
-        float newValue = Mathf.Max(currentValue + value, max);
+        float newValue = currentValue + value;
         currentValue = newValue;
         OnIncrease?.Invoke();
         OnChanged?.Invoke();
@@ -50,16 +56,6 @@ public class Resource
             OnDepleted?.Invoke();
             isEmpty = true;
         }
-    }
-
-    public bool UseResource(float value)
-    {
-        bool able = currentValue >= value;
-        if (able)
-        {
-            Decrease(value);
-        }
-        return able;
     }
 
     public void SetMax()

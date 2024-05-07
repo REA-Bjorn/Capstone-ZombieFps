@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,11 +12,24 @@ public class InputManager : MonoBehaviour
 
     public PlayerInputs.GeneralActions Action => inputs.General;
 
+    public bool SprintON => Input.GetKey(KeyCode.LeftShift);
+    public bool SprintOff => Input.GetKeyUp(KeyCode.LeftShift);
+
     public Vector2 MoveVect => inputs.General.Movement.ReadValue<Vector2>();
+
+    public Vector2 Look => inputs.General.Looking.ReadValue<Vector2>();
 
     public Vector2 ScrollVect => inputs.General.ScrollWeapon.ReadValue<Vector2>();
 
-    public bool Shooting => Input.GetMouseButton(0);
+    public bool PlayerMoved
+    {
+        get
+        {
+            // Avoids garbage memory / using a function twice
+            Vector2 test = inputs.General.Movement.ReadValue<Vector2>();
+            return Mathf.Abs(test.x) > 0 || Mathf.Abs(test.y) > 0;
+        }
+    }
 
     private void Awake()
     {
@@ -31,6 +45,7 @@ public class InputManager : MonoBehaviour
         // subscribe methods
         inputs.General.ScrollWeapon.performed += WeaponManager.Instance.ToggleWeapon;
         inputs.General.Attack.performed += WeaponManager.Instance.Shoot;
+        inputs.PauseActions.Pause.started += UIManager.Instance.PauseMenu;
     }
 
     private void OnDestroy()
@@ -38,6 +53,7 @@ public class InputManager : MonoBehaviour
         // unsubscribe methods
         inputs.General.ScrollWeapon.performed -= WeaponManager.Instance.ToggleWeapon;
         inputs.General.Attack.performed -= WeaponManager.Instance.Shoot;
+        inputs.PauseActions.Pause.started -= UIManager.Instance.PauseMenu;
     }
 
     public Vector2 CameraReadVal()
@@ -45,9 +61,13 @@ public class InputManager : MonoBehaviour
         return inputs.General.Looking.ReadValue<Vector2>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UnPauseActions()
     {
-        
+        inputs.General.Enable();
+    }
+
+    public void PauseActions()
+    {
+        inputs.General.Disable();
     }
 }

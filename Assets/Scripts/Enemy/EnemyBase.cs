@@ -2,62 +2,114 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyBase : MonoBehaviour, IDamage
 {
     [SerializeField] HealthPool health;
     [SerializeField] AttackPool attack;
     [SerializeField] SpeedPool speed;
+    
+    [Seperator]
+    [SerializeField] private EnemyVisual visualScript;
+    [SerializeField] private EnemyAudio audioScript;
     [SerializeField] EnemyMovement move;
-    [SerializeField] SkinnedMeshRenderer mesh;
-    [SerializeField] Material baseMaterial;
-    [SerializeField] Material hitMaterial;
-    [SerializeField] int PointVal;
+    [SerializeField] int deathPointWorth = 50;
+    [SerializeField] int hitPointVal = 15;
 
-    [SerializeField] private Animator animator;
+    [Seperator]
+    [SerializeField] EnemyAnimator anim;
+    [SerializeField] private BoxCollider atkColl;
+    [SerializeField] private CapsuleCollider baseColl;
+    [SerializeField] private NavMeshAgent navMeshAgent;
+
+    [Seperator]
+    [SerializeField] private ParticleSystem spawnParticle1;
+    [SerializeField] private ParticleSystem spawnParticle2;
+    
+    private bool distracted;
 
     public SpeedPool Spd => speed;
     public AttackPool Atk => attack;
+    public EnemyAnimator Ani => anim;
 
-    // Start is called before the first frame update
     void Start()
     {
+        navMeshAgent = GetComponent<NavMeshAgent>();
         MaxStats();
-        mesh.material = baseMaterial;
-
-        if (mesh == null)
-        {
-            mesh = GetComponent<SkinnedMeshRenderer>();
-        }
-
+        
+        // Update extra visuals
+        visualScript.UpdateEnemyEyes(health.Percent * 10);
+        visualScript.SetRandomMaterial();
         health.OnDepleted += Health_OnDepleted;
     }
+
     private void Health_OnDepleted()
     {
         PickupManager.Instance.DropPickup(transform);
-        PointsManager.instance.AddPoints(PointVal);
-        UIManager.Instance.UpdateScore();
-        WaveManager.Instance.EnemyKilled(gameObject);
-        gameObject.SetActive(false);
+        DisableNavMesh();
+        anim.UpdateRootMotion(true);
+        anim.PlayDeathAnimation();
+        atkColl.enabled = false;
+        baseColl.enabled = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //Debug.Log("I am moving!!");
         move.Movement();
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, bool forceKilled = false)
     {
-        health.UseResource(damage);
+        health.Decrease(damage);
+        visualScript.UpdateEnemyEyes(health.Percent * 10);
+
+        if (health.IsValid)
+        {
+            PointsManager.Instance.AddPoints(hitPointVal);
+            audioScript.PlayRandomHit();
+            // Update enemy speed based off of their health's percent and their min/max speed
+            float newSpeed = Mathf.Clamp(health.Percent * speed.Max, speed.Min, speed.Max);
+            move.UpdateMoveSpeed(newSpeed);
+            anim.PlayHitAnimation();
+        }
+
+        // If we are not forcing the kill on the enemy and they did "die"
+        if (!forceKilled && !health.IsValid)
+        {
+            PointsManager.Instance.AddPoints(deathPointWorth);
+        }
+    }
+
+    // Called in Animator
+    private void EnableNavMesh()
+    {
+        //Debug.Log("Enemy navmesh turned on!");
+        navMeshAgent.enabled = true;
+
+        spawnParticle1.gameObject.SetActive(false);
+        spawnParticle2.gameObject.SetActive(false);
+    }
+
+    private void DisableNavMesh()
+    {
+        //Debug.Log("Enemy navmesh turned off!");
+        navMeshAgent.enabled = false;
+    }
+
+    // Called in Animator
+    private void EndOfDeathAnim()
+    {
+        WaveManager.Instance.EnemyKilled(gameObject);
+        gameObject.SetActive(false);
     }
 
     public void MaxStats()
     {
         attack.SetMax();
-        health.SetMax();
         speed.SetMax();
+        health.UpdateMax(WaveManager.Instance.CurrWaveNumInt / 2f);
+        health.SetMax();
     }
 
     /// <summary>
@@ -66,17 +118,20 @@ public class EnemyBase : MonoBehaviour, IDamage
     public void SpawnMe()
     {
         MaxStats();
-        PlaySpawnAnimation();
+        anim.UpdateRootMotion(false);
+        visualScript.UpdateEnemyEyes(health.Percent * 10);
+        atkColl.enabled = true;
+        baseColl.enabled = true;
+
+        spawnParticle1.gameObject.SetActive(true);
+        spawnParticle1.Play();
+        spawnParticle2.gameObject.SetActive(true);
+        spawnParticle2.Play();
     }
 
     public void ForceKill()
     {
-        TakeDamage(health.CurrentValue);
-    }
-
-    private void PlaySpawnAnimation()
-    {
-        //animator.SetTrigger("Spawn");
+        TakeDamage(health.CurrentValue, true);
     }
 
     public void TakeMaxDamage()
@@ -84,10 +139,8 @@ public class EnemyBase : MonoBehaviour, IDamage
         ForceKill();
     }
 
-    //private IEnumerator FlashDamage()
-    //{
-    //    mesh.material = hitMaterial;
-    //    yield return new WaitForSeconds(0.25f);
-    //    mesh.material = baseMaterial;
-    //}
+    public void ToggleDistracted()
+    {
+        distracted = !distracted;
+    }
 }

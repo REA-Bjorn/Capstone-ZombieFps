@@ -8,18 +8,13 @@ public class WinMenu : MonoBehaviour
     [SerializeField] Button replay;
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
-        replay.onClick.AddListener(GameManager.instance.RetryLevel);
+        replay.onClick.AddListener(GameManager.Instance.RetryLevel);
     }
 
     private void OnDisable()
     {
-        replay.onClick.RemoveListener(GameManager.instance.RetryLevel);
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
+        replay.onClick.RemoveListener(GameManager.Instance.RetryLevel);
     }
 }

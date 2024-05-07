@@ -294,7 +294,7 @@ MonoBehaviour:
     min: 0
     currentValue: 0
   speed:
-    max: 8
+    max: 7.5
     min: 0
     currentValue: 0
   stamina:

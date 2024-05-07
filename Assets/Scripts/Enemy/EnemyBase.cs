@@ -37,11 +37,7 @@ public class EnemyBase : MonoBehaviour, IDamage
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         MaxStats();
-        // Force update on start of enemy because waves starts at 0
-        // therefore starting hp = 0 bad...
-        health.UpdateMax(1.41425f);
-        health.SetMax();
-
+        
         // Update extra visuals
         visualScript.UpdateEnemyEyes(health.Percent * 10);
         visualScript.SetRandomMaterial();
@@ -112,8 +108,7 @@ public class EnemyBase : MonoBehaviour, IDamage
     {
         attack.SetMax();
         speed.SetMax();
-        float val = (WaveManager.Instance.CurrWaveNumInt / 2f);
-        health.UpdateMax(val);
+        health.UpdateMax(WaveManager.Instance.CurrWaveNumInt / 2f);
         health.SetMax();
     }
 

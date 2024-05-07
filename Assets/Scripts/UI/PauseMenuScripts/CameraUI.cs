@@ -29,7 +29,7 @@ public class CameraUI : MonoBehaviour
 
     private void UpdateCamSens(float _newSens)
     {
-        SettingsManager.Instance.GetSettings().mouseSensitivity = _newSens;
+        SettingsManager.Instance.GetSettings().mouseSensitivity = Mathf.Clamp(_newSens, camSensitivity.Min, camSensitivity.Max);
         PlayerPrefs.SetFloat("MouseSens", _newSens);
         PlayerPrefs.Save();
     }
@@ -43,7 +43,7 @@ public class CameraUI : MonoBehaviour
 
     private void UpdateCamFOV(float _newFOV)
     {
-        SettingsManager.Instance.GetSettings().fieldOfView = _newFOV;
+        SettingsManager.Instance.GetSettings().fieldOfView = Mathf.Clamp(_newFOV, camFOV.Min, camFOV.Max);
         PlayerPrefs.SetFloat("FOV", _newFOV);
         PlayerPrefs.Save();
         Camera.main.fieldOfView = _newFOV; // this is also update in the PlayerCamera -> OnEnable()

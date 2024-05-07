@@ -10,7 +10,7 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private SettingsSO settingsObject;
 
     public SettingsSO GetSettings() { return settingsObject; }
-    public float MouseSens => settingsObject.mouseSensitivity;
+    public float MouseSens => Mathf.Clamp(settingsObject.mouseSensitivity, 1, 10);
 
     private void Awake()
     {

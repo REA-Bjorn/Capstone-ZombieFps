@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cca56e147c2b9248b414ff8bfe4e853, type: 3}
   m_Name: SettingsObj
   m_EditorClassIdentifier: 
-  masterVol: 0.15207237
-  musicVol: 0.15022878
+  masterVol: 0.96821135
+  musicVol: 0.029814962
   playerVol: 0.14150047
   sfxVol: 0.14499183
   enemyVol: 0.1362635
-  weaponVol: 0.14150047
+  weaponVol: 0.5060872
   fieldOfView: 79.748604
   mouseSensitivity: 7.4265084
   invertY: 0
-  fullscreen: 1
+  fullscreen: 0
   postProcessing: 0
   radialStamina: 0

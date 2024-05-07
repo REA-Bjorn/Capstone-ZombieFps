@@ -15,6 +15,9 @@ public class SliderScript : MonoBehaviour
 
     public Slider SliderUI => sliderUI;
 
+    public float Min => minVal;
+    public float Max => maxVal;
+
     public void TurnOn()
     {
         sliderUI.minValue = minVal;

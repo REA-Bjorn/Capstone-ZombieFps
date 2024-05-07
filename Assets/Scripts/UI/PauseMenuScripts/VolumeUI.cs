@@ -53,37 +53,37 @@ public class VolumeUI : MonoBehaviour
 
     private void MasterVolChanged(float value)
     {
-        SettingsManager.Instance.GetSettings().masterVol = value;
+        SettingsManager.Instance.GetSettings().masterVol = Mathf.Clamp(value, master.Min, master.Max);
         AudioManager.Instance.UpdateMasterVol();
     }
 
     private void MusicVolChanged(float value)
     {
-        SettingsManager.Instance.GetSettings().musicVol = value;
+        SettingsManager.Instance.GetSettings().musicVol = Mathf.Clamp(value, music.Min, music.Max);
         AudioManager.Instance.UpdateMusicVol();
     }
 
     private void SFXVolChanged(float value)
     {
-        SettingsManager.Instance.GetSettings().sfxVol = value;
+        SettingsManager.Instance.GetSettings().sfxVol = Mathf.Clamp(value, sfx.Min, sfx.Max);
         AudioManager.Instance.UpdateSFXVol();
     }
 
     private void PlayerVolChanged(float value)
     {
-        SettingsManager.Instance.GetSettings().playerVol = value;
+        SettingsManager.Instance.GetSettings().playerVol = Mathf.Clamp(value, player.Min, player.Max);
         AudioManager.Instance.UpdatePlayerVol();
     }
 
     private void EnemyVolChanged(float value)
     {
-        SettingsManager.Instance.GetSettings().enemyVol = value;
+        SettingsManager.Instance.GetSettings().enemyVol = Mathf.Clamp(value, enemy.Min, enemy.Max);
         AudioManager.Instance.UpdateEnemyVol();
     }
 
     private void WeaponVolChanged(float value)
     {
-        SettingsManager.Instance.GetSettings().weaponVol = value;
+        SettingsManager.Instance.GetSettings().weaponVol = Mathf.Clamp(value, weapon.Min, weapon.Max);
         AudioManager.Instance.UpdateWeaponVol();
     }
 }

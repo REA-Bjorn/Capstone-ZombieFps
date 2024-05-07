@@ -24,6 +24,7 @@ public class PlayerCamera : MonoBehaviour
 
     private void Start()
     {
+        SettingsManager.Instance.GetSettings().fieldOfView = Mathf.Clamp(SettingsManager.Instance.GetSettings().fieldOfView, 50, 90);
         Camera.main.fieldOfView = SettingsManager.Instance.GetSettings().fieldOfView;
     }
 

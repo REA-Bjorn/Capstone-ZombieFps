@@ -56,6 +56,10 @@ public class WeaponUnlockStand : BaseInteractable
                     UIManager.Instance.PlayerUIScript.FlashPointsUI();
                 }
             }
+            else
+            {
+                Debug.Log("Player doesn't have weapons!");
+            }
         }
 
         /* 

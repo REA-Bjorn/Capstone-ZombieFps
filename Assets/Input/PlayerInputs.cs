@@ -193,6 +193,17 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""4adefba2-ff5e-4f93-b936-5ff694baa869"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""141f1d65-9398-450a-ad2a-6c33ceea2bf9"",
                     ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",

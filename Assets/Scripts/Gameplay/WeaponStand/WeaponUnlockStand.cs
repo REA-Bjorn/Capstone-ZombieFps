@@ -72,6 +72,9 @@ public class WeaponUnlockStand : BaseInteractable
     {
         base.Start();
 
+
+        coll.enabled = true;
+
         // Make sure its not null.
         // If it is turn off collider and don't interact with this obj
         if (weaponType == WeaponType.NULLED)

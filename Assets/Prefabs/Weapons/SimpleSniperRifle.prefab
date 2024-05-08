@@ -300,7 +300,7 @@ MonoBehaviour:
     min: 0
     currentValue: 0
   reserves:
-    max: 40
+    max: 30
     min: 0
     currentValue: 0
   range: 300

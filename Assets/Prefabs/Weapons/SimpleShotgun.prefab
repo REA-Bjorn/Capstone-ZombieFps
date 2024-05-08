@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attack:
-    max: 1
+    max: 3
     min: 0
     currentValue: 0
   ammo:
@@ -316,7 +316,7 @@ MonoBehaviour:
   type: 8
   subObjects: []
   NumberOfPellets: 10
-  MaxSpread: 15
+  MaxSpread: 12.5
 --- !u!114 &3879372763705896364
 MonoBehaviour:
   m_ObjectHideFlags: 0

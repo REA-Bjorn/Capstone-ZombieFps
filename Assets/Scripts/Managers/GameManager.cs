@@ -66,6 +66,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Application.targetFrameRate = 45;
+
         SettingsManager.Instance.GetSettings().fullscreen = Screen.fullScreen;
 
 

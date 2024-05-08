@@ -35,7 +35,6 @@ public class EnemyBase : MonoBehaviour, IDamage
 
     void Start()
     {
-        navMeshAgent = GetComponent<NavMeshAgent>();
         MaxStats();
         
         // Update extra visuals

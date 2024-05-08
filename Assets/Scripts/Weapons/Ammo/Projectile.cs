@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private ProjectileVisuals visuals;
     [SerializeField] private GameObject modelObj;
+    [SerializeField] private Collider COLL;
     [Seperator]
     [SerializeField] private float aoeRange;
     [SerializeField] private float speed;
@@ -44,7 +45,7 @@ public class Projectile : MonoBehaviour
         deathTimer.OnEnd -= ProjectileDied;
 
         DealDamage();
-        GetComponent<Collider>().enabled = false;
+        COLL.enabled = false;
 
         StartupVisuals();
 

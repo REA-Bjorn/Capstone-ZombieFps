@@ -51,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   despawnTimer: {fileID: -3588156084305693044}
   pickupSFX: {fileID: 8300000, guid: 01ef558e5804dc7488b37283fdc4c179, type: 3}
+  voiceLine: {fileID: 8300000, guid: 93b7cf9af72e1ad46baf566c33256aab, type: 3}
 --- !u!114 &2163762853903628596
 MonoBehaviour:
   m_ObjectHideFlags: 0

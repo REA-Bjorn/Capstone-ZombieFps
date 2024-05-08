@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Search;
@@ -200,17 +201,29 @@ public class WeaponManager : MonoBehaviour
         // Do we have the current type
         if (Primary.Type == _type)
         {
-            if (!Primary.Ammo.IsMaxed)
+            if (Primary.Ammo.CurrentValue > 0 && Primary.Reserves.CurrentValue > 0)
             {
                 return true;
+            }
+            else
+            {
+                Debug.Log("wah1");
             }
         }
         else if (Secondary.Type == _type)
         {
-            if (!Secondary.Ammo.IsMaxed)
+            if (Secondary.Ammo.CurrentValue > 0 && Secondary.Reserves.CurrentValue > 0)
             {
                 return true;
             }
+            else
+            {
+                Debug.Log("wah2");
+            }
+        }
+        else
+        {
+            Debug.Log("Primary.Type == _type" + (Primary.Type == _type) + "Primary.Ammo.IsMaxed " + (Primary.Ammo.IsMaxed) + "Secondary.Type == _type " + (Secondary.Type == _type) + "Secondary.Ammo.IsMaxed " + (Secondary.Ammo.IsMaxed));
         }
 
         // We didn't have a matching gun or need ammo

@@ -37,6 +37,7 @@ public class SingleFireWeapon : BaseWeapon
                 IDamage damage = hit.collider.GetComponent<IDamage>();
                 if (damage != null)
                 {
+                    UIManager.Instance.PlayerUIScript.FlashHitMarker();
                     // if we hit something and that hit has the IDamage component
                     // call its take damage function
                     if (WeaponManager.Instance.InstaKill)

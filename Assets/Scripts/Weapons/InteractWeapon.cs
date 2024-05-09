@@ -35,6 +35,7 @@ public class InteractWeapon : BaseWeapon
                 IDamage damage = hit.collider.GetComponent<IDamage>();
                 if (damage != null)
                 {
+                    UIManager.Instance.PlayerUIScript.FlashHitMarker();
                     damage.TakeDamage(attack.CurrentValue);
                 }
             }

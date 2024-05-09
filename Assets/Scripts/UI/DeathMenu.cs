@@ -9,6 +9,7 @@ public class DeathMenu : MonoBehaviour
     [SerializeField] private Button retry;
     [SerializeField] private Button mainMenuBtn;
     [SerializeField] private TextMeshProUGUI totalScoreDisplay;
+    [SerializeField] private TextMeshProUGUI totalWavesDisplay;
 
     void Start()
     {
@@ -31,5 +32,6 @@ public class DeathMenu : MonoBehaviour
     public void UpdateTotalScore()
     {
         totalScoreDisplay.text = PointsManager.Instance.TotalPts.ToString();
+        totalWavesDisplay.text = WaveManager.Instance.CurrentWave;
     }
 }

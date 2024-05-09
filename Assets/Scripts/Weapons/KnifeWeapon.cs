@@ -37,7 +37,16 @@ public class KnifeWeapon : MonoBehaviour
 
             if (damage != null)
             {
-                damage.TakeDamage((WaveManager.Instance.CurrWaveNumInt / 3f) + 0.5f);
+                UIManager.Instance.PlayerUIScript.FlashHitMarker();
+
+                if (WeaponManager.Instance.InstaKill)
+                {
+                    damage.TakeMaxDamage();
+                }
+                else
+                {
+                    damage.TakeDamage((WaveManager.Instance.CurrWaveNumInt / 3f) + 0.5f);
+                }
             }
         }
     }
@@ -45,6 +54,8 @@ public class KnifeWeapon : MonoBehaviour
     public void TurnGunsOn()
     {
         gunHolder?.SetActive(true);
+        // Fix for reloading after knifing (ondisable was called)
+        WeaponManager.Instance.CurrentWeapon.WeaponOn();
     }
 
     private void TurnGunsOff()

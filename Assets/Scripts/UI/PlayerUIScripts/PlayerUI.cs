@@ -26,6 +26,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private GameObject go_stamBar;
     [SerializeField] private Image staminaRadial;
     [SerializeField] private GameObject go_stamRadial;
+    [SerializeField] private GameObject go_hitmarker;
 
     [Seperator]
     [SerializeField] private TextMeshProUGUI ammoText;
@@ -110,6 +111,19 @@ public class PlayerUI : MonoBehaviour
     public void FlashPointsUI()
     {
         StartCoroutine(FlashingPoints());
+    }
+
+    public void FlashHitMarker()
+    {
+        StopCoroutine(FlashingHitmarker());
+        StartCoroutine(FlashingHitmarker());
+    }
+
+    private IEnumerator FlashingHitmarker()
+    {
+        go_hitmarker.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        go_hitmarker.SetActive(false);
     }
 
     private IEnumerator FlashingPoints()

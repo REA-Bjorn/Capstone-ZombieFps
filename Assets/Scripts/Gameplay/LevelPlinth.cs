@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(CustomTimer))]
 public class LevelPlinth : MonoBehaviour, IDamage
 {
     [SerializeField] private string sceneName;
+    [SerializeField] private string displayName;
     [SerializeField] private MeshRenderer model;
     [SerializeField] private Material redMat;
     [SerializeField] private Material greenMat;
     [SerializeField] private CustomTimer unconfirmTimer;
+    [SerializeField] private TextMeshProUGUI text;
 
     private bool confirming = false;
 
@@ -39,13 +42,19 @@ public class LevelPlinth : MonoBehaviour, IDamage
         {
             confirming = false;
             model.material = redMat;
+            if (sceneName == "QUIT")
+                text.text = "Quit \n" + displayName;
+            else
+            {
+                text.text = "Play \n" + displayName;
+            }
         };
 
         unconfirmTimer.OnStart += () =>
         {
-
             confirming = true;
             model.material = greenMat;
+            text.text = "Are you sure?";
         };
     }
 
@@ -55,6 +64,12 @@ public class LevelPlinth : MonoBehaviour, IDamage
         {
             confirming = false;
             model.material = redMat;
+            if (sceneName == "QUIT")
+                text.text = "Quit \n" + displayName;
+            else
+            {
+                text.text = "Play \n" + displayName;
+            }
         };
 
         unconfirmTimer.OnStart -= () =>
@@ -62,6 +77,7 @@ public class LevelPlinth : MonoBehaviour, IDamage
 
             confirming = true;
             model.material = greenMat;
+            text.text = "Are you sure?";
         };
     }
 

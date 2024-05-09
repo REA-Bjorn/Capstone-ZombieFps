@@ -12,19 +12,19 @@ public class CustomDebug : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            PerkManager.Instance.UnlockPerk(PerkType.FireRate);
+            PerkManager.Instance.UnlockPerk(PerkType.Firing);
         }
         if (Input.GetKeyDown(KeyCode.U))
         {
-            PerkManager.Instance.UnlockPerk(PerkType.SecondLife);
+            PerkManager.Instance.UnlockPerk(PerkType.Revive);
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
-            PerkManager.Instance.UnlockPerk(PerkType.MoveSpeed);
+            PerkManager.Instance.UnlockPerk(PerkType.Speed);
         }
         if (Input.GetKeyDown(KeyCode.O))
         {
-            PerkManager.Instance.UnlockPerk(PerkType.ReloadSpeed);
+            PerkManager.Instance.UnlockPerk(PerkType.Reload);
         }
 
         if (Input.GetKeyDown(KeyCode.K))

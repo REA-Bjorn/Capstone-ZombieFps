@@ -637,10 +637,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Level1
+  displayName: Play\nJungle
   model: {fileID: 23177018601743179}
   redMat: {fileID: 2100000, guid: 044383a7e375eaf4c81672c2f971536a, type: 2}
   greenMat: {fileID: 2100000, guid: 818fceef8ac70df4dac5649288e56121, type: 2}
   unconfirmTimer: {fileID: 40222261}
+  text: {fileID: 1889642186}
 --- !u!114 &40222261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11606,10 +11608,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Level2
+  displayName: Play\nIsland
   model: {fileID: 1538577904}
   redMat: {fileID: 2100000, guid: 044383a7e375eaf4c81672c2f971536a, type: 2}
   greenMat: {fileID: 2100000, guid: 818fceef8ac70df4dac5649288e56121, type: 2}
   unconfirmTimer: {fileID: 1088767534}
+  text: {fileID: 133038054}
 --- !u!4 &1088767533
 Transform:
   m_ObjectHideFlags: 0
@@ -19404,10 +19408,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: QUIT
+  displayName: Quit\nGame
   model: {fileID: 333532984}
   redMat: {fileID: 2100000, guid: 044383a7e375eaf4c81672c2f971536a, type: 2}
   greenMat: {fileID: 2100000, guid: 818fceef8ac70df4dac5649288e56121, type: 2}
   unconfirmTimer: {fileID: 1967868702}
+  text: {fileID: 1513245927}
 --- !u!4 &1967868704
 Transform:
   m_ObjectHideFlags: 0

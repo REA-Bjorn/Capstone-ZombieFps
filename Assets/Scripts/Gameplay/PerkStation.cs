@@ -12,7 +12,7 @@ public class PerkStation : BaseInteractable
 
     public override bool Interact()
     {
-        if (type == PerkType.SecondLife && !GameManager.Instance.CanBuyRevive)
+        if (type == PerkType.Revive && !GameManager.Instance.CanBuyRevive)
             return false; 
         
         if (base.Interact())
@@ -30,12 +30,14 @@ public class PerkStation : BaseInteractable
     {
         base.Start();
 
+        costDisplay.text = type.ToString() + "Perk \n$" + unlockCost.ToString();
+
         PerkManager.Instance.ResetStand += ResetStand;
     }
 
     private void ResetStand()
     {
-        if (type == PerkType.SecondLife && !GameManager.Instance.CanBuyRevive)
+        if (type == PerkType.Revive && !GameManager.Instance.CanBuyRevive)
             return;
         
         coll.enabled = true;

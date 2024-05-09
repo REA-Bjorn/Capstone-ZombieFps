@@ -6,5 +6,6 @@ public class InstaKillPickup : BasePickup
     {
         //Debug.Log("Insta Kill Pickup Up");
         WeaponManager.Instance.EnableInstaKill();
+        UIManager.Instance.PlayerUIScript.CooldownUIScript.CallInstaKill();
     }
 }

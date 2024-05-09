@@ -12,6 +12,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private GameObject waveObj;
     [SerializeField] private GameObject crossHairObj;
     [SerializeField] private GameObject weaponsObj;
+    [SerializeField] private GameObject reviveObj;
 
     [Seperator]
     [SerializeField] private TextMeshProUGUI totalScore;
@@ -30,6 +31,9 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI ammoText;
     [SerializeField] private TextMeshProUGUI reservedAmmoText;
     [SerializeField] private TextMeshProUGUI gunText;
+
+    [SerializeField] private PowerupCooldownUI cooldownUIScript;
+    public PowerupCooldownUI CooldownUIScript => cooldownUIScript;
 
     public void StartUp()
     {
@@ -119,6 +123,13 @@ public class PlayerUI : MonoBehaviour
     {
         go_stamRadial.SetActive(state);
         go_stamBar.SetActive(!state);
+    }
+
+    public IEnumerator ToggleRevivePrompt()
+    {
+        reviveObj.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        reviveObj.SetActive(false);
     }
 
 }

@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerReviving()
     {
+        StartCoroutine(UIManager.Instance.PlayerUIScript.ToggleRevivePrompt());
         WaveManager.Instance.KillAllAliveEnemies();
         PerkManager.Instance.ResetAllPerks();
         PlayerBase.instance.Health.SetMax();

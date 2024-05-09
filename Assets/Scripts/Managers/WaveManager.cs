@@ -37,7 +37,7 @@ public class WaveManager : MonoBehaviour
 
     public float Time => waveCountdownTimer.DurationTime;
 
-    private int waveCount = 1;
+    private int waveCount = 0;
     public int CurrWaveNumInt => waveCount;
     public string CurrentWave => waveCount.ToString();
 

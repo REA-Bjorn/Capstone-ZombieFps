@@ -8,5 +8,6 @@ public class DoublePointsPickup : BasePickup
     {
         //Debug.Log("Double Points Pickup Up");
         PointsManager.Instance.EnableDoublePoints();
+        UIManager.Instance.PlayerUIScript.CooldownUIScript.CallDoublePts();
     }
 }

@@ -637,7 +637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Level1
-  displayName: Play\nJungle
+  displayName: Jungle
   model: {fileID: 23177018601743179}
   redMat: {fileID: 2100000, guid: 044383a7e375eaf4c81672c2f971536a, type: 2}
   greenMat: {fileID: 2100000, guid: 818fceef8ac70df4dac5649288e56121, type: 2}
@@ -11608,7 +11608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Level2
-  displayName: Play\nIsland
+  displayName: Island
   model: {fileID: 1538577904}
   redMat: {fileID: 2100000, guid: 044383a7e375eaf4c81672c2f971536a, type: 2}
   greenMat: {fileID: 2100000, guid: 818fceef8ac70df4dac5649288e56121, type: 2}
@@ -19408,7 +19408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: QUIT
-  displayName: Quit\nGame
+  displayName: Game
   model: {fileID: 333532984}
   redMat: {fileID: 2100000, guid: 044383a7e375eaf4c81672c2f971536a, type: 2}
   greenMat: {fileID: 2100000, guid: 818fceef8ac70df4dac5649288e56121, type: 2}

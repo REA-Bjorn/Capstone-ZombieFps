@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
 
 public class PlayerCamera : MonoBehaviour
@@ -30,11 +32,18 @@ public class PlayerCamera : MonoBehaviour
 
     public void Look()
     {
-        float mouseX = InputManager.Instance.Look.x * SettingsManager.Instance.MouseSens * Time.deltaTime;
-        float mouseY = InputManager.Instance.Look.y * SettingsManager.Instance.MouseSens * Time.deltaTime * (SettingsManager.Instance.GetSettings().invertY ? -1 : 1);
+        float sens = SettingsManager.Instance.MouseSens;
+
+        var controllers = Input.GetJoystickNames();
+        if (controllers.Length > 0 && controllers[0] != string.Empty)
+        {
+            sens *= 100;
+        }
+
+        float mouseX = InputManager.Instance.Look.x * sens * Time.deltaTime;
+        float mouseY = InputManager.Instance.Look.y * sens * Time.deltaTime * (SettingsManager.Instance.GetSettings().invertY ? -1 : 1);
 
         xRotation -= mouseY;
-
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
@@ -44,7 +53,7 @@ public class PlayerCamera : MonoBehaviour
         {
             if (shakeDuration > 0)
             {
-                transform.localPosition = Vector3.Lerp(transform.localPosition, originalPos + Random.insideUnitSphere * shakeAmount, Time.deltaTime * 3);
+                transform.localPosition = Vector3.Lerp(transform.localPosition, originalPos + UnityEngine.Random.insideUnitSphere * shakeAmount, Time.deltaTime * 3);
                 shakeDuration -= Time.deltaTime * decreaseFactor;
             }
             else

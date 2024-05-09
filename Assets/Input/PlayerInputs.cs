@@ -64,6 +64,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""ToggleWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""5b3dc0db-221b-494b-be45-54c335495d18"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""47685d30-7214-4f51-aa69-766cddd365cf"",
@@ -89,6 +98,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""UseKnife"",
+                    ""type"": ""Button"",
+                    ""id"": ""753b38de-49fc-4d7b-8f7e-03b675610dcd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -149,6 +167,17 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""38036013-fbae-49ac-85c3-f97c710aa184"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""a004e304-9086-4a0a-ac6a-46d9893a0407"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
@@ -160,8 +189,30 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""76a76ab9-6e1c-40b5-a27f-665daae8caeb"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Looking"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""132a336a-e1f7-4062-8216-3c2c089565bf"",
                     ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""748e9e57-ae8f-4c5d-a3c9-d05d091220fe"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -204,8 +255,30 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""ca3eb07a-80df-4d9f-a3d2-00d720cb8ccc"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""141f1d65-9398-450a-ad2a-6c33ceea2bf9"",
                     ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b53586c2-9a89-45f1-85ed-25eccda04ee8"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -221,6 +294,50 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""73b377a8-324d-4a72-a41f-d7b05074631e"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c371f8e6-7aef-4917-8779-13dfbd056178"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseKnife"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c533f79b-1f44-4365-9875-06e951c26f42"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseKnife"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ed268f20-5ad8-4173-aeff-f4cfe2cae259"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -251,6 +368,17 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b44f2f57-7466-4d4f-a75b-ca75f9c64641"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -263,9 +391,11 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_General_Looking = m_General.FindAction("Looking", throwIfNotFound: true);
         m_General_Attack = m_General.FindAction("Attack", throwIfNotFound: true);
         m_General_ScrollWeapon = m_General.FindAction("ScrollWeapon", throwIfNotFound: true);
+        m_General_ToggleWeapon = m_General.FindAction("ToggleWeapon", throwIfNotFound: true);
         m_General_Interact = m_General.FindAction("Interact", throwIfNotFound: true);
         m_General_Reload = m_General.FindAction("Reload", throwIfNotFound: true);
         m_General_Sprint = m_General.FindAction("Sprint", throwIfNotFound: true);
+        m_General_UseKnife = m_General.FindAction("UseKnife", throwIfNotFound: true);
         // PauseActions
         m_PauseActions = asset.FindActionMap("PauseActions", throwIfNotFound: true);
         m_PauseActions_Pause = m_PauseActions.FindAction("Pause", throwIfNotFound: true);
@@ -334,9 +464,11 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_General_Looking;
     private readonly InputAction m_General_Attack;
     private readonly InputAction m_General_ScrollWeapon;
+    private readonly InputAction m_General_ToggleWeapon;
     private readonly InputAction m_General_Interact;
     private readonly InputAction m_General_Reload;
     private readonly InputAction m_General_Sprint;
+    private readonly InputAction m_General_UseKnife;
     public struct GeneralActions
     {
         private @PlayerInputs m_Wrapper;
@@ -345,9 +477,11 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         public InputAction @Looking => m_Wrapper.m_General_Looking;
         public InputAction @Attack => m_Wrapper.m_General_Attack;
         public InputAction @ScrollWeapon => m_Wrapper.m_General_ScrollWeapon;
+        public InputAction @ToggleWeapon => m_Wrapper.m_General_ToggleWeapon;
         public InputAction @Interact => m_Wrapper.m_General_Interact;
         public InputAction @Reload => m_Wrapper.m_General_Reload;
         public InputAction @Sprint => m_Wrapper.m_General_Sprint;
+        public InputAction @UseKnife => m_Wrapper.m_General_UseKnife;
         public InputActionMap Get() { return m_Wrapper.m_General; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -369,6 +503,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @ScrollWeapon.started += instance.OnScrollWeapon;
             @ScrollWeapon.performed += instance.OnScrollWeapon;
             @ScrollWeapon.canceled += instance.OnScrollWeapon;
+            @ToggleWeapon.started += instance.OnToggleWeapon;
+            @ToggleWeapon.performed += instance.OnToggleWeapon;
+            @ToggleWeapon.canceled += instance.OnToggleWeapon;
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
@@ -378,6 +515,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
+            @UseKnife.started += instance.OnUseKnife;
+            @UseKnife.performed += instance.OnUseKnife;
+            @UseKnife.canceled += instance.OnUseKnife;
         }
 
         private void UnregisterCallbacks(IGeneralActions instance)
@@ -394,6 +534,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @ScrollWeapon.started -= instance.OnScrollWeapon;
             @ScrollWeapon.performed -= instance.OnScrollWeapon;
             @ScrollWeapon.canceled -= instance.OnScrollWeapon;
+            @ToggleWeapon.started -= instance.OnToggleWeapon;
+            @ToggleWeapon.performed -= instance.OnToggleWeapon;
+            @ToggleWeapon.canceled -= instance.OnToggleWeapon;
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
@@ -403,6 +546,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
+            @UseKnife.started -= instance.OnUseKnife;
+            @UseKnife.performed -= instance.OnUseKnife;
+            @UseKnife.canceled -= instance.OnUseKnife;
         }
 
         public void RemoveCallbacks(IGeneralActions instance)
@@ -472,9 +618,11 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         void OnLooking(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnScrollWeapon(InputAction.CallbackContext context);
+        void OnToggleWeapon(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnUseKnife(InputAction.CallbackContext context);
     }
     public interface IPauseActionsActions
     {

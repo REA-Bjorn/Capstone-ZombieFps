@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 4565562173124886}
   - component: {fileID: 33035055851636990}
   - component: {fileID: 23013697615537750}
+  - component: {fileID: 4500247219600809639}
+  - component: {fileID: 5616709868347281462}
+  - component: {fileID: 4870520442401007034}
   m_Layer: 0
   m_Name: SimpleKnife
   m_TagString: Untagged
@@ -84,6 +87,58 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4500247219600809639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140312713637392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 187efa690cfa60d4b9ad8bd8ef2f8e4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimerName: 
+  duration: 0.75
+  RunTimer: 0
+--- !u!95 &5616709868347281462
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140312713637392}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4e971d3562c8fa14b8c405cbbd3d343b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4870520442401007034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140312713637392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9fec976743ccbc4799b1fc56c267130, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knifeTimer: {fileID: 4500247219600809639}
+  knifeSwooshSFX: {fileID: 8300000, guid: af53f1b9318fc154b8e73151db49b743, type: 3}
+  knifeAnimator: {fileID: 5616709868347281462}
+  gunHolder: {fileID: 0}
 --- !u!1 &1833106314460938
 GameObject:
   m_ObjectHideFlags: 0

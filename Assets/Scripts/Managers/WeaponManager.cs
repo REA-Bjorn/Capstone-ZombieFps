@@ -14,6 +14,7 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private BaseWeapon Secondary;
 
     [SerializeField] private CustomTimer instaKillTimer;
+    [SerializeField] private KnifeWeapon playerKnifeScript;
 
     private bool instaKillStatus = false;
     public bool InstaKill => instaKillStatus;
@@ -57,6 +58,7 @@ public class WeaponManager : MonoBehaviour
         instaKillTimer.OnStart += InstaKillTimer_OnStart;
         instaKillTimer.OnEnd += InstaKillTimer_OnEnd;
 
+
         currWeapon = Primary;
         currWeapon.WeaponOn();
 
@@ -82,7 +84,7 @@ public class WeaponManager : MonoBehaviour
     {
         if (Primary != null && Secondary != null)
         {
-            if (Mathf.Abs(InputManager.Instance.ScrollVect.y) > 0f)
+            if (Mathf.Abs(InputManager.Instance.ScrollVect.y) > 0f || (InputManager.Instance.Action.ToggleWeapon.WasPerformedThisFrame()))
             {
                 if (Primary != null && currWeapon == Secondary)
                 {
@@ -96,6 +98,12 @@ public class WeaponManager : MonoBehaviour
         }
 
         UIManager.Instance.UpdateWeaponsUI();
+    }
+
+    public void UseKnifePressed(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        if (playerKnifeScript)
+            playerKnifeScript.CallUseKnife();
     }
 
     public void AddWeapon(GameObject _weapon)
@@ -201,30 +209,24 @@ public class WeaponManager : MonoBehaviour
         // Do we have the current type
         if (Primary.Type == _type)
         {
-            if (Primary.Ammo.CurrentValue > 0 && Primary.Reserves.CurrentValue > 0)
+            // if not >= then it will not include 0
+            if (Primary.Ammo.CurrentValue >= 0 && Primary.Reserves.CurrentValue >= 0)
             {
                 return true;
-            }
-            else
-            {
-                Debug.Log("wah1");
             }
         }
         else if (Secondary.Type == _type)
         {
-            if (Secondary.Ammo.CurrentValue > 0 && Secondary.Reserves.CurrentValue > 0)
+            // if not >= then it will not include 0
+            if (Secondary.Ammo.CurrentValue >= 0 && Secondary.Reserves.CurrentValue >= 0)
             {
                 return true;
             }
-            else
-            {
-                Debug.Log("wah2");
-            }
         }
-        else
-        {
-            Debug.Log("Primary.Type == _type" + (Primary.Type == _type) + "Primary.Ammo.IsMaxed " + (Primary.Ammo.IsMaxed) + "Secondary.Type == _type " + (Secondary.Type == _type) + "Secondary.Ammo.IsMaxed " + (Secondary.Ammo.IsMaxed));
-        }
+        //else
+        //{
+        //    Debug.Log("Primary.Type == _type" + (Primary.Type == _type) + "Primary.Ammo.IsMaxed " + (Primary.Ammo.IsMaxed) + "Secondary.Type == _type " + (Secondary.Type == _type) + "Secondary.Ammo.IsMaxed " + (Secondary.Ammo.IsMaxed));
+        //}
 
         // We didn't have a matching gun or need ammo
         return false;

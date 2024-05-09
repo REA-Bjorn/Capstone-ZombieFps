@@ -14,6 +14,7 @@ public class InputManager : MonoBehaviour
 
     public bool SprintON => Input.GetKey(KeyCode.LeftShift);
     public bool SprintOff => Input.GetKeyUp(KeyCode.LeftShift);
+    public bool IsInteracting => inputs.General.Interact.WasPerformedThisFrame();
 
     public Vector2 MoveVect => inputs.General.Movement.ReadValue<Vector2>();
 
@@ -44,7 +45,9 @@ public class InputManager : MonoBehaviour
     {
         // subscribe methods
         inputs.General.ScrollWeapon.performed += WeaponManager.Instance.ToggleWeapon;
+        inputs.General.ToggleWeapon.performed += WeaponManager.Instance.ToggleWeapon;
         inputs.General.Attack.performed += WeaponManager.Instance.Shoot;
+        inputs.General.UseKnife.started += WeaponManager.Instance.UseKnifePressed;
         inputs.PauseActions.Pause.started += UIManager.Instance.PauseMenu;
     }
 
@@ -52,7 +55,9 @@ public class InputManager : MonoBehaviour
     {
         // unsubscribe methods
         inputs.General.ScrollWeapon.performed -= WeaponManager.Instance.ToggleWeapon;
+        inputs.General.ToggleWeapon.performed -= WeaponManager.Instance.ToggleWeapon;
         inputs.General.Attack.performed -= WeaponManager.Instance.Shoot;
+        inputs.General.UseKnife.started -= WeaponManager.Instance.UseKnifePressed;
         inputs.PauseActions.Pause.started -= UIManager.Instance.PauseMenu;
     }
 

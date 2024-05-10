@@ -6506,7 +6506,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 27ae7b31b25c25a48959220c95612c08, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2ac17fde6b718d84491db2ce2671771b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15747,6 +15747,55 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &7826535044532121898
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3475164631617839949}
+  - component: {fileID: 8939197004775322650}
+  m_Layer: 0
+  m_Name: HalfHealthIndicator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &3475164631617839949
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7826535044532121898}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -960, y: -539.5, z: -68.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6310428768297603323}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8939197004775322650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7826535044532121898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: f594aabf6bd2c72499b67b7d8d7c404d, type: 2}
 --- !u!1 &7844452974095334214
 GameObject:
   m_ObjectHideFlags: 0
@@ -15817,6 +15866,7 @@ RectTransform:
   - {fileID: 3016115278808172491}
   - {fileID: 7775115148452128039}
   - {fileID: 329413364509204807}
+  - {fileID: 3475164631617839949}
   - {fileID: 826013371397631338}
   - {fileID: 7592949109294719724}
   - {fileID: 2698933720843904312}
@@ -15874,6 +15924,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   showDuration: 0.5
+  halfHealthVisual: {fileID: 7826535044532121898}
 --- !u!1 &7853550131542518875
 GameObject:
   m_ObjectHideFlags: 0

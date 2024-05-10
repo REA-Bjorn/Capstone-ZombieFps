@@ -86,21 +86,25 @@ public class Projectile : MonoBehaviour
                 else if (canHurtPlayer && hit.CompareTag("Player"))
                 {
                     PlayerBase.instance.ShakeCam(1.5f, 0.5f);
+                    IDamage dmg = hit.GetComponent<IDamage>();
+                    dmg.TakeDamage(0.1f);
                 }
-
-                IDamage dmg = hit.GetComponent<IDamage>();
-
-                if (dmg != null)
+                else
                 {
-                    if (WeaponManager.Instance.InstaKill)
+                    IDamage dmg = hit.GetComponent<IDamage>();
+
+                    if (dmg != null)
                     {
-                        dmg.TakeMaxDamage();
-                    }
-                    else
-                    {
-                        distance = Vector3.Distance(hit.transform.position, transform.position);
-                        applied = Mathf.Clamp((distance / aoeRange), 0.5f, aoeRange) * damage;
-                        dmg.TakeDamage(applied);
+                        if (WeaponManager.Instance.InstaKill)
+                        {
+                            dmg.TakeMaxDamage();
+                        }
+                        else
+                        {
+                            distance = Vector3.Distance(hit.transform.position, transform.position);
+                            applied = Mathf.Clamp((distance / aoeRange), 0.5f, aoeRange) * damage;
+                            dmg.TakeDamage(applied);
+                        }
                     }
                 }
             }

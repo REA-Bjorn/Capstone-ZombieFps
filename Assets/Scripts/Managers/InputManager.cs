@@ -12,8 +12,11 @@ public class InputManager : MonoBehaviour
 
     public PlayerInputs.GeneralActions Action => inputs.General;
 
-    public bool SprintON => Input.GetKey(KeyCode.LeftShift);
-    public bool SprintOff => Input.GetKeyUp(KeyCode.LeftShift);
+    private bool sprinting;
+
+    public bool SprintON => Input.GetKey(KeyCode.LeftShift) || sprinting;
+    public bool SprintOff => Input.GetKeyUp(KeyCode.LeftShift) || !sprinting;
+    public bool IsInteracting => inputs.General.Interact.WasPerformedThisFrame();
 
     public Vector2 MoveVect => inputs.General.Movement.ReadValue<Vector2>();
 
@@ -44,7 +47,9 @@ public class InputManager : MonoBehaviour
     {
         // subscribe methods
         inputs.General.ScrollWeapon.performed += WeaponManager.Instance.ToggleWeapon;
+        inputs.General.ToggleWeapon.performed += WeaponManager.Instance.ToggleWeapon;
         inputs.General.Attack.performed += WeaponManager.Instance.Shoot;
+        inputs.General.UseKnife.started += WeaponManager.Instance.UseKnifePressed;
         inputs.PauseActions.Pause.started += UIManager.Instance.PauseMenu;
     }
 
@@ -52,7 +57,9 @@ public class InputManager : MonoBehaviour
     {
         // unsubscribe methods
         inputs.General.ScrollWeapon.performed -= WeaponManager.Instance.ToggleWeapon;
+        inputs.General.ToggleWeapon.performed -= WeaponManager.Instance.ToggleWeapon;
         inputs.General.Attack.performed -= WeaponManager.Instance.Shoot;
+        inputs.General.UseKnife.started -= WeaponManager.Instance.UseKnifePressed;
         inputs.PauseActions.Pause.started -= UIManager.Instance.PauseMenu;
     }
 
@@ -69,5 +76,21 @@ public class InputManager : MonoBehaviour
     public void PauseActions()
     {
         inputs.General.Disable();
+    }
+
+    private void Update()
+    {
+        if (Input.GetJoystickNames().Length > 0)
+        {
+            // Controller Specific fix
+            if (Action.Sprint.WasPressedThisFrame() && !sprinting)
+            {
+                sprinting = true;
+            }
+            else if (Action.Sprint.WasReleasedThisFrame() && sprinting)
+            {
+                sprinting = false;
+            }
+        }
     }
 }

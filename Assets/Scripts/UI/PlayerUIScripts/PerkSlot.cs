@@ -6,11 +6,11 @@ using UnityEngine.UI;
 [System.Serializable]
 public enum PerkType
 {
-    FireRate,
+    Firing,
     Health,
-    ReloadSpeed,
-    SecondLife,
-    MoveSpeed,
+    Reload,
+    Revive,
+    Speed,
     NULLPERK
 }
 
@@ -26,7 +26,7 @@ public class PerkSlot : MonoBehaviour
     {
         switch (_perk)
         {
-            case PerkType.FireRate:
+            case PerkType.Firing:
                 displayPerk.color = Color.white;
                 filled = true;
                 displayPerk.texture = PerkManager.Instance.FireRateSprite;
@@ -36,17 +36,17 @@ public class PerkSlot : MonoBehaviour
                 filled = true;
                 displayPerk.texture = PerkManager.Instance.HealthSprite;
                 break;
-            case PerkType.ReloadSpeed:
+            case PerkType.Reload:
                 displayPerk.color = Color.white;
                 filled = true;
                 displayPerk.texture = PerkManager.Instance.ReloadSpeedSprite;
                 break;
-            case PerkType.SecondLife:
+            case PerkType.Revive:
                 displayPerk.color = Color.white;
                 filled = true;
                 displayPerk.texture = PerkManager.Instance.SecondLifeSprite;
                 break;
-            case PerkType.MoveSpeed:
+            case PerkType.Speed:
                 displayPerk.color = Color.white;
                 filled = true;
                 displayPerk.texture = PerkManager.Instance.MoveSpeedSprite;

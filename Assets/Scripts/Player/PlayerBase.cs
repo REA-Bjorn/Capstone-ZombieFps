@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -54,6 +55,11 @@ public class PlayerBase : MonoBehaviour, IDamage
         {
             health.Increase(Time.deltaTime * 0.1f); // time.delta time will be a lot so 0.1 times that
 
+            if (health.CurrentValue > health.Max / 2f)
+            {
+                UIManager.Instance.PlayerHitScript.ToggleHalfHealthVisual(false);
+            }
+
             if (health.IsMaxed)
                 passiveHealthRegenTimer.StopTimer();
         };
@@ -100,6 +106,11 @@ public class PlayerBase : MonoBehaviour, IDamage
         {
             health.Increase(Time.deltaTime * 0.1f);
 
+            if (health.CurrentValue > health.Max / 2f)
+            {
+                UIManager.Instance.PlayerHitScript.ToggleHalfHealthVisual(false);
+            }
+
             if (health.IsMaxed)
                 passiveHealthRegenTimer.StopTimer();
         };
@@ -145,6 +156,11 @@ public class PlayerBase : MonoBehaviour, IDamage
 
             // Actually take damage
             health.Decrease(damage);
+
+            if (health.CurrentValue <= health.Max / 2f)
+            {
+                UIManager.Instance.PlayerHitScript.ToggleHalfHealthVisual(true);
+            }
         }
     }
 
@@ -156,6 +172,11 @@ public class PlayerBase : MonoBehaviour, IDamage
     public void HealthPerkEnabled()
     {
         health.UpdateMax(Mathf.Floor(health.Max * 2.5f));
+        
+        if (health.CurrentValue <= health.Max / 2f)
+        {
+            UIManager.Instance.PlayerHitScript.ToggleHalfHealthVisual(true);
+        }
     }
 
     public void HealthPerkDisabled()

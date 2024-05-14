@@ -56,6 +56,10 @@ public class WeaponUnlockStand : BaseInteractable
                     UIManager.Instance.PlayerUIScript.FlashPointsUI();
                 }
             }
+            else
+            {
+                Debug.Log("Player doesn't have weapons!");
+            }
         }
 
         /* 
@@ -71,6 +75,9 @@ public class WeaponUnlockStand : BaseInteractable
     public override void Start()
     {
         base.Start();
+
+
+        coll.enabled = true;
 
         // Make sure its not null.
         // If it is turn off collider and don't interact with this obj

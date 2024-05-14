@@ -250,9 +250,6 @@ MonoBehaviour:
   source: {fileID: 2416885581016544511}
   shootSFX:
   - {fileID: 8300000, guid: 1cf5a6b716a08bb42895070c0299c329, type: 3}
-  - {fileID: 8300000, guid: 74a0366ff0ae130489d898957f06f3dd, type: 3}
-  - {fileID: 8300000, guid: 1e09bfef20558e24596501e609a2a95e, type: 3}
-  - {fileID: 8300000, guid: 46356fd07143a8141ae0be24c7b9057b, type: 3}
   reloadSFX:
   - {fileID: 8300000, guid: 0e030b0e46bc98d40836fad34870923e, type: 3}
   - {fileID: 8300000, guid: c082c93feab345e4fa1b3ec495205938, type: 3}

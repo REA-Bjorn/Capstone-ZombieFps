@@ -41,21 +41,21 @@ public class PerkManager : MonoBehaviour
     {
         switch (_type)
         {
-            case PerkType.FireRate: // PERK TODO: Faster Fire Rate
+            case PerkType.Firing: // PERK TODO: Faster Fire Rate
                 fasterShoot = true;
                 break;
             case PerkType.Health: // Implemented
                 PlayerBase.instance.HealthPerkEnabled();
                 doubleHealth = true;
                 break;
-            case PerkType.ReloadSpeed: // PERK TODO: Faster Reload
+            case PerkType.Reload: // PERK TODO: Faster Reload
                 fasterReload = true;
                 break;
-            case PerkType.SecondLife: // Trying to implement
+            case PerkType.Revive: // Trying to implement
                 GameManager.Instance.BoughtARevive();
                 secondLife = true;
                 break;
-            case PerkType.MoveSpeed: // Implemented
+            case PerkType.Speed: // Implemented
                 fasterSprint = true;
                 break;
             case PerkType.NULLPERK:

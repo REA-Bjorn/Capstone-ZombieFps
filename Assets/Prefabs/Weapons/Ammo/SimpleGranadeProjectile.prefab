@@ -118,6 +118,7 @@ MonoBehaviour:
   rb: {fileID: 299507706243339549}
   visuals: {fileID: 6265253826612903127}
   modelObj: {fileID: 7913144751255089399}
+  COLL: {fileID: 1726734285058210747}
   aoeRange: 5
   speed: 20
   canHurtPlayer: 1

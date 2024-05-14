@@ -14,8 +14,8 @@ public class EnemyBase : MonoBehaviour, IDamage
     [SerializeField] private EnemyVisual visualScript;
     [SerializeField] private EnemyAudio audioScript;
     [SerializeField] EnemyMovement move;
-    [SerializeField] int deathPointWorth = 50;
-    [SerializeField] int hitPointVal = 15;
+    [SerializeField] int deathPointWorth = 75;
+    [SerializeField] int hitPointVal = 5;
 
     [Seperator]
     [SerializeField] EnemyAnimator anim;
@@ -35,7 +35,6 @@ public class EnemyBase : MonoBehaviour, IDamage
 
     void Start()
     {
-        navMeshAgent = GetComponent<NavMeshAgent>();
         MaxStats();
         
         // Update extra visuals

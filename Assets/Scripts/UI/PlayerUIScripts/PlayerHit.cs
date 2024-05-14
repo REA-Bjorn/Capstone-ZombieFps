@@ -8,7 +8,8 @@ public class PlayerHit : MonoBehaviour
     // Added these for post effects (post-processing) 
     [SerializeField] Volume postFXVolume;
     [SerializeField] private AnimationCurve flashSpeedCurve;
-    [SerializeField] float showDuration;
+    [SerializeField] private float showDuration;
+    [SerializeField] private GameObject halfHealthVisual;
 
     private Vignette pfxVignette;
     private float tmpDamageFlash;
@@ -62,5 +63,10 @@ public class PlayerHit : MonoBehaviour
     public void PlayerDiedVignette()
     {
         pfxVignette.intensity.value = 1.0f;
+    }
+
+    public void ToggleHalfHealthVisual(bool _status)
+    {
+        halfHealthVisual.SetActive(_status);
     }
 }

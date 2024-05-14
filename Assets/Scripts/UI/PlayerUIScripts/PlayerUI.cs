@@ -12,6 +12,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private GameObject waveObj;
     [SerializeField] private GameObject crossHairObj;
     [SerializeField] private GameObject weaponsObj;
+    [SerializeField] private GameObject reviveObj;
 
     [Seperator]
     [SerializeField] private TextMeshProUGUI totalScore;
@@ -25,11 +26,15 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private GameObject go_stamBar;
     [SerializeField] private Image staminaRadial;
     [SerializeField] private GameObject go_stamRadial;
+    [SerializeField] private GameObject go_hitmarker;
 
     [Seperator]
     [SerializeField] private TextMeshProUGUI ammoText;
     [SerializeField] private TextMeshProUGUI reservedAmmoText;
     [SerializeField] private TextMeshProUGUI gunText;
+
+    [SerializeField] private PowerupCooldownUI cooldownUIScript;
+    public PowerupCooldownUI CooldownUIScript => cooldownUIScript;
 
     public void StartUp()
     {
@@ -108,6 +113,19 @@ public class PlayerUI : MonoBehaviour
         StartCoroutine(FlashingPoints());
     }
 
+    public void FlashHitMarker()
+    {
+        StopCoroutine(FlashingHitmarker());
+        StartCoroutine(FlashingHitmarker());
+    }
+
+    private IEnumerator FlashingHitmarker()
+    {
+        go_hitmarker.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        go_hitmarker.SetActive(false);
+    }
+
     private IEnumerator FlashingPoints()
     {
         totalScore.color = UnityEngine.Color.red;
@@ -119,6 +137,13 @@ public class PlayerUI : MonoBehaviour
     {
         go_stamRadial.SetActive(state);
         go_stamBar.SetActive(!state);
+    }
+
+    public IEnumerator ToggleRevivePrompt()
+    {
+        reviveObj.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        reviveObj.SetActive(false);
     }
 
 }

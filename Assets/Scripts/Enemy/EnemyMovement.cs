@@ -28,9 +28,9 @@ public class EnemyMovement : MonoBehaviour
     {
         if (agent.isActiveAndEnabled && agent.isOnNavMesh && !agent.isStopped)
         {
-            if (agent.remainingDistance > 50f)
+            if (agent.remainingDistance > 75f)
             {
-                UpdateMoveSpeed(15f);
+                UpdateMoveSpeed(50f);
             }
             else
             {

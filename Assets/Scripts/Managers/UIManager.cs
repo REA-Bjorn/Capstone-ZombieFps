@@ -58,6 +58,7 @@ public class UIManager : MonoBehaviour
         else
         {
             TurnOnPauseMenu();
+            pauseMenuScript.ReturnToPauseMenu();
         }
     }
 
@@ -88,6 +89,7 @@ public class UIManager : MonoBehaviour
         TurnOffAllUI();
         death.SetActive(true);
         GameManager.Instance.PauseGame();
+        pauseMenuScript.DisplayDeath();
         deathUI.UpdateTotalScore();
     }
 

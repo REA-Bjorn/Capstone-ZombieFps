@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private ProjectileVisuals visuals;
     [SerializeField] private GameObject modelObj;
+    [SerializeField] private Collider COLL;
     [Seperator]
     [SerializeField] private float aoeRange;
     [SerializeField] private float speed;
@@ -44,7 +45,7 @@ public class Projectile : MonoBehaviour
         deathTimer.OnEnd -= ProjectileDied;
 
         DealDamage();
-        GetComponent<Collider>().enabled = false;
+        COLL.enabled = false;
 
         StartupVisuals();
 
@@ -70,31 +71,41 @@ public class Projectile : MonoBehaviour
     private void DealDamage()
     {
         Collider[] allHits = Physics.OverlapSphere(transform.position, aoeRange);
-        foreach (Collider hit in allHits)
+
+        if (allHits.Length > 0)
         {
-            // If we cannot damage the player and we hit the player, continue the loop
-            if (!canHurtPlayer && hit.CompareTag("Player"))
-            {
-                continue;
-            }
-            else if (canHurtPlayer && hit.CompareTag("Player"))
-            {
-                PlayerBase.instance.ShakeCam(1.5f, 0.5f);
-            }
+            UIManager.Instance.PlayerUIScript.FlashHitMarker();
 
-            IDamage dmg = hit.GetComponent<IDamage>();
-
-            if (dmg != null)
+            foreach (Collider hit in allHits)
             {
-                if (WeaponManager.Instance.InstaKill)
+                // If we cannot damage the player and we hit the player, continue the loop
+                if (!canHurtPlayer && hit.CompareTag("Player"))
                 {
-                    dmg.TakeMaxDamage();
+                    continue;
+                }
+                else if (canHurtPlayer && hit.CompareTag("Player"))
+                {
+                    PlayerBase.instance.ShakeCam(1.5f, 0.5f);
+                    IDamage dmg = hit.GetComponent<IDamage>();
+                    dmg.TakeDamage(0.1f);
                 }
                 else
                 {
-                    distance = Vector3.Distance(hit.transform.position, transform.position);
-                    applied = Mathf.Clamp((distance / aoeRange), 0.5f, aoeRange) * damage;
-                    dmg.TakeDamage(applied);
+                    IDamage dmg = hit.GetComponent<IDamage>();
+
+                    if (dmg != null)
+                    {
+                        if (WeaponManager.Instance.InstaKill)
+                        {
+                            dmg.TakeMaxDamage();
+                        }
+                        else
+                        {
+                            distance = Vector3.Distance(hit.transform.position, transform.position);
+                            applied = Mathf.Clamp((distance / aoeRange), 0.5f, aoeRange) * damage;
+                            dmg.TakeDamage(applied);
+                        }
+                    }
                 }
             }
         }

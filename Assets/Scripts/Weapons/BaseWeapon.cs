@@ -114,19 +114,10 @@ public class BaseWeapon : MonoBehaviour
         // If we have reserves
         if (reserves.IsValid && !ammo.IsMaxed)
         {
-            if (PerkManager.Instance.FasterReload)
-            {
-                reloadTimer.StartTimer(storedReload / 2);
-            }
-            else
-            {
-                reloadTimer.StartTimer(storedReload);
-            }
-
             gunAnimations?.SetTrigger("Reload");
-
+            
             float used = ammo.Max - ammo.CurrentValue;
-
+            
             // we know reserves has something
             if (reserves.CurrentValue > used)
             {
@@ -141,6 +132,15 @@ public class BaseWeapon : MonoBehaviour
 
             audioScript.PlayReload();
             UIManager.Instance.UpdateWeaponsUI();
+
+            if (PerkManager.Instance.FasterReload)
+            {
+                reloadTimer.StartTimer(storedReload / 2);
+            }
+            else
+            {
+                reloadTimer.StartTimer(storedReload);
+            }
         }
         else
         {

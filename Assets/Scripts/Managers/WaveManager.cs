@@ -37,7 +37,7 @@ public class WaveManager : MonoBehaviour
 
     public float Time => waveCountdownTimer.DurationTime;
 
-    private int waveCount = 0;
+    private int waveCount = 1;
     public int CurrWaveNumInt => waveCount;
     public string CurrentWave => waveCount.ToString();
 
@@ -140,7 +140,7 @@ public class WaveManager : MonoBehaviour
     public void IncWave()
     {
         // Update Wave
-        waveCount++;
+        ++waveCount;
         UIManager.Instance.PlayerUIScript.UpdateWavesText();
     }
 

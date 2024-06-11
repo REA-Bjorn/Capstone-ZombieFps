@@ -30,10 +30,8 @@ public class AutoFireWeapon : BaseWeapon
 
     public override bool Shoot()
     {
-        if (base.Shoot() && ammo.IsValid)
-        {
-            WeaponFX();
-
+        if (base.Shoot())
+        { 
             // Create Raycast Hit data
             RaycastHit hit;
             // Shoot a ray from the screen with our shoot dist

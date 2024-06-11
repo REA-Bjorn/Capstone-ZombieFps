@@ -23,7 +23,6 @@ public class InteractWeapon : BaseWeapon
     {
         if (base.Shoot())
         {
-            WeaponFX();
 
             // Create Raycast Hit data
             RaycastHit hit;

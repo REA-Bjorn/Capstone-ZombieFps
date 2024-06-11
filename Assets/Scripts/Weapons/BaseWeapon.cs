@@ -93,10 +93,23 @@ public class BaseWeapon : MonoBehaviour
 
     public virtual bool Shoot()
     {
-        // Return if the fire rate timer is not running
-        // meaning we can shoot again!
+        // Return if the fire rate timer is not running or reload timer is running or the UI is paused
+        if (fireRateTimer.RunTimer || reloadTimer.RunTimer || UIManager.Instance.IsUIPause)
+        {
+            return false;
+        }
 
-        return !fireRateTimer.RunTimer && !reloadTimer.RunTimer && !UIManager.Instance.IsUIPause;
+        // Check if ammo is empty
+        if (ammo.CurrentValue <= 0)
+        {
+            // Trigger the reload method
+            Reload(new UnityEngine.InputSystem.InputAction.CallbackContext());
+            return false;
+        }
+
+        // Proceed with shooting
+        WeaponFX();
+        return true;
     }
 
     public void SetMaxAmmo()
@@ -105,7 +118,7 @@ public class BaseWeapon : MonoBehaviour
         reserves.SetMax();
     }
 
-    public virtual void Reload(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    public virtual void Reload(UnityEngine.InputSystem.InputAction.CallbackContext context = default)
     {
         // Don't reload if we already reloading or the timer is running
         if (reloadTimer.RunTimer)
@@ -150,6 +163,7 @@ public class BaseWeapon : MonoBehaviour
 
     protected void WeaponFX()
     {
+
         // Plays the muzzle flash animation
         muzzleFlash.Play();
 
@@ -169,8 +183,11 @@ public class BaseWeapon : MonoBehaviour
         gunAnimations.SetTrigger("Shoot");
 
         // Use an ammo because we can shoot it
-        ammo.Decrease(1f);
-        UIManager.Instance.UpdateWeaponsUI();
+        if(ammo.CurrentValue > 0)
+        {
+            ammo.Decrease(1f);
+            UIManager.Instance.UpdateWeaponsUI();
+        }
     }
 
     public void SetParentStandObj(GameObject _obj, WeaponUnlockStand _stand)

@@ -22,10 +22,8 @@ public class SingleFireWeapon : BaseWeapon
 
     public override bool Shoot()
     {
-        if (base.Shoot() && ammo.IsValid)
+        if (base.Shoot())
         {
-            WeaponFX();
-
             // Create Raycast Hit data
             RaycastHit hit;
             // Shoot a ray from the screen with our shoot dist
@@ -51,7 +49,6 @@ public class SingleFireWeapon : BaseWeapon
                 }
             }
         }
-
         return true;
     }
 }

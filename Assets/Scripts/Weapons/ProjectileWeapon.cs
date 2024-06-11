@@ -36,9 +36,8 @@ public class ProjectileWeapon : BaseWeapon
 
     public override bool Shoot()
     {
-        if (base.Shoot() && ammo.IsValid)
+        if (base.Shoot())
         {
-            WeaponFX();
             DetermineMeshStats();
             
             GameObject spawnedProjectile = Instantiate(ammoPrefabToSpawn, spawnPoint.position, spawnPoint.rotation);

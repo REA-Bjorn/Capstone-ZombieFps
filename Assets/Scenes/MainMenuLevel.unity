@@ -2842,6 +2842,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7259077665519774296}
     m_Modifications:
+    - target: {fileID: -6678599410294696875, guid: d4d72adda932bef4fa8abc23f2af4e51,
+        type: 3}
+      propertyPath: ammo.max
+      value: 1e+14
+      objectReference: {fileID: 0}
+    - target: {fileID: -6678599410294696875, guid: d4d72adda932bef4fa8abc23f2af4e51,
+        type: 3}
+      propertyPath: reserves.max
+      value: 1e+14
+      objectReference: {fileID: 0}
     - target: {fileID: 674820215242395135, guid: d4d72adda932bef4fa8abc23f2af4e51,
         type: 3}
       propertyPath: m_LocalPosition.x
